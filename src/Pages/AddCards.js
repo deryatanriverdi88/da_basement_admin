@@ -57,6 +57,12 @@ class AddCards extends Component {
                         }) : "Cards are loading..."
                     }
                 </ul>
+                {this.state.cardForm ?
+                    <>
+                     <CardForm card={this.state.card} handleClick={this.handleClick} />
+                    </> :
+                    null
+                }
             </div>
         )
     }
