@@ -50,3 +50,13 @@ body{
   height: 2rem;
   margin-bottom: 2rem;
 }
+
+#submit{
+  margin: 0 auto;
+  display: inline-block;
+  width: 15rem;
+  height: 2rem;
+  font-size: 20px;
+  border-radius: 15px;
+}
+ 
