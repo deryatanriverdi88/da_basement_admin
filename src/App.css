@@ -236,6 +236,10 @@ li{
   border-radius: 15px;
 }
 
+.card-info-button{
+  width: 10em;
+}
+
 .x{
   outline: 0;
   margin-bottom: 3em;
