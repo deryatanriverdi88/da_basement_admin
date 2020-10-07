@@ -128,3 +128,11 @@ body{
 #logout:focus{
   outline: 0;
 }
+
+#header{
+  padding: 15px;
+  margin-top: 5px auto;
+  box-sizing: border-box;
+  width: auto;
+  height: 20%;
+}
