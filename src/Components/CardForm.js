@@ -77,6 +77,11 @@ export default class CardForm extends Component {
                      </form>
                     <button className="x" onClick={this.props.handleClick}> <span > ❌ </span></button>
                     <button className="card-info-button" onClick={() => this.handleClick(this.props.card)}> See card info </button>
+                    {
+                        this.state.cardView ?
+                        <CardItem card={this.state.card} handleClick={this.handleClick} /> :
+                        null
+                    }
                  </div>
             </div>
         )
