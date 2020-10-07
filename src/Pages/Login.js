@@ -76,6 +76,7 @@ class Login extends Component {
         return(
             <div className="login-container">
                 <div className="login-form">
+                    {this.state.errors}
                 </div>
             </div>
         )
