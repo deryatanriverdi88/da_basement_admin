@@ -186,3 +186,15 @@ body{
     font-size: 30px;
   }
 }
+
+@media only screen and (min-width: 750px){
+  .login-form{
+    height: auto;
+    width: 40%;
+    padding:30px;
+  }
+
+  .login-container{
+    padding-bottom: 25px;
+  }
+}
