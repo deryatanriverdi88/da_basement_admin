@@ -207,6 +207,10 @@ li{
   width: 10em;
 }
 
+.card-info-button:focus{
+  outline: 0;
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
