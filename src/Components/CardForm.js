@@ -87,3 +87,9 @@ export default class CardForm extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        current_user: state.user
+    }
+}
