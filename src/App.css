@@ -170,6 +170,12 @@ li{
   border-radius:15px;
 }
 
+.cards li, .card-name{
+  font-size: 25px;
+  padding-bottom: 15px;
+  cursor: grab;
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
