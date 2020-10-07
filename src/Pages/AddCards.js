@@ -9,6 +9,12 @@ class AddCards extends Component {
         cardForm: false
     }
 
+    handleChange = (event) => {
+        this.setState({
+            searchValue: event.target.value
+        })
+    }
+
     componentDidMount(){
         fetch('http://localhost:3000/last_ten')
         .then(res=>res.json())
