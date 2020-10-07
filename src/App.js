@@ -26,4 +26,14 @@ function App(props) {
   );
 }
 
+const mapDispatchToProps = (dispatch) =>{
+  return {
+    setUser: (userObject) => {
+      dispatch({
+          type: 'SET_USER', payload: userObject
+        })
+    }
+  }
+}
+
 export default App;
