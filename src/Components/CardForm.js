@@ -49,6 +49,7 @@ export default class CardForm extends Component {
     }
 
     render() {
+        const {name} = this.props.card
         return (
             <div>
             </div>
