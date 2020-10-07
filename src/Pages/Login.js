@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom'
 class Login extends Component {
     render() {
         return(
-            <div>
+            <div className="login-container">
             </div>
         )
     }
