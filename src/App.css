@@ -309,6 +309,12 @@ li{
   .login-container{
     padding-bottom: 25px;
   }
+
+  .card-form{
+    height: auto;
+    width: 40%;
+    padding:30px;
+  }
 }
 
 @media screen and (max-width: 1000px){
