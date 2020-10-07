@@ -5,7 +5,7 @@ import './App.css';
 import {connect} from 'react-redux'
 import NavBar from './Components/NavBar'
 
-function App() {
+function App(props) {
   return (
     <div className="App">
     </div>
