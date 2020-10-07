@@ -52,6 +52,8 @@ export default class CardForm extends Component {
         const {name} = this.props.card
         return (
             <div className="background-for-z-index">
+                 <div className="card-form">
+                 </div>
             </div>
         )
     }
