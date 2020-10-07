@@ -31,6 +31,12 @@ class AddCards extends Component {
     }
 
     render() {
+        const searchedCards =
+        this.props.cards.filter(card => {
+            if (this.state.searchValue !== ""){
+                return card.name.toLowerCase().includes(this.state.searchValue.toLowerCase())
+            }
+        })
         return (
             <div>
             </div>
