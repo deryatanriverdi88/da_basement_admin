@@ -124,17 +124,22 @@ li{
 #header{
   padding: 15px;
   margin-top: 5px auto;
-  box-sizing: border-box;
   width: auto;
   height: 20%;
 }
 
 .header-name{
-  font-family: 'Courgette', cursive;
   color: rgb(109,209,150);
   text-shadow: 2px 2px 4px #000000;
   letter-spacing: 20px;
   font-size: 50px;
+}
+
+.add-card-div{
+  background-image: url('https://imagesvc.meredithcorp.io/v3/mm/gif?url=https%3A%2F%2Fcdn-img.health.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmedium_16_9%2Fpublic%2Fstyles%2Fmain%2Fpublic%2Fflat-belly-cards.gif%3Fitok%3D_Jf3jwLd%261549666439&w=400&q=85');
+  height: 200vh;
+  margin: 0;
+  padding-top: 15px;
 }
 
 @media only screen and (min-width: 300px){
