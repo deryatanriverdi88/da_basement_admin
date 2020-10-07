@@ -82,4 +82,14 @@ class Login extends Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) =>{
+    return {
+        setUser: (admin) => {
+            dispatch({
+                type: 'SET_USER', payload: admin
+            })
+        }
+    }
+}
+
 export default Login
