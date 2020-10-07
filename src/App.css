@@ -3,6 +3,7 @@
 body{
   text-align: center;
   font-family: 'Comfortaa', cursive;
+  box-sizing: border-box;
 }
 
 li{
