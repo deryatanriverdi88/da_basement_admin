@@ -47,6 +47,16 @@ class AddCards extends Component {
                            onChange={this.handleChange}
                     />
                 </form>
+                <ul className="cards">
+                    {this.props.cards ?
+                        searchedCards.map(card => {
+                            return <li key={card.id}
+                                       onClick={() => this.handleClick(card)}>
+                                       {card.name}
+                                   </li>
+                        }) : "Cards are loading..."
+                    }
+                </ul>
             </div>
         )
     }
