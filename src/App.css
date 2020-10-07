@@ -68,3 +68,7 @@ body{
   background: rgb(195,169,34);
   background: linear-gradient(95deg, rgba(195,169,34, 0.6) 0%, rgba(45,213,253,0.8) 100%);
 }
+
+#submit:focus{
+  outline: 0;
+}
