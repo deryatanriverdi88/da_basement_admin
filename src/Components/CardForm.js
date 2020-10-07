@@ -53,6 +53,7 @@ export default class CardForm extends Component {
         return (
             <div className="background-for-z-index">
                  <div className="card-form">
+                 <h3 className="card-name">{ name }</h3>
                  </div>
             </div>
         )
