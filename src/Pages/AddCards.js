@@ -34,3 +34,5 @@ const mapStateToProps = (state) => {
         cards: state.addCards
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCards)
