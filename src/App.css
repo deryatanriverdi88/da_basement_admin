@@ -40,3 +40,7 @@ body{
   flex-direction: column;
   margin: 0 auto;
 }
+
+.inputs label span, #submit{
+  font-family: 'Comfortaa', cursive;
+}
