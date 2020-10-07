@@ -162,3 +162,27 @@ body{
     height: auto;
   }
 }
+
+@media only screen and (max-width: 500px){
+  #nav-bar{
+    height: auto;
+  }
+
+  .link {
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  #header{
+    height:auto ;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .header-name{
+    width:100%;
+    padding: 0;
+    margin:0;
+    font-size: 30px;
+  }
+}
