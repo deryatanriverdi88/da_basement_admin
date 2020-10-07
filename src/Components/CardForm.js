@@ -54,6 +54,29 @@ export default class CardForm extends Component {
             <div className="background-for-z-index">
                  <div className="card-form">
                  <h3 className="card-name">{ name }</h3>
+                 <form onSubmit={this.handleSubmit}>
+                         <label htmlFor="amount"> <span className="amount"> How many : </span></label>
+                            <input
+                                id="amount"
+                                name="amount"
+                                type="number"
+                                onChange={this.handleChange}
+                                value={this.state.amount}
+                            />
+                            <input
+                                type="hidden"
+                                id="user"
+                                name="userId"
+                            />
+                            <input
+                                type="hidden"
+                                id="card"
+                                name="magic_the_gatherig_card_id"
+                            />
+                           <input className="add-your-card" type="submit" value="Add to your favorite cards!" />
+                     </form>
+                    <button className="x" onClick={this.props.handleClick}> <span > ❌ </span></button>
+                    <button className="card-info-button" onClick={() => this.handleClick(this.props.card)}> See card info </button>
                  </div>
             </div>
         )
