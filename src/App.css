@@ -236,6 +236,12 @@ li{
   border-radius: 15px;
 }
 
+.x{
+  outline: 0;
+  margin-bottom: 3em;
+  padding-left: 9px;
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
