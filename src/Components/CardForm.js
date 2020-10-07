@@ -23,6 +23,31 @@ export default class CardForm extends Component {
         })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        fetch('http://localhost:3000/favorite_cards', {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'Accept':'application/json'
+            },
+            body: JSON.stringify({
+                user_id: this.props.current_user.id,
+                magic_the_gatherig_card_id: this.props.card.id,
+                amount: this.state.amount
+            })
+        })
+        .then(res => res.json())
+        .then(card => {
+            this.setState({
+                card: card
+            })
+            setTimeout(() => {
+                this.props.history.push(`/myCards`)
+            }, 50)
+        })
+    }
+
     render() {
         return (
             <div>
