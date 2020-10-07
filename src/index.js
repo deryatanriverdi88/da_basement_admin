@@ -9,9 +9,9 @@ import rootReducers from './Reducers/rootReducers'
 import { BrowserRouter} from 'react-router-dom'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
