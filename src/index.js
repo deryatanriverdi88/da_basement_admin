@@ -8,6 +8,8 @@ import { Provider } from 'react-redux'
 import rootReducers from './Reducers/rootReducers'
 import { BrowserRouter} from 'react-router-dom'
 
+const store = createStore(rootReducers)
+
 ReactDOM.render(
   <Provider store={store}>
       <BrowserRouter>
