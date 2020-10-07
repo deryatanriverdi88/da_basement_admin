@@ -16,6 +16,13 @@ export default class CardForm extends Component {
         })
     }
 
+    handleClick = (cardItem) => {
+        this.setState({
+            cardView: !this.state.cardView,
+            card: cardItem
+        })
+    }
+
     render() {
         return (
             <div>
