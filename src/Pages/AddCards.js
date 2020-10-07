@@ -3,6 +3,11 @@ import { connect } from 'react-redux'
 import CardForm from '../Components/CardForm'
 
 class AddCards extends Component {
+    state = {
+        searchValue: "",
+        card: {},
+        cardForm: false
+    }
 
     componentDidMount(){
         fetch('http://localhost:3000/last_ten')
