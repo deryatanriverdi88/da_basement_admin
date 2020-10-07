@@ -144,3 +144,15 @@ body{
   letter-spacing: 20px;
   font-size: 50px;
 }
+
+@media only screen and (min-width: 300px){
+  .login-form{
+    height: auto;
+    width: 80%;
+  }
+
+  .login-container{
+    padding-bottom: 25px;
+    height:165vh;
+  }
+}
