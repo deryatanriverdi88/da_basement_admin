@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import CardItem from "./CardItem"
 import { withRouter } from 'react-router-dom'
 
-export default class CardForm extends Component {
+class CardForm extends Component {
     state={
         amount: null,
         cardView: false,
@@ -93,3 +93,5 @@ const mapStateToProps = (state) => {
         current_user: state.user
     }
 }
+
+export default withRouter(connect(mapStateToProps, null)(CardForm))
