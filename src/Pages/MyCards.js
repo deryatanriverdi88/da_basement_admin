@@ -5,6 +5,16 @@ export default class MyCards extends Component {
         myCards: []
     }
 
+    componentDidMount =  () => {
+        fetch('http://localhost:3000/favorite_cards')
+        .then(res => res.json())
+        .then(cardItems => {
+              this.setState({
+                myCards: cardItems
+            })
+        })
+    }
+
     render() {
         return (
             <div>
