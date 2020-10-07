@@ -76,3 +76,9 @@ body{
 .login-form p span{
   margin-left: 15px;
 }
+
+.login-form p span:hover{
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
+}
