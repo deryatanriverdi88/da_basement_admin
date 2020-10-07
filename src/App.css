@@ -198,3 +198,30 @@ body{
     padding-bottom: 25px;
   }
 }
+
+@media screen and (max-width: 1000px){
+  #header{
+    padding: 0;
+  }
+
+  .header-name{
+    letter-spacing: normal;
+    margin-right:0;
+    font-size:2em;
+  }
+
+  .link{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  #nav-bar {
+    height: auto;
+  }
+
+  #logout{
+    margin-bottom: 15px;
+  }
+}
