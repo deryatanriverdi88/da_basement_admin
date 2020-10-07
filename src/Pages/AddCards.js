@@ -28,3 +28,9 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        cards: state.addCards
+    }
+}
