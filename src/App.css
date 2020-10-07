@@ -2,6 +2,12 @@
 
 body{
   text-align: center;
+  font-family: 'Comfortaa', cursive;
+  box-sizing: border-box;
+}
+
+li{
+  list-style: none;
 }
 
 .login-form{
@@ -10,10 +16,7 @@ body{
   display: flex;
   height: auto;
   flex-direction: column;
-  box-sizing: border-box;
   border-radius: 15px;
-  text-align: center;
-  font-family: 'Archivo', sans-serif;
   -webkit-box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
   -moz-box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
   box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
@@ -41,10 +44,6 @@ body{
   margin: 0 auto;
 }
 
-.inputs label span, #submit{
-  font-family: 'Comfortaa', cursive;
-}
-
 #email, #password{
   width: 15rem;
   height: 2rem;
@@ -64,7 +63,6 @@ body{
   -ms-transform: scale(1.2);
   transform: scale(1.2);
   z-index: 1;
-  font-family: 'Baloo Bhai', cursive;
   background: rgb(195,169,34);
   background: linear-gradient(95deg, rgba(195,169,34, 0.6) 0%, rgba(45,213,253,0.8) 100%);
 }
@@ -85,14 +83,11 @@ body{
 
 #nav-bar{
   background-color: rgba(44,134,81, 0.9);
-  font-family: 'Cinzel', serif;
-  box-sizing:border-box;
   width: auto;
   padding-bottom: 15px;
 }
 
 .link{
-  box-sizing: border-box;
   color: white;
   flex-grow: 1 1 1;
   display: inline-block;
@@ -101,7 +96,6 @@ body{
   text-decoration: none;
   font-size: 25px;
   font-weight: bold;
-  text-align: center;
 }
 
 .link-div{
@@ -117,9 +111,7 @@ body{
   display: inline-block;
   width: auto;
   height: auto;
-  font-family: 'Cinzel', serif;
   font-weight: bold;
-  text-align: center;
   font-size: 18px;
   padding: 15px;
   margin-top: 0;
@@ -132,17 +124,126 @@ body{
 #header{
   padding: 15px;
   margin-top: 5px auto;
-  box-sizing: border-box;
   width: auto;
   height: 20%;
 }
 
 .header-name{
-  font-family: 'Courgette', cursive;
   color: rgb(109,209,150);
   text-shadow: 2px 2px 4px #000000;
   letter-spacing: 20px;
   font-size: 50px;
+}
+
+.add-card-div{
+  background-image: url('https://imagesvc.meredithcorp.io/v3/mm/gif?url=https%3A%2F%2Fcdn-img.health.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmedium_16_9%2Fpublic%2Fstyles%2Fmain%2Fpublic%2Fflat-belly-cards.gif%3Fitok%3D_Jf3jwLd%261549666439&w=400&q=85');
+  height: 200vh;
+  margin: 0;
+  padding-top: 15px;
+}
+
+.add-card-input{
+  height:3rem;
+  margin: 10px auto;
+  width: 20em;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-card-input:focus{
+  outline: 0;
+}
+
+.add-card-form label{
+  display: flex;
+  flex-direction: column;
+  margin:0 auto ;
+  font-size: 30px;
+}
+
+.cards{
+  padding-bottom: 0;
+  background-color: rgba(250,250,250, 0.8);
+  width: 40%;
+  margin:0 auto;
+  border-radius:15px;
+}
+
+.cards li, .card-name{
+  font-size: 25px;
+  padding-bottom: 15px;
+  cursor: grab;
+}
+
+.cards li:hover{
+  background-color: rgba(71,146,101, 0.5);
+  width: 80%;
+  margin: 10px auto;
+}
+
+.card-form{
+  padding: 10px;
+  background-color: rgb(57,156,98);
+  top: 25em;
+  left: 40em;
+  margin: 25em auto 4em;
+  width: 30em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  -webkit-box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
+  -moz-box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
+  box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
+}
+
+.card-form label{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.card-info-button{
+  width: 10em;
+}
+
+.card-info-button:focus{
+  outline: 0;
+}
+
+.background-for-z-index{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 210vh;
+  top:0em;
+  background-color: rgba(170,155,155, 0.3)
+}
+
+#amount{
+  width: 30%;
+  margin-bottom: 1em;
+  border-radius: 15px;
+  outline: 0;
+  height: 20px;
+}
+
+.x, .card-info-button{
+  display: inline-block;
+  width: 3em;
+  height: 30px;
+  margin: 10px auto;
+  border-radius: 15px;
+}
+
+.card-info-button{
+  width: 10em;
+}
+
+.x{
+  outline: 0;
+  margin-bottom: 3em;
+  padding-left: 9px;
 }
 
 @media only screen and (min-width: 300px){
@@ -160,6 +261,16 @@ body{
 @media only screen and (max-width: 360px){
   #nav-bar{
     height: auto;
+  }
+}
+
+@media only screen and (min-width: 400px){
+  .add-card-input{
+    width: 80%;
+  }
+
+  .cards{
+    width: 80%;
   }
 }
 
@@ -185,6 +296,11 @@ body{
     margin:0;
     font-size: 30px;
   }
+
+  .card-form{
+    height: auto;
+    width: 80%;
+  }
 }
 
 @media only screen and (min-width: 750px){
@@ -196,6 +312,12 @@ body{
 
   .login-container{
     padding-bottom: 25px;
+  }
+
+  .card-form{
+    height: auto;
+    width: 40%;
+    padding:30px;
   }
 }
 
