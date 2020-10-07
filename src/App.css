@@ -16,10 +16,7 @@ li{
   display: flex;
   height: auto;
   flex-direction: column;
-  box-sizing: border-box;
   border-radius: 15px;
-  text-align: center;
-  font-family: 'Archivo', sans-serif;
   -webkit-box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
   -moz-box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
   box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
