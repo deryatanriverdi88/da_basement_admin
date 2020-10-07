@@ -107,3 +107,8 @@ body{
 .link-div{
   padding: 25px;
 }
+
+.link:hover{
+  color: darkgreen;
+  background-color: rgba(250,250,250, 0.5)
+}
