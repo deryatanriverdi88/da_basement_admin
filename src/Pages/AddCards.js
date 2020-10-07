@@ -39,6 +39,14 @@ class AddCards extends Component {
         })
         return (
             <div className="add-card-div">
+                <form className="add-card-form" htmlFor="search">
+                    <label>Search</label>
+                    <input className="add-card-input"
+                           type="text"
+                           name="search"
+                           onChange={this.handleChange}
+                    />
+                </form>
             </div>
         )
     }
