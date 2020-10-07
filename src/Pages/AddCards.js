@@ -18,3 +18,13 @@ class AddCards extends Component {
         )
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getCards: (cardObject) => {
+            dispatch({
+                type: 'GET_CARDS', payload: cardObject
+            })
+        }
+    }
+}
