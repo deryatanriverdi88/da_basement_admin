@@ -63,7 +63,6 @@ li{
   -ms-transform: scale(1.2);
   transform: scale(1.2);
   z-index: 1;
-  font-family: 'Baloo Bhai', cursive;
   background: rgb(195,169,34);
   background: linear-gradient(95deg, rgba(195,169,34, 0.6) 0%, rgba(45,213,253,0.8) 100%);
 }
