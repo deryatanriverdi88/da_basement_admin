@@ -151,6 +151,10 @@ li{
   flex-direction: column;
 }
 
+.add-card-input:focus{
+  outline: 0;
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
