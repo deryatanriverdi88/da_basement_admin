@@ -44,10 +44,6 @@ li{
   margin: 0 auto;
 }
 
-.inputs label span, #submit{
-  font-family: 'Comfortaa', cursive;
-}
-
 #email, #password{
   width: 15rem;
   height: 2rem;
