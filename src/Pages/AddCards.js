@@ -15,6 +15,13 @@ class AddCards extends Component {
         })
     }
 
+    handleClick = (cardItem) => {
+        this.setState({
+            card: cardItem,
+            cardForm: !this.state.cardForm
+        })
+    }
+
     componentDidMount(){
         fetch('http://localhost:3000/last_ten')
         .then(res=>res.json())
