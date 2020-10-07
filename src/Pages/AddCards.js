@@ -38,7 +38,7 @@ class AddCards extends Component {
             }
         })
         return (
-            <div>
+            <div className="add-card-div">
             </div>
         )
     }
