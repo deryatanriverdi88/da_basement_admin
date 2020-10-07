@@ -92,4 +92,10 @@ const mapDispatchToProps = (dispatch) =>{
     }
 }
 
+const mapStateToProps = (state)=>{
+    return {
+        current_user: state.user
+    }
+}
+
 export default Login
