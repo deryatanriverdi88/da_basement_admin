@@ -220,6 +220,14 @@ li{
   background-color: rgba(170,155,155, 0.3)
 }
 
+#amount{
+  width: 30%;
+  margin-bottom: 1em;
+  border-radius: 15px;
+  outline: 0;
+  height: 20px;
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
