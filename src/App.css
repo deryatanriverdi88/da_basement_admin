@@ -182,6 +182,21 @@ li{
   margin: 10px auto;
 }
 
+.card-form{
+  padding: 10px;
+  background-color: rgb(57,156,98);
+  top: 25em;
+  left: 40em;
+  margin: 25em auto 4em;
+  width: 30em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  -webkit-box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
+  -moz-box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
+  box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
