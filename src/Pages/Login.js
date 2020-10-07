@@ -98,4 +98,4 @@ const mapStateToProps = (state)=>{
     }
 }
 
-export default Login
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (Login))
