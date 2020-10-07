@@ -5,6 +5,10 @@ body{
   font-family: 'Comfortaa', cursive;
 }
 
+li{
+  list-style: none;
+}
+
 .login-form{
   margin: 3em auto;
   padding: 5%;
