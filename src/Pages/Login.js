@@ -3,6 +3,12 @@ import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
 class Login extends Component {
+    state={
+        email: "",
+        password: "",
+        errors: ""
+    }
+
     render() {
         return(
             <div className="login-container">
