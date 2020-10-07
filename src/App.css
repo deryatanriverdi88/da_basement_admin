@@ -136,3 +136,11 @@ body{
   width: auto;
   height: 20%;
 }
+
+.header-name{
+  font-family: 'Courgette', cursive;
+  color: rgb(109,209,150);
+  text-shadow: 2px 2px 4px #000000;
+  letter-spacing: 20px;
+  font-size: 50px;
+}
