@@ -5,9 +5,11 @@ import { withRouter } from 'react-router-dom'
 
 class CardForm extends Component {
     state={
-        amount: null,
+        amount: 0,
         cardView: false,
-        card: {}
+        card: {},
+        foil: false,
+        errors: {}
     }
 
     handleChange = (e) => {
