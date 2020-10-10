@@ -25,6 +25,16 @@ export default class MyCardItem extends Component {
                         <button className="edit-card" onClick={(e) => this.props.handleClick(e, this.props.card)}> Edit </button>
                         }
                     </td>
+                    <td>
+                        <ReactHover options={optionsCursorTrueWithMargin}>
+                            <Trigger type="trigger">
+                                <p>{this.props.card.magic_the_gatherig_card.name}</p>
+                            </Trigger>
+                            <Hover type="hover">
+                                <img src={this.props.card.magic_the_gatherig_card.img_url} alt={this.props.card.magic_the_gatherig_card.name}/>
+                            </Hover>
+                        </ReactHover>
+                    </td>
                 </tr>
             </>
         )
