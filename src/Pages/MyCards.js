@@ -78,7 +78,16 @@ export default class MyCards extends Component {
 
         return (
             <div>
-                My Cards
+                <form className="add-card-form" htmlFor="search">
+                    <label>Search</label>
+                    <input className="add-card-input"
+                           type="text"
+                           name="search"
+                           autoComplete="off"
+                           autoCorrect="off"
+                           onChange={this.handleSearchChange}
+                    />
+                </form>
             </div>
         )
     }
