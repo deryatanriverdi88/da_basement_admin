@@ -287,6 +287,17 @@ th, td{
   border-left: 1px solid transparent;
 }
 
+.edit-card{
+  display: flex;
+  margin: 5px auto;
+  width: 5em;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
