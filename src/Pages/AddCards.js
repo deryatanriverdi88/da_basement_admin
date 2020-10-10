@@ -67,6 +67,21 @@ class AddCards extends Component {
                             </tr>
                         </thead>
                     </table>
+                    <tbody>
+                        {this.state.searchValue.length > 0?
+                            searchedCards.map(card => {
+                                return <tr key={card.id} className="row"
+                                        onClick={() => this.handleClick(card)}>
+                                    </tr>
+                            })
+                            :
+                            <>
+                                <tr>
+                                    <td colSpan="7" className="cards-are-loading">There are {this.props.cards.length} cards in the database.</td>
+                                </tr>
+                            </>
+                        }
+                        </tbody>
                 </div>
                 {this.state.cardForm ?
                     <>
