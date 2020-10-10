@@ -41,6 +41,32 @@ export default class MyCards extends Component {
         })
     }
 
+    handleEditSubmit = (e) => {
+        e.preventDefault()
+        fetch(`http://localhost:3000/favorite_cards/${this.state.editCard.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept':'application/json'
+          },
+          body: JSON.stringify({
+           amount: this.state.amount
+          })
+        })
+        .then(res => res.json())
+        .then(card => {
+          const newCards =  this.state.myCards.map(cardItem => {
+              return cardItem.id === card.id ? card : cardItem
+          })
+          this.setState({
+            editCard:  null,
+            myCards:  newCards,
+            editForm: false,
+            amount: null
+          })
+        })
+    }
+
     render() {
         return (
             <div>
