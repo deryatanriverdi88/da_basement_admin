@@ -47,6 +47,8 @@ class AddCards extends Component {
                     <input className="add-card-input"
                            type="text"
                            name="search"
+                           autoComplete="off"
+                           autoCorrect="off"
                            onChange={this.handleChange}
                     />
                 </form>
