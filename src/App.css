@@ -255,6 +255,13 @@ li{
   border-bottom: 3px solid #808080;
 }
 
+table{
+  width: 100%;
+  border-collapse: collapse;
+  empty-cells: show;
+  font-weight: bold;
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
