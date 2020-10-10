@@ -29,6 +29,12 @@ export default class MyCards extends Component {
         })
     }
 
+    handleChange = (e) => {
+        this.setState({
+            amount: e.target.value
+        })
+    }
+
     render() {
         return (
             <div>
