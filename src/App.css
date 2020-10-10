@@ -247,6 +247,14 @@ li{
   padding-left: 9px;
 }
 
+.table{
+  margin:20px auto;
+  width: 90%;
+  height: 50vh;
+  overflow-y: scroll;
+  border-bottom: 3px solid #808080;
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
