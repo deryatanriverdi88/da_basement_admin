@@ -66,12 +66,12 @@ class AddCards extends Component {
                                 <th  className="market-price">Market Price</th>
                             </tr>
                         </thead>
-                    </table>
-                    <tbody>
+                        <tbody>
                         {this.state.searchValue.length > 0?
                             searchedCards.map(card => {
-                                return <tr key={card.id} className="row"
-                                        onClick={() => this.handleClick(card)}>
+                                return <tr key={card.id}
+                                           className="row"
+                                           onClick={() => this.handleClick(card)}>
                                             <td>
                                                 <ReactHover options={optionsCursorTrueWithMarginForImage}>
                                                     <Trigger type="trigger">
@@ -83,7 +83,8 @@ class AddCards extends Component {
                                                 </ReactHover>
                                             </td>
                                             <td>{card.rarity}</td>
-                                            {card.foil_low_price || card.foil_mid_price || card.foil_high_price || card.foil_market_price ?
+                                            {
+                                              card.foil_low_price || card.foil_mid_price || card.foil_high_price || card.foil_market_price ?
                                                 <td>
                                                     <ReactHover options={optionsCursorTrueWithMarginForFoil}>
                                                         <Trigger type="trigger">
@@ -116,15 +117,15 @@ class AddCards extends Component {
                                                         </Hover>
                                                     </ReactHover>
                                                 </td>
-                                                :
+                                            :
                                                 <td>No</td>
                                             }
-                                            <td>{card.group_name}</td>
-                                            {card.normal_low_price ? <td>${card.normal_low_price}</td> : <td>No Info</td>}
-                                            {card.normal_mid_price ? <td>${card.normal_mid_price}</td> : <td>No Info</td>}
-                                            {card.normal_high_price ? <td>${card.normal_high_price}</td> : <td>No Info</td>}
-                                            {card.normal_market_price ? <td>${card.normal_market_price}</td> : <td>No Info</td>}
-                                        </tr>
+                                        <td>{card.group_name}</td>
+                                        {card.normal_low_price ? <td>${card.normal_low_price}</td> : <td>No Info</td>}
+                                        {card.normal_mid_price ? <td>${card.normal_mid_price}</td> : <td>No Info</td>}
+                                        {card.normal_high_price ? <td>${card.normal_high_price}</td> : <td>No Info</td>}
+                                        {card.normal_market_price ? <td>${card.normal_market_price}</td> : <td>No Info</td>}
+                                    </tr>
                             })
                             :
                             <>
@@ -134,6 +135,7 @@ class AddCards extends Component {
                             </>
                         }
                         </tbody>
+                    </table>
                 </div>
                 {this.state.cardForm ?
                     <>
