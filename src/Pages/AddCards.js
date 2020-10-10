@@ -82,6 +82,7 @@ class AddCards extends Component {
                                                     </Hover>
                                                 </ReactHover>
                                             </td>
+                                            <td>{card.rarity}</td>
                                         </tr>
                             })
                             :
