@@ -302,6 +302,10 @@ th, td{
   width: 15%;
 }
 
+.low-price, .mid-price, .market-price{
+  width: 10%;
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
