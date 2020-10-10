@@ -48,12 +48,15 @@ class CardForm extends Component {
         })
         .then(res => res.json())
         .then(card => {
-            this.setState({
-                card: card
-            })
-            setTimeout(() => {
-                this.props.history.push(`/myCards`)
-            }, 50)
+            if(card.errors){
+                this.setState({
+                    errors: card.errors
+                })
+            } else {
+                this.setState({
+                    card: card
+                },  this.props.history.push(`/myCards`))
+            }
         })
     }
 
