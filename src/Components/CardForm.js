@@ -65,6 +65,7 @@ class CardForm extends Component {
         return (
             <div className="background-for-z-index">
                  <div className="card-form">
+                    {this.state.errors ? <p>{this.state.errors[0]}</p> : null}
                  <h3 className="card-name">{ name }</h3>
                  <form onSubmit={this.handleSubmit}>
                          <label htmlFor="amount"> <span className="amount"> How many : </span></label>
