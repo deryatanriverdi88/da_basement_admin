@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CardForm from '../Components/CardForm'
+import ReactHover, {Trigger, Hover} from 'react-hover'
 
 class AddCards extends Component {
     state = {
