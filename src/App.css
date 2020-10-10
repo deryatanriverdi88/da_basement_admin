@@ -298,6 +298,10 @@ th, td{
   font-size: 15px;
 }
 
+.amount, .foil{
+  width: 15%;
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
