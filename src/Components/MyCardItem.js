@@ -9,8 +9,9 @@ export default class MyCardItem extends Component {
 
     render() {
         return (
-            <div>
-            </div>
+            <>
+                <tr className="row" key={this.props.card.id}></tr>
+            </>
         )
     }
 }
