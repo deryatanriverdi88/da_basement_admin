@@ -61,7 +61,7 @@ class CardForm extends Component {
     }
 
     render() {
-        const {name} = this.props.card
+        const {name, foil_low_price, foil_mid_price, foil_high_price, foil_market_price } = this.props.card
         return (
             <div className="background-for-z-index">
                  <div className="card-form">
