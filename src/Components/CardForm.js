@@ -18,6 +18,12 @@ class CardForm extends Component {
         })
     }
 
+    handleFoilChange = (e) => {
+        this.setState({
+            foil: e.target.checked
+        })
+    }
+
     handleClick = (cardItem) => {
         this.setState({
             cardView: !this.state.cardView,
@@ -36,7 +42,8 @@ class CardForm extends Component {
             body: JSON.stringify({
                 user_id: this.props.current_user.id,
                 magic_the_gatherig_card_id: this.props.card.id,
-                amount: this.state.amount
+                amount: this.state.amount,
+                foil: this.state.foil
             })
         })
         .then(res => res.json())
