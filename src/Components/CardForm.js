@@ -68,7 +68,7 @@ class CardForm extends Component {
                     {this.state.errors ? <p>{this.state.errors[0]}</p> : null}
                  <h3 className="card-name">{ name }</h3>
                  <form onSubmit={this.handleSubmit}>
-                         <label htmlFor="amount"> <span className="amount"> How many : </span></label>
+                         <label htmlFor="amount"> <span className="amount"> Amount </span></label>
                             <input
                                 id="amount"
                                 name="amount"
