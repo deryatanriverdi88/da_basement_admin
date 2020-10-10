@@ -145,10 +145,11 @@ li{
 .add-card-input{
   height:3rem;
   margin: 10px auto;
-  width: 20em;
+  width: 90%;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .add-card-input:focus{
