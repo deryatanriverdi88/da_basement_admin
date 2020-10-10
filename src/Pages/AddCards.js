@@ -120,6 +120,10 @@ class AddCards extends Component {
                                                 <td>No</td>
                                             }
                                             <td>{card.group_name}</td>
+                                            {card.normal_low_price ? <td>${card.normal_low_price}</td> : <td>No Info</td>}
+                                            {card.normal_mid_price ? <td>${card.normal_mid_price}</td> : <td>No Info</td>}
+                                            {card.normal_high_price ? <td>${card.normal_high_price}</td> : <td>No Info</td>}
+                                            {card.normal_market_price ? <td>${card.normal_market_price}</td> : <td>No Info</td>}
                                         </tr>
                             })
                             :
