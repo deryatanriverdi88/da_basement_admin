@@ -35,6 +35,12 @@ export default class MyCards extends Component {
         })
     }
 
+    handleSearchChange = (e) => {
+        this.setState({
+            searchValue: e.target.value
+        })
+    }
+
     render() {
         return (
             <div>
