@@ -88,6 +88,41 @@ export default class MyCards extends Component {
                            onChange={this.handleSearchChange}
                     />
                 </form>
+                <div className="table">
+                    <table>
+                        <thead>
+                            <tr className="row">
+                                <th className="amount">Amount</th>
+                                <th className="name">Card Name</th>
+                                <th className="rarity">Rarity</th>
+                                <th className="foiled">Foiled</th>
+                                <th  className="set-name">Set Name</th>
+                                <th  className="low-price">Low Price</th>
+                                <th  className="mid-price">Mid Price</th>
+                                <th className="high-price">High Price</th>
+                                <th  className="market-price">Market Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                              this.state.myCards.length > 0 ?
+                                searchedCards.map((card)=>{
+                                   return <MyCardItem card={card}
+                                                      key={card.id}
+                                                      handleClick={this.handleClick}
+                                                      editForm={this.state.editForm}
+                                                      amount={this.state.amount}
+                                                      handleChange={this.handleChange}
+                                                      editCard={this.state.editCard}
+                                                      handleEditSubmit={this.handleEditSubmit}
+                                          />
+                                })
+                                 :
+                                null
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }
