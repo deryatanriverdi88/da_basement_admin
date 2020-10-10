@@ -83,6 +83,42 @@ class AddCards extends Component {
                                                 </ReactHover>
                                             </td>
                                             <td>{card.rarity}</td>
+                                            {card.foil_low_price || card.foil_mid_price || card.foil_high_price || card.foil_market_price ?
+                                                <td>
+                                                    <ReactHover options={optionsCursorTrueWithMarginForFoil}>
+                                                        <Trigger type="trigger">
+                                                            <p className="hover-me">Yes, hover me!</p>
+                                                        </Trigger>
+                                                        <Hover type="hover">
+                                                            <table className="foil-hover">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td colSpan="2">{card.name}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Foiled Low Price : </td>
+                                                                        <td>${card.foil_low_price}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Foiled Mid Price :</td>
+                                                                        <td>${card.foil_mid_price}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Foiled High Price : </td>
+                                                                        <td>${card.foil_highprice}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Foiled Market Price : </td>
+                                                                        <td>${card.foil_market_price}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </Hover>
+                                                    </ReactHover>
+                                                </td>
+                                                :
+                                                <td>No</td>
+                                            }
                                         </tr>
                             })
                             :
