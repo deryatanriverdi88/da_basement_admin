@@ -36,6 +36,11 @@ export default class MyCardItem extends Component {
                         </ReactHover>
                     </td>
                     <td>{this.props.card.magic_the_gatherig_card.rarity}</td>
+                    {this.props.card.foil ?
+                        <td> Yes </td>
+                        :
+                        <td> No </td>
+                    }
                 </tr>
             </>
         )
