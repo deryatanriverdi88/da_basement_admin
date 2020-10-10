@@ -145,10 +145,11 @@ li{
 .add-card-input{
   height:3rem;
   margin: 10px auto;
-  width: 20em;
+  width: 90%;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .add-card-input:focus{
@@ -246,6 +247,64 @@ li{
   padding-left: 9px;
 }
 
+.table{
+  margin:20px auto;
+  width: 90%;
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  empty-cells: show;
+  font-weight: bold;
+}
+
+th, td{
+  border: 3px solid #808080;
+  height: 50px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.foil-hover{
+  border-collapse: collapse;
+  width: 20em;
+  height: auto;
+  background: black;
+  color: white;
+}
+
+.hover-me:hover{
+  cursor: pointer;
+}
+
+.cards-are-loading{
+  border-bottom: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+}
+
+.edit-card{
+  display: flex;
+  margin: 5px auto;
+  width: 5em;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.amount, .foil{
+  width: 15%;
+}
+
+.low-price, .mid-price, .market-price{
+  width: 10%;
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
@@ -265,10 +324,6 @@ li{
 }
 
 @media only screen and (min-width: 400px){
-  .add-card-input{
-    width: 80%;
-  }
-
   .cards{
     width: 80%;
   }

@@ -5,14 +5,22 @@ import { withRouter } from 'react-router-dom'
 
 class CardForm extends Component {
     state={
-        amount: null,
+        amount: 0,
         cardView: false,
-        card: {}
+        card: {},
+        foil: false,
+        errors: {}
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
+        })
+    }
+
+    handleFoilChange = (e) => {
+        this.setState({
+            foil: e.target.checked
         })
     }
 
@@ -34,28 +42,33 @@ class CardForm extends Component {
             body: JSON.stringify({
                 user_id: this.props.current_user.id,
                 magic_the_gatherig_card_id: this.props.card.id,
-                amount: this.state.amount
+                amount: this.state.amount,
+                foil: this.state.foil
             })
         })
         .then(res => res.json())
         .then(card => {
-            this.setState({
-                card: card
-            })
-            setTimeout(() => {
-                this.props.history.push(`/myCards`)
-            }, 50)
+            if(card.errors){
+                this.setState({
+                    errors: card.errors
+                })
+            } else {
+                this.setState({
+                    card: card
+                },  this.props.history.push(`/myCards`))
+            }
         })
     }
 
     render() {
-        const {name} = this.props.card
+        const {name, foil_low_price, foil_mid_price, foil_high_price, foil_market_price } = this.props.card
         return (
             <div className="background-for-z-index">
                  <div className="card-form">
+                    {this.state.errors ? <p>{this.state.errors[0]}</p> : null}
                  <h3 className="card-name">{ name }</h3>
                  <form onSubmit={this.handleSubmit}>
-                         <label htmlFor="amount"> <span className="amount"> How many : </span></label>
+                         <label htmlFor="amount"> <span className="amount"> Amount </span></label>
                             <input
                                 id="amount"
                                 name="amount"
@@ -63,6 +76,16 @@ class CardForm extends Component {
                                 onChange={this.handleChange}
                                 value={this.state.amount}
                             />
+                       { foil_low_price || foil_mid_price || foil_high_price || foil_market_price ?
+                       <><label htmlFor="foil"><span className="foil"> Foiled </span></label>
+                            <input
+                                id="foil"
+                                nam="foil"
+                                type="checkbox"
+                                onChange={this.handleFoilChange}
+                                value={this.state.foil}
+                            /> </> : null
+                            }
                             <input
                                 type="hidden"
                                 id="user"
