@@ -76,6 +76,16 @@ class CardForm extends Component {
                                 onChange={this.handleChange}
                                 value={this.state.amount}
                             />
+                       { foil_low_price || foil_mid_price || foil_high_price || foil_market_price ?
+                       <><label htmlFor="foil"><span className="foil"> Foiled </span></label>
+                            <input
+                                id="foil"
+                                nam="foil"
+                                type="checkbox"
+                                onChange={this.handleFoilChange}
+                                value={this.state.foil}
+                            /> </> : null
+                            }
                             <input
                                 type="hidden"
                                 id="user"
