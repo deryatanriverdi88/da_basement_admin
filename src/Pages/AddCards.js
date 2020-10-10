@@ -119,6 +119,7 @@ class AddCards extends Component {
                                                 :
                                                 <td>No</td>
                                             }
+                                            <td>{card.group_name}</td>
                                         </tr>
                             })
                             :
