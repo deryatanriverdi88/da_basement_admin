@@ -42,6 +42,21 @@ export default class MyCardItem extends Component {
                         <td> No </td>
                     }
                     <td>{this.props.card.magic_the_gatherig_card.group_name}</td>
+                    { this.props.card.foil ?
+                        <>
+                            <td>${this.props.card.magic_the_gatherig_card.foil_low_price}</td>
+                            <td>${this.props.card.magic_the_gatherig_card.foil_mid_price}</td>
+                            <td>${this.props.card.magic_the_gatherig_card.foil_high_price}</td>
+                            <td>${this.props.card.magic_the_gatherig_card.foil_market_price}</td>
+                        </>
+                        :
+                        <>
+                            <td>${this.props.card.magic_the_gatherig_card.normal_low_price}</td>
+                            <td>${this.props.card.magic_the_gatherig_card.normal_mid_price}</td>
+                            <td>${this.props.card.magic_the_gatherig_card.normal_high_price}</td>
+                            <td>${this.props.card.magic_the_gatherig_card.normal_market_price}</td>
+                        </>
+                    }
                 </tr>
             </>
         )
