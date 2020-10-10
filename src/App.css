@@ -281,6 +281,12 @@ th, td{
   cursor: pointer;
 }
 
+.cards-are-loading{
+  border-bottom: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+}
+
 @media only screen and (min-width: 300px){
   .login-form{
     height: auto;
