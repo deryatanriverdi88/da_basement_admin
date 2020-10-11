@@ -334,8 +334,8 @@ tbody tr:hover{
   height: auto;
 }
 
-.low-price, .mid-price, .market-price{
-  width: 10%;
+.pop-up-fade{
+  width: 15%;
 }
 
 @media only screen and (min-width: 300px){
