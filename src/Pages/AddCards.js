@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CardForm from '../Components/CardForm'
+import PopUp from '../Components/PopUp'
 import ReactHover, {Trigger, Hover} from 'react-hover'
+
 const optionsCursorTrueWithMarginForImage = {followCursor:true, shiftX: -280, shiftY: -280}
 const optionsCursorTrueWithMarginForFoil = {followCursor:true, shiftX: -320, shiftY: -320}
 
