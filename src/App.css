@@ -250,12 +250,6 @@ li{
   width: 10em;
 }
 
-.x{
-  outline: 0;
-  margin-bottom: 3em;
-  padding-left: 9px;
-}
-
 .table{
   margin:20px auto;
   height: 50vh;
@@ -312,7 +306,7 @@ tbody tr:hover{
   border-left: 1px solid transparent;
 }
 
-.edit-card, .submit, .delete-card{
+.edit-card, .submit, .delete-card, .x{
   display: flex;
   margin: 5px auto;
   width: 3em;
@@ -323,6 +317,10 @@ tbody tr:hover{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.x {
+  border: none;
 }
 
 .submit, .edit-input{
