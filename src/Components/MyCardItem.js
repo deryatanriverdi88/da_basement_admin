@@ -32,7 +32,7 @@ export default class MyCardItem extends Component {
                     <td>
                         <ReactHover options={optionsCursorTrueWithMargin}>
                             <Trigger type="trigger">
-                                <p>{this.props.card.magic_the_gatherig_card.name}</p>
+                                <p className="hover-me">{this.props.card.magic_the_gatherig_card.name}</p>
                             </Trigger>
                             <Hover type="hover">
                                 <img src={this.props.card.magic_the_gatherig_card.img_url} alt={this.props.card.magic_the_gatherig_card.name}/>
