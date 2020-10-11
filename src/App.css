@@ -254,9 +254,9 @@ li{
 
 .table{
   margin:20px auto;
-  width: 90%;
   height: 50vh;
   overflow-y: scroll;
+  width: 90%;
 }
 
 table{
