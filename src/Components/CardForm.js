@@ -28,10 +28,22 @@ class CardForm extends Component {
         }
     }
 
-    handleFoilChange = (e) => {
-        this.setState({
-            foil: e.target.checked
-        })
+    handleCardVersionChange = (e) => {
+        if(e.target.name === 'normal'){
+            this.setState({
+                normal: true,
+                foil: false,
+                normalDisable: false,
+                foilDisable: !this.state.foilDisable
+            })
+        } else if(e.target.name === 'foil') {
+            this.setState({
+                foil: true,
+                normal: false,
+                foilDisable: false,
+                normalDisable: !this.state.normalDisable
+            })
+        }
     }
 
     handleClick = (cardItem) => {
