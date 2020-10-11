@@ -19,6 +19,12 @@ class CardForm extends Component {
         })
     }
 
+    componentDidUpdate = () => {
+        if(this.state.cardAdded){
+            this.props.handleCardFormTurnOff(this.state.card)
+        }
+    }
+
     handleFoilChange = (e) => {
         this.setState({
             foil: e.target.checked
