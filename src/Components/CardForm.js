@@ -8,7 +8,10 @@ class CardForm extends Component {
         amount: 0,
         cardView: false,
         card: {},
+        foilDisable: false,
+        normalDisable: false,
         foil: false,
+        normal: false,
         errors: {},
         cardAdded: false
     }
