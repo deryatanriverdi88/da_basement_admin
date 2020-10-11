@@ -155,7 +155,7 @@ class AddCards extends Component {
                             :
                             <>
                                 <tr>
-                                    <td colSpan="7" className="cards-are-loading">There are {this.props.cards.length} cards in the database.</td>
+                                    <td colSpan="8" className="cards-are-loading">There are {this.props.cards.length} cards in the database.</td>
                                 </tr>
                             </>
                         }
