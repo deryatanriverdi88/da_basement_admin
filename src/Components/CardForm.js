@@ -61,8 +61,9 @@ class CardForm extends Component {
                 })
             } else {
                 this.setState({
-                    card: card
-                },  this.props.history.push(`/myCards`))
+                    card: card,
+                    cardAdded: true
+                })
             }
         })
     }
