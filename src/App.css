@@ -267,10 +267,27 @@ table{
 }
 
 th, td{
-  border: 3px solid #808080;
   height: 50px;
   text-align: center;
   font-size: 15px;
+}
+
+th{
+  position: sticky;
+  top: -5px;
+  background: black;
+  color:white;
+  border: 3px solid #808080;
+
+}
+
+td{
+  border: 3px solid #ded5d1;
+}
+
+tbody tr:hover{
+  background-color: gray;
+  color: white;
 }
 
 .foil-hover{
