@@ -128,6 +128,7 @@ export default class MyCards extends Component {
                                                       handleChange={this.handleChange}
                                                       editCard={this.state.editCard}
                                                       handleEditSubmit={this.handleEditSubmit}
+                                                      handleDelete={this.handleDelete}
                                           />
                                 })
                                  :
