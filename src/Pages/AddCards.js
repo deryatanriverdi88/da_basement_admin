@@ -36,6 +36,10 @@ class AddCards extends Component {
         })
     }
 
+    componentDidUpdate = () =>{
+        setTimeout(() => this.setState({popUp: false}), 8000)
+    }
+
     componentDidMount(){
         fetch('http://localhost:3000/last_ten')
         .then(res=>res.json())
