@@ -321,8 +321,17 @@ tbody tr:hover{
   justify-content: center;
 }
 
-.amount, .foil{
-  width: 15%;
+.submit, .edit-input{
+  width: 5em;
+}
+
+.delete-card{
+  width: 4em;
+}
+.pop-up{
+  position: absolute;
+  width: 100%;
+  height: auto;
 }
 
 .low-price, .mid-price, .market-price{
