@@ -65,7 +65,8 @@ class CardForm extends Component {
                 user_id: this.props.current_user.id,
                 magic_the_gatherig_card_id: this.props.card.id,
                 amount: this.state.amount,
-                foil: this.state.foil
+                foil: this.state.foil,
+                normal: this.state.normal
             })
         })
         .then(res => res.json())
