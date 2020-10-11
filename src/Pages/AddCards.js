@@ -162,10 +162,13 @@ class AddCards extends Component {
                         </tbody>
                     </table>
                 </div>
+
                 {this.state.cardForm ?
                     <>
-                     <CardForm card={this.state.card} handleClick={this.handleClick} />
-                    </> :
+                       <CardForm card={this.state.card} handleClick={this.handleClick} handleCardFormTurnOff={this.handleCardFormTurnOff}
+                       />
+                    </>
+                     :
                     null
                 }
             </div>
