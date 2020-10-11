@@ -157,6 +157,10 @@ li{
   text-align: center;
 }
 
+.add-your-card {
+  margin : 0 auto;
+}
+
 .add-card-input:focus{
   outline: 0;
 }
@@ -234,7 +238,7 @@ li{
   height: 20px;
 }
 
-.x, .card-info-button{
+.card-info-button{
   display: inline-block;
   width: 3em;
   height: 30px;
@@ -244,12 +248,6 @@ li{
 
 .card-info-button{
   width: 10em;
-}
-
-.x{
-  outline: 0;
-  margin-bottom: 3em;
-  padding-left: 9px;
 }
 
 .table{
@@ -308,7 +306,7 @@ tbody tr:hover{
   border-left: 1px solid transparent;
 }
 
-.edit-card, .submit, .delete-card{
+.edit-card, .submit, .delete-card, .x{
   display: flex;
   margin: 5px auto;
   width: 3em;
@@ -319,6 +317,10 @@ tbody tr:hover{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.x {
+  border: none;
 }
 
 .submit, .edit-input{
