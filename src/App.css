@@ -308,15 +308,17 @@ tbody tr:hover{
   border-left: 1px solid transparent;
 }
 
-.edit-card{
+.edit-card, .submit, .delete-card{
   display: flex;
   margin: 5px auto;
-  width: 5em;
-  text-align: center;
-  padding: 5px 10px;
+  width: 3em;
   border-radius: 15px;
   font-weight: bold;
   font-size: 15px;
+  outline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .amount, .foil{
