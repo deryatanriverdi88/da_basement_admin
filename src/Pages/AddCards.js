@@ -76,6 +76,7 @@ class AddCards extends Component {
                            onChange={this.handleChange}
                     />
                 </form>
+                {this.renderPopUp(this.state.popUp)}
                 <div className="table">
                     <table>
                         <thead className="t-head">
