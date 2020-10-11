@@ -12,7 +12,7 @@ export default class MyCardItem extends Component {
             <>
                 <tr className="row" key={this.props.card.id}>
                     <td>{this.props.editForm && this.props.editCard.id === this.props.card.id ?
-                            <input type="number" min="0" value={this.props.amount} onChange={this.props.handleChange}/>
+                            <input className="edit-input" type="number" min="0" value={this.props.amount} onChange={this.props.handleChange}/>
                             :
                             <p>{this.props.card.amount}</p>
                         }
