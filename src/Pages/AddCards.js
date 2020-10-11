@@ -100,7 +100,7 @@ class AddCards extends Component {
                                             <td>
                                                 <ReactHover options={optionsCursorTrueWithMarginForImage}>
                                                     <Trigger type="trigger">
-                                                        <p>{card.name}</p>
+                                                        <p className="hover-me">{card.name}</p>
                                                     </Trigger>
                                                     <Hover type="hover">
                                                         <img src={card.img_url} alt={card.name}/>
