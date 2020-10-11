@@ -9,7 +9,8 @@ class CardForm extends Component {
         cardView: false,
         card: {},
         foil: false,
-        errors: {}
+        errors: {},
+        cardAdded: false
     }
 
     handleChange = (e) => {
