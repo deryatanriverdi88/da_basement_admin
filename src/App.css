@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
 body{
   text-align: center;
   font-family: 'Comfortaa', cursive;
-  box-sizing: border-box;
+  height: 100vh;
+  /* overflow: hidden; */
 }
 
 li{
@@ -122,7 +128,7 @@ li{
 }
 
 #header{
-  padding: 15px;
+  /* padding: 15px; */
   margin-top: 5px auto;
   width: auto;
   height: 20%;
@@ -137,7 +143,6 @@ li{
 
 .add-card-div{
   background-image: url('https://imagesvc.meredithcorp.io/v3/mm/gif?url=https%3A%2F%2Fcdn-img.health.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmedium_16_9%2Fpublic%2Fstyles%2Fmain%2Fpublic%2Fflat-belly-cards.gif%3Fitok%3D_Jf3jwLd%261549666439&w=400&q=85');
-  height: 200vh;
   margin: 0;
   padding-top: 15px;
 }
@@ -183,12 +188,12 @@ li{
   margin: 10px auto;
 }
 
-.card-form{
+.card-form, .pop-up-fade{
   padding: 10px;
   background-color: rgb(57,156,98);
   top: 25em;
   left: 40em;
-  margin: 25em auto 4em;
+  margin: 15em auto 4em;
   width: 30em;
   display: flex;
   flex-direction: column;
@@ -216,7 +221,7 @@ li{
   position: absolute;
   z-index: 1;
   width: 100%;
-  height: 210vh;
+  height: 100vh;
   top:0em;
   background-color: rgba(170,155,155, 0.3)
 }
@@ -249,9 +254,9 @@ li{
 
 .table{
   margin:20px auto;
-  width: 90%;
   height: 50vh;
   overflow-y: scroll;
+  width: 90%;
 }
 
 table{
@@ -262,10 +267,27 @@ table{
 }
 
 th, td{
-  border: 3px solid #808080;
   height: 50px;
   text-align: center;
   font-size: 15px;
+}
+
+th{
+  position: sticky;
+  top: -5px;
+  background: black;
+  color:white;
+  border: 3px solid #808080;
+
+}
+
+td{
+  border: 3px solid #ded5d1;
+}
+
+tbody tr:hover{
+  background-color: gray;
+  color: white;
 }
 
 .foil-hover{
@@ -286,23 +308,34 @@ th, td{
   border-left: 1px solid transparent;
 }
 
-.edit-card{
+.edit-card, .submit, .delete-card{
   display: flex;
   margin: 5px auto;
-  width: 5em;
-  text-align: center;
-  padding: 5px 10px;
+  width: 3em;
   border-radius: 15px;
   font-weight: bold;
   font-size: 15px;
+  outline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.amount, .foil{
+.submit, .edit-input{
+  width: 5em;
+}
+
+.delete-card{
+  width: 4em;
+}
+.pop-up{
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+.pop-up-fade{
   width: 15%;
-}
-
-.low-price, .mid-price, .market-price{
-  width: 10%;
 }
 
 @media only screen and (min-width: 300px){

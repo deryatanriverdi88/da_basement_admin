@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CardForm from '../Components/CardForm'
+import PopUp from '../Components/PopUp'
 import ReactHover, {Trigger, Hover} from 'react-hover'
+
 const optionsCursorTrueWithMarginForImage = {followCursor:true, shiftX: -280, shiftY: -280}
 const optionsCursorTrueWithMarginForFoil = {followCursor:true, shiftX: -320, shiftY: -320}
 
@@ -9,7 +11,8 @@ class AddCards extends Component {
     state = {
         searchValue: "",
         card: {},
-        cardForm: false
+        cardForm: false,
+        popUp: false
     }
 
     handleChange = (event) => {
@@ -25,12 +28,33 @@ class AddCards extends Component {
         })
     }
 
+    handleCardFormTurnOff = (card)=> {
+        this.setState({
+            cardForm: false,
+            popUp: true,
+            card: card
+        })
+    }
+
+    componentDidUpdate = () =>{
+        setTimeout(() => this.setState({popUp: false}), 8000)
+    }
+
     componentDidMount(){
         fetch('http://localhost:3000/last_ten')
+        // fetch('http://localhost:3000/magic_the_gatherig_cards')
         .then(res=>res.json())
         .then(cardData => {
             this.props.getCards(cardData)
         })
+    }
+
+    renderPopUp = (cond) => {
+        if(cond === true){
+           return  <PopUp card={this.state.card} />
+        } else if(cond === false) {
+           return null
+        }
     }
 
     render() {
@@ -52,6 +76,7 @@ class AddCards extends Component {
                            onChange={this.handleChange}
                     />
                 </form>
+                {this.renderPopUp(this.state.popUp)}
                 <div className="table">
                     <table>
                         <thead className="t-head">
@@ -130,17 +155,20 @@ class AddCards extends Component {
                             :
                             <>
                                 <tr>
-                                    <td colSpan="7" className="cards-are-loading">There are {this.props.cards.length} cards in the database.</td>
+                                    <td colSpan="8" className="cards-are-loading">There are {this.props.cards.length} cards in the database.</td>
                                 </tr>
                             </>
                         }
                         </tbody>
                     </table>
                 </div>
+
                 {this.state.cardForm ?
                     <>
-                     <CardForm card={this.state.card} handleClick={this.handleClick} />
-                    </> :
+                       <CardForm card={this.state.card} handleClick={this.handleClick} handleCardFormTurnOff={this.handleCardFormTurnOff}
+                       />
+                    </>
+                     :
                     null
                 }
             </div>

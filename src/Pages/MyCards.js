@@ -67,6 +67,19 @@ export default class MyCards extends Component {
         })
     }
 
+    handleDelete = (card) => {
+        fetch(`http://localhost:3000/favorite_cards/${card.id}`, {
+                  method: 'DELETE'
+             }).then(res => {
+          const newCards = this.state.myCards.filter(myCard =>{
+            return myCard.id !== card.id
+           })
+           this.setState({
+            myCards: newCards
+          })
+        })
+    }
+
     render() {
         console.log(this.state.myCards)
         const searchedCards =
@@ -96,11 +109,11 @@ export default class MyCards extends Component {
                                 <th className="name">Card Name</th>
                                 <th className="rarity">Rarity</th>
                                 <th className="foiled">Foiled</th>
-                                <th  className="set-name">Set Name</th>
-                                <th  className="low-price">Low Price</th>
-                                <th  className="mid-price">Mid Price</th>
+                                <th className="set-name">Set Name</th>
+                                <th className="low-price">Low Price</th>
+                                <th className="mid-price">Mid Price</th>
                                 <th className="high-price">High Price</th>
-                                <th  className="market-price">Market Price</th>
+                                <th className="market-price">Market Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,6 +128,7 @@ export default class MyCards extends Component {
                                                       handleChange={this.handleChange}
                                                       editCard={this.state.editCard}
                                                       handleEditSubmit={this.handleEditSubmit}
+                                                      handleDelete={this.handleDelete}
                                           />
                                 })
                                  :

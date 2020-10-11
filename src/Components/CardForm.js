@@ -9,13 +9,20 @@ class CardForm extends Component {
         cardView: false,
         card: {},
         foil: false,
-        errors: {}
+        errors: {},
+        cardAdded: false
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
+    }
+
+    componentDidUpdate = () => {
+        if(this.state.cardAdded){
+            this.props.handleCardFormTurnOff(this.state.card)
+        }
     }
 
     handleFoilChange = (e) => {
@@ -54,8 +61,9 @@ class CardForm extends Component {
                 })
             } else {
                 this.setState({
-                    card: card
-                },  this.props.history.push(`/myCards`))
+                    card: card,
+                    cardAdded: true
+                })
             }
         })
     }
