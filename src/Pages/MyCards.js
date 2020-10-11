@@ -109,11 +109,11 @@ export default class MyCards extends Component {
                                 <th className="name">Card Name</th>
                                 <th className="rarity">Rarity</th>
                                 <th className="foiled">Foiled</th>
-                                <th  className="set-name">Set Name</th>
-                                <th  className="low-price">Low Price</th>
-                                <th  className="mid-price">Mid Price</th>
+                                <th className="set-name">Set Name</th>
+                                <th className="low-price">Low Price</th>
+                                <th className="mid-price">Mid Price</th>
                                 <th className="high-price">High Price</th>
-                                <th  className="market-price">Market Price</th>
+                                <th className="market-price">Market Price</th>
                             </tr>
                         </thead>
                         <tbody>
