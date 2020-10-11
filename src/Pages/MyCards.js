@@ -67,6 +67,19 @@ export default class MyCards extends Component {
         })
     }
 
+    handleDelete = (card) => {
+        fetch(`http://localhost:3000/favorite_cards/${card.id}`, {
+                  method: 'DELETE'
+             }).then(res => {
+          const newCards = this.state.myCards.filter(myCard =>{
+            return myCard.id !== card.id
+           })
+           this.setState({
+            myCards: newCards
+          })
+        })
+    }
+
     render() {
         console.log(this.state.myCards)
         const searchedCards =
