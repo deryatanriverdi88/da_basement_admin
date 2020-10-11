@@ -11,7 +11,8 @@ class AddCards extends Component {
     state = {
         searchValue: "",
         card: {},
-        cardForm: false
+        cardForm: false,
+        popUp: false
     }
 
     handleChange = (event) => {
