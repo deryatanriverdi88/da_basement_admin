@@ -18,8 +18,8 @@ export default class MyCardItem extends Component {
                         }
                         {this.props.editForm && this.props.editCard.id === this.props.card.id ?
                         <>
-                        <button className="edit-card" onClick={this.props.handleEditSubmit}> Submit </button>
-                        <button onClick={(e) => this.props.handleClick(e, this.props.card)}> X </button>
+                            <button className="submit" onClick={this.props.handleEditSubmit}> Submit </button>
+                            <button onClick={(e) => this.props.handleClick(e, this.props.card)}> X </button>
                         </>
                             :
                         <button className="edit-card" onClick={(e) => this.props.handleClick(e, this.props.card)}> Edit </button>
