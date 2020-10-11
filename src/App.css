@@ -221,7 +221,7 @@ li{
   position: absolute;
   z-index: 1;
   width: 100%;
-  height: 210vh;
+  height: 100vh;
   top:0em;
   background-color: rgba(170,155,155, 0.3)
 }
