@@ -28,6 +28,14 @@ class AddCards extends Component {
         })
     }
 
+    handleCardFormTurnOff = (card)=> {
+        this.setState({
+            cardForm: false,
+            popUp: true,
+            card: card
+        })
+    }
+
     componentDidMount(){
         fetch('http://localhost:3000/last_ten')
         .then(res=>res.json())
