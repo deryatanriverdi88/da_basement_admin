@@ -188,12 +188,12 @@ li{
   margin: 10px auto;
 }
 
-.card-form{
+.card-form, .pop-up-fade{
   padding: 10px;
   background-color: rgb(57,156,98);
   top: 25em;
   left: 40em;
-  margin: 25em auto 4em;
+  margin: 15em auto 4em;
   width: 30em;
   display: flex;
   flex-direction: column;
