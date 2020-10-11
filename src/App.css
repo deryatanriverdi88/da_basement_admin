@@ -162,6 +162,10 @@ li{
   text-align: center;
 }
 
+.add-your-card {
+  margin : 0 auto;
+}
+
 .add-card-input:focus{
   outline: 0;
 }
