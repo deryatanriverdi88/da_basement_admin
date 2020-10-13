@@ -160,7 +160,7 @@ class CardForm extends Component {
                     <button className="card-info-button" onClick={() => this.handleClick(this.props.card)}> See card info </button>
                     {
                         this.state.cardView ?
-                        <CardItem card={this.state.card} handleClick={this.handleClick} /> :
+                        <CardItem card={this.props.card} handleClick={this.handleClick} /> :
                         null
                     }
                  </div>
