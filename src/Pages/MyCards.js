@@ -71,7 +71,7 @@ export default class MyCards extends Component {
 
     handleEditSubmit = (e) => {
         e.preventDefault()
-        fetch(`http://localhost:3000/favorite_cards/${this.state.editCard.id}`, {
+        fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${this.state.editCard.id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
