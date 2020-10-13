@@ -41,6 +41,34 @@ export default class MyCards extends Component {
         })
     }
 
+    handleCount = (v1, v2) => {
+        let count = 0
+        if(this.state.myCards.length > 0){
+            this.state.myCards.map(card =>{
+                if(v1 === "amount"){
+                    count += card[v1]
+                }else{
+                    if(card.foil){
+                        delete card[v1]
+                        if(card[v2] === null){
+                            delete card[v2]
+                        }else {
+                            count += Number.parseFloat(card[v2] * card.amount)
+                        }
+                    } else if(card.normal){
+                        delete card[v2]
+                        if(card[v1] === null){
+                            delete card[v1]
+                        }else {
+                            count += Number.parseFloat(card[v1] * card.amount)
+                        }
+                    }
+                }
+            })
+        }
+        return count
+    }
+
     handleEditSubmit = (e) => {
         e.preventDefault()
         fetch(`http://localhost:3000/favorite_cards/${this.state.editCard.id}`, {
