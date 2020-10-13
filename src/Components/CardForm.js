@@ -63,10 +63,26 @@ class CardForm extends Component {
             },
             body: JSON.stringify({
                 user_id: this.props.current_user.id,
-                magic_the_gatherig_card_id: this.props.card.id,
                 amount: this.state.amount,
                 foil: this.state.foil,
-                normal: this.state.normal
+                normal: this.state.normal,
+                name: this.props.card.name,
+                img_url: this.props.card.img_url,
+                category_id: this.props.card.category_id,
+                product_id: this.props.card.product_id,
+                group_id: this.props.card.group_id,
+                rarity: this.props.card.rarity,
+                sub_type: this.props.card.sub_type,
+                text: this.props.card.text,
+                group_name: this.props.card.group_name,
+                normal_low_price: this.props.card.normal_low_price,
+                normal_mid_price: this.props.card.normal_mid_price,
+                normal_high_price: this.props.card.normal_high_price,
+                normal_market_price: this.props.card.normal_market_price,
+                foil_low_price: this.props.card.foil_low_price,
+                foil_mid_price: this.props.card.foil_mid_price,
+                foil_high_price: this.props.card.foil_high_price,
+                foil_market_price: this.props.card.foil_market_price
             })
         })
         .then(res => res.json())
