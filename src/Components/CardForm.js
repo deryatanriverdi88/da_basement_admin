@@ -152,11 +152,6 @@ class CardForm extends Component {
                                     id="user"
                                     name="userId"
                                 />
-                                <input
-                                    type="hidden"
-                                    id="card"
-                                    name="magic_the_gatherig_card_id"
-                                />
                             </div>
 
                            <input className="add-your-card" type="submit" value="Add to your favorite cards!" />
