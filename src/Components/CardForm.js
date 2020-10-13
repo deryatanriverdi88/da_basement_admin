@@ -55,7 +55,7 @@ class CardForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        fetch('http://localhost:3000/favorite_cards', {
+        fetch('https://da-basement-games-api.herokuapp.com/favorite_cards', {
             method: 'POST',
             headers: {
                 'Content-Type': "application/json",
@@ -63,10 +63,26 @@ class CardForm extends Component {
             },
             body: JSON.stringify({
                 user_id: this.props.current_user.id,
-                magic_the_gatherig_card_id: this.props.card.id,
                 amount: this.state.amount,
                 foil: this.state.foil,
-                normal: this.state.normal
+                normal: this.state.normal,
+                name: this.props.card.name,
+                img_url: this.props.card.img_url,
+                category_id: this.props.card.category_id,
+                product_id: this.props.card.product_id,
+                group_id: this.props.card.group_id,
+                rarity: this.props.card.rarity,
+                sub_type: this.props.card.sub_type,
+                text: this.props.card.text,
+                group_name: this.props.card.group_name,
+                normal_low_price: this.props.card.normal_low_price,
+                normal_mid_price: this.props.card.normal_mid_price,
+                normal_high_price: this.props.card.normal_high_price,
+                normal_market_price: this.props.card.normal_market_price,
+                foil_low_price: this.props.card.foil_low_price,
+                foil_mid_price: this.props.card.foil_mid_price,
+                foil_high_price: this.props.card.foil_high_price,
+                foil_market_price: this.props.card.foil_market_price
             })
         })
         .then(res => res.json())
@@ -136,20 +152,15 @@ class CardForm extends Component {
                                     id="user"
                                     name="userId"
                                 />
-                                <input
-                                    type="hidden"
-                                    id="card"
-                                    name="magic_the_gatherig_card_id"
-                                />
                             </div>
 
                            <input className="add-your-card" type="submit" value="Add to your favorite cards!" />
                      </form>
-                    <button className="x" onClick={this.props.handleClick}> <span > ❌ </span></button>
+                    <button className="x" onClick={this.props.handleClick}> <span role="img" aria-label="emoji"> ❌ </span></button>
                     <button className="card-info-button" onClick={() => this.handleClick(this.props.card)}> See card info </button>
                     {
                         this.state.cardView ?
-                        <CardItem card={this.state.card} handleClick={this.handleClick} /> :
+                        <CardItem card={this.props.card} handleClick={this.handleClick} /> :
                         null
                     }
                  </div>

@@ -11,7 +11,7 @@ export default class MyCards extends Component {
     }
 
     componentDidMount =  () => {
-        fetch('http://localhost:3000/favorite_cards')
+        fetch('https://da-basement-games-api.herokuapp.com/favorite_cards')
         .then(res => res.json())
         .then(cardItems => {
               this.setState({
@@ -41,9 +41,37 @@ export default class MyCards extends Component {
         })
     }
 
+    handleCount = (v1, v2) => {
+        let count = 0
+        if(this.state.myCards.length > 0){
+            this.state.myCards.map(card =>{
+                if(v1 === "amount"){
+                    count += card[v1]
+                }else{
+                    if(card.foil){
+                        delete card[v1]
+                        if(card[v2] === null){
+                            delete card[v2]
+                        }else {
+                            count += Number.parseFloat(card[v2] * card.amount)
+                        }
+                    } else if(card.normal){
+                        delete card[v2]
+                        if(card[v1] === null){
+                            delete card[v1]
+                        }else {
+                            count += Number.parseFloat(card[v1] * card.amount)
+                        }
+                    }
+                }
+            })
+        }
+        return count
+    }
+
     handleEditSubmit = (e) => {
         e.preventDefault()
-        fetch(`http://localhost:3000/favorite_cards/${this.state.editCard.id}`, {
+        fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${this.state.editCard.id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -68,7 +96,7 @@ export default class MyCards extends Component {
     }
 
     handleDelete = (card) => {
-        fetch(`http://localhost:3000/favorite_cards/${card.id}`, {
+        fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${card.id}`, {
                   method: 'DELETE'
              }).then(res => {
           const newCards = this.state.myCards.filter(myCard =>{
@@ -84,7 +112,7 @@ export default class MyCards extends Component {
         console.log(this.state.myCards)
         const searchedCards =
             this.state.myCards.filter(card => {
-                if (card.magic_the_gatherig_card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
+                if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
                     return card
                 }
             })
@@ -135,6 +163,17 @@ export default class MyCards extends Component {
                                 null
                             }
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>Total Cards</td>
+                                <td>{this.handleCount('amount')}</td>
+                                <td colSpan="3">Value</td>
+                                <td>${this.handleCount("normal_low_price", "foil_low_price").toFixed(2)}</td>
+                                <td>${this.handleCount("normal_mid_price", "foil_mid_price").toFixed(2)}</td>
+                                <td>${this.handleCount("normal_high_price", "foil_high_price").toFixed(2)}</td>
+                                <td>${this.handleCount("normal_market_price", "foil_market_price").toFixed(2)}</td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
