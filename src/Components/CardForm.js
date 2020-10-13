@@ -55,7 +55,7 @@ class CardForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        fetch('http://localhost:3000/favorite_cards', {
+        fetch('https://da-basement-games-api.herokuapp.com/favorite_cards', {
             method: 'POST',
             headers: {
                 'Content-Type': "application/json",
