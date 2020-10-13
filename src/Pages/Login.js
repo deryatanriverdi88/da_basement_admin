@@ -31,17 +31,24 @@ class Login extends Component {
         .then(res => res.json())
         .then(admin => {
             console.log(admin)
-            localStorage.setItem('token', admin.token)
-            if(admin.token){
-                this.props.setUser(admin.current_user)
-                this.props.history.push('/myCards')
-            } else {
-                this.setState({
-                    errors: admin.error
-                })
-            }
+                if(admin.error){
+                    this.setState({
+                        errors: admin.error
+                    })
+                } else if(admin.current_user.id) {
+                    if(admin.current_user.role === "admin"){
+                        localStorage.setItem('token', admin.token)
+                        this.props.setUser(admin.current_user)
+                        this.props.history.push('/myCards')
+                    }  else {
+                        this.setState({
+                            errors: "This is admin page, you have no permission to login."
+                        })
+                    }
+                }
         })
     }
+
 
     loginForm = () => {
         return (
