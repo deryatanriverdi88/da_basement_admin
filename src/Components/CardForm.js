@@ -156,7 +156,7 @@ class CardForm extends Component {
 
                            <input className="add-your-card" type="submit" value="Add to your favorite cards!" />
                      </form>
-                    <button className="x" onClick={this.props.handleClick}> <span > ❌ </span></button>
+                    <button className="x" onClick={this.props.handleClick}> <span role="img" aria-label="emoji"> ❌ </span></button>
                     <button className="card-info-button" onClick={() => this.handleClick(this.props.card)}> See card info </button>
                     {
                         this.state.cardView ?
