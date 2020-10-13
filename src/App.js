@@ -7,7 +7,7 @@ import NavBar from './Components/NavBar'
 
 function App(props) {
   useEffect(() => {
-    fetch("http://localhost:3000/profile", {
+    fetch("https://da-basement-games-api.herokuapp.com/profile", {
       headers: {
         Authorization: localStorage.token
       }
