@@ -9,7 +9,7 @@ body{
   text-align: center;
   font-family: 'Comfortaa', cursive;
   height: 100vh;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 li{
