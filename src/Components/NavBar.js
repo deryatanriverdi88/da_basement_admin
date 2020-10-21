@@ -18,6 +18,11 @@ function NavBar(props) {
         clearToken()
         props.history.push('/')
     }
+
+    const handleBinderForm = () => {
+        setBinderForm(!binderForm)
+    }
+
     return (
        
         <>
