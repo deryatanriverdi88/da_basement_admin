@@ -206,8 +206,17 @@ li{
   margin: 10px auto;
 }
 
-.card-form, .pop-up-fade{
-  padding: 10px;
+.background-for-z-index{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  top:0em;
+  background-color: rgba(170,155,155, 0.3);
+  display: flex;
+}
+
+.card-form, .pop-up-fade, .binder-div{
   background-color: rgb(57,156,98);
   top: 25em;
   left: 40em;
