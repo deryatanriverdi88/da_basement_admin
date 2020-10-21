@@ -29,6 +29,13 @@ class CardForm extends Component {
         })
     }
 
+    handleCardClick = (card) => {
+        this.setState({
+            card: card,
+            dropdown: !this.state.dropdown
+        })
+    }
+
     componentDidUpdate = () => {
         if(this.state.cardAdded){
             this.props.handleCardFormTurnOff(this.state.card)
