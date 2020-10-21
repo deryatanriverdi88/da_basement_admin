@@ -545,7 +545,6 @@ tbody tr:hover{
   .login-form{
     height: auto;
     width: 40%;
-    padding:30px;
   }
 
   .login-container{
@@ -553,9 +552,7 @@ tbody tr:hover{
   }
 
   .card-form{
-    height: auto;
     width: 40%;
-    padding:30px;
   }
 }
 
