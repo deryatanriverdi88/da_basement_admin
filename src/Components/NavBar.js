@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import {Link, NavLink, withRouter} from 'react-router-dom'
 import { connect, useSelector } from 'react-redux'
+import BinderForm from './BinderForm'
 
 function NavBar(props) {
+    const [binderForm, setBinderForm] = useState(false)
+
     const current_user = useSelector(state => {
         return state.user
     })
