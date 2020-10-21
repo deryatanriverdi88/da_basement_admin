@@ -137,15 +137,62 @@ class CardForm extends Component {
     }
 
     render() {
-        const { name, foil_low_price, foil_mid_price, foil_high_price, foil_market_price , normal_low_price, normal_mid_price, normal_high_price, normal_market_price } = this.props.card
+        const {normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price} = this.state.card
+
         return (
             <div className="background-for-z-index">
-                 <div className="card-form">
-                    {this.state.errors ? <p>{this.state.errors[0]}</p> : null}
-                 <h3 className="card-name">{ name }</h3>
-                 <form onSubmit={this.handleSubmit} id="add-card-form">
-                     <div className="form-fields">
-                        <label htmlFor="amount"> <span className="amount"> Amount </span></label>
+                <div className="card-form">
+                    <div className="x-div">
+                        <button className="x" onClick={this.props.handleClose}> X </button>
+                    </div>
+                    {
+                        this.state.errors ?
+                            <p> {this.state.errors[0]} </p> :
+                            null
+                    }
+                    {
+                        !this.state.card.name ?
+                            null:
+                            <div className="form-header">
+                        {
+                            this.state.card.icon !== "" ?
+                                <h3>{this.state.card.name} <img src={this.state.card.icon} alt="icon" className="icon"/></h3> :
+                                <h3>{this.state.card.name} - {this.state.card.group_name}</h3>
+                        }
+                            </div>
+                    }
+                    <div className="dropdown" onClick={this.handleCardDropdownClose}>
+                        {
+                            !this.state.dropDown ?
+                                <button onClick={this.handleDropdown} className="dropbtn">
+                                    {this.props.cards.length > 0 ?
+                                        "Select a card ⬇" :
+                                        "Cards are loading..."
+                                    }
+                                </button> :
+                                <button onClick={this.handleDropdown}className="dropbtn">
+                                    Select Cards <span>⬆</span>
+                                </button>
+                        }
+                        <div className="dropdown-content">
+                            <div className="dropdown-list">
+                                <ul>
+                                    {
+                                        this.state.dropDown && this.props.cards.length  > 0 ?
+                                        this.props.cards.map(card =>{
+                                        return <li onClick={() => this.handleCardClick(card)} key={card.id}>{card.name}
+                                           { card.icon !== "" ? <img className="icon" src={card.icon} alt={card.icon}/> : ` - ${card.group_name}`}
+                                            </li>
+                                        }) :
+                                        null
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <form onSubmit={this.handleSubmit} id="add-card-form">
+                        <div className="form-fields">
+                            <label htmlFor="amount"> <span className="amount"> Amount </span></label>
                                 <input
                                     id="amount"
                                     name="amount"
@@ -153,50 +200,68 @@ class CardForm extends Component {
                                     onChange={this.handleChange}
                                     value={this.state.amount}
                                 />
-                                { foil_low_price || foil_mid_price || foil_high_price || foil_market_price ?
-                                <>
-                                <label htmlFor="foil"><span className="foil"> Foiled </span></label>
-                                        <input
-                                            id="foil"
-                                            name="foil"
-                                            disabled={this.state.foilDisable}
-                                            type="checkbox"
-                                            onChange={this.handleCardVersionChange}
-                                            value={this.state.foil}
-                                        />
-                                </>
-                                :
-                                null
-                                }
-                                { normal_low_price || normal_mid_price || normal_high_price || normal_market_price ?
-                                <>
-                                <label htmlFor="normal"><span className="normal"> Normal </span></label>
-                                        <input
-                                            id="normal"
-                                            name="normal"
-                                            type="checkbox"
-                                            disabled={this.state.normalDisable}
-                                            onChange={this.handleCardVersionChange}
-                                            value={this.state.normal}
-                                        />
-                                </>
-                                :
-                                null
-                                }
+                                <div className="foil-or-not">
+                                    {
+                                        foil_low_price || foil_mid_price || foil_high_price || foil_market_price ?
+                                            <div>
+                                                <label htmlFor="foil">
+                                                    <span className="foil"> Foiled </span>
+                                                </label>
+                                                <input
+                                                    id="foil"
+                                                    name="foil"
+                                                    disabled={this.state.foilDisable}
+                                                    type="checkbox"
+                                                    onChange={this.handleCardVersionChange}
+                                                    value={this.state.foil}
+                                                />
+                                            </div>
+                                            :
+                                            null
+                                    }
+                                    {
+                                        normal_low_price || normal_mid_price || normal_high_price || normal_market_price ?
+                                            <div>
+                                                <label htmlFor="normal">
+                                                    <span className="normal"> Normal </span>
+                                                </label>
+                                                <input
+                                                    id="normal"
+                                                    name="normal"
+                                                    type="checkbox"
+                                                    disabled={this.state.normalDisable}
+                                                    onChange={this.handleCardVersionChange}
+                                                    value={this.state.normal}
+                                                />
+                                            </div>
+                                            :
+                                            null
+                                    }
+                                </div>
                                 <input
                                     type="hidden"
                                     id="user"
                                     name="userId"
                                 />
-                            </div>
-
-                           <input className="add-your-card" type="submit" value="Add to your favorite cards!" />
-                     </form>
-                    <button className="x" onClick={this.props.handleClick}> <span role="img" aria-label="emoji"> ❌ </span></button>
-                    <button className="card-info-button" onClick={() => this.handleClick(this.props.card)}> See card info </button>
+                        </div>
+                            {
+                                this.state.card.id ?
+                                <input className="add-your-card" type="submit" value="Add!" />:
+                                <p>Select a card from above</p>
+                            }
+                    </form>
+                    {
+                        !this.state.cardView ?
+                            <button className="card-info-button" onClick={() => this.handleCardItemDetailsClick(this.state.card)}> See card info </button> :
+                            null
+                    }
                     {
                         this.state.cardView ?
-                        <CardItem card={this.props.card} handleClick={this.handleClick} /> :
+                        <CardItem
+                            card={this.state.card}
+                            handleCardItemDetailsClick={this.handleCardItemDetailsClick}
+                            foil={this.state.foil}
+                            normal={this.state.normal}/> :
                         null
                     }
                  </div>
