@@ -45,6 +45,7 @@ class CardForm extends Component {
     componentDidUpdate = () => {
         if(this.state.cardAdded){
             this.props.handleCardFormTurnOff(this.state.card)
+            this.props.handleClose()
         }
     }
 
