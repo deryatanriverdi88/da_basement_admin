@@ -37,9 +37,13 @@ function NavBar(props) {
                 <nav id="nav-bar">
                     <div className="link-div">
                         <Link className="link" to="/">My Cards</Link>
-                        <Link className="link" to="/addCards">
+                        <Link className="link" to={{pathname:"/addCards",state: {binder : {}}}}>
                             Add Cards
                         </Link>
+                        <Link className="link" to="/mybinders">
+                            My Binders
+                        </Link>
+                        <button id="add-binder" onClick={handleBinderForm}>Add Binder</button>
                         <NavLink className="link" to="/">
                             <button id="logout" onClick={logOut}>Logout</button>
                         </NavLink>
