@@ -99,30 +99,31 @@ class CardForm extends Component {
             body: JSON.stringify({
                 user_id: this.props.current_user.id,
                 amount: this.state.amount,
+                binder_id: this.props.binder.id,
                 foil: this.state.foil,
                 normal: this.state.normal,
-                name: this.props.card.name,
-                img_url: this.props.card.img_url,
-                category_id: this.props.card.category_id,
-                product_id: this.props.card.product_id,
-                group_id: this.props.card.group_id,
-                rarity: this.props.card.rarity,
-                sub_type: this.props.card.sub_type,
-                text: this.props.card.text,
-                group_name: this.props.card.group_name,
-                normal_low_price: this.props.card.normal_low_price,
-                normal_mid_price: this.props.card.normal_mid_price,
-                normal_high_price: this.props.card.normal_high_price,
-                normal_market_price: this.props.card.normal_market_price,
-                foil_low_price: this.props.card.foil_low_price,
-                foil_mid_price: this.props.card.foil_mid_price,
-                foil_high_price: this.props.card.foil_high_price,
-                foil_market_price: this.props.card.foil_market_price
+                name: this.state.card.name,
+                img_url: this.state.card.img_url,
+                category_id: this.state.card.category_id,
+                product_id: this.state.card.product_id,
+                group_id: this.state.card.group_id,
+                rarity: this.state.card.rarity,
+                sub_type: this.state.card.sub_type,
+                text: this.state.card.text,
+                group_name: this.state.card.group_name,
+                normal_low_price: this.state.card.normal_low_price,
+                normal_mid_price: this.state.card.normal_mid_price,
+                normal_high_price: this.state.card.normal_high_price,
+                normal_market_price: this.state.card.normal_market_price,
+                foil_low_price: this.state.card.foil_low_price,
+                foil_mid_price: this.state.card.foil_mid_price,
+                foil_high_price: this.state.card.foil_high_price,
+                foil_market_price: this.state.card.foil_market_price
             })
         })
         .then(res => res.json())
         .then(card => {
-            if(card.errors){
+            if(card.errors ){
                 this.setState({
                     errors: card.errors
                 })
