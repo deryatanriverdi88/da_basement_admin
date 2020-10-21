@@ -51,6 +51,10 @@ function NavBar(props) {
                 </nav>
              </>
         }
+        {
+            binderForm ? <BinderForm  current_user={current_user} setBinderForm={setBinderForm}/> : null
+
+        }
        
         </>
     )
