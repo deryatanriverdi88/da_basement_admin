@@ -434,6 +434,58 @@ tbody tr:hover{
 
 .pop-up-fade{
   width: 15%;
+  padding: 10px;
+  background-color: rgb(57,156,98);
+  margin: auto;
+  display: flex;
+  height: auto;
+  min-width: 10%;
+  overflow: scroll;
+  flex-direction: column;
+  border-radius: 15px;
+}
+
+.pop-up-fade p {
+  padding: 5px;
+}
+
+.pop-up-fade img{
+  width: 100%;
+}
+
+.card-item, .foil-or-not{
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-item{
+  margin: 10px auto;
+  width: 70%;
+}
+
+.foil-or-not{
+  width: 20%;
+  margin: 0 auto;
+}
+
+.form-header{
+  margin: 15px auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.form-header h3{
+  width: auto;
+  font-size: 25px;
+}
+
+.form-header img{
+  width: 15%;
+}
+
+.price-list ul{
+  margin-top: 50px;
 }
 
 @media only screen and (min-width: 300px){
