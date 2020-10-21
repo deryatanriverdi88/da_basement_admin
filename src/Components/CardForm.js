@@ -80,7 +80,7 @@ class CardForm extends Component {
         }
     }
 
-    handleClick = (cardItem) => {
+    handleCardItemDetailsClick = (cardItem) => {
         this.setState({
             cardView: !this.state.cardView,
             card: cardItem
