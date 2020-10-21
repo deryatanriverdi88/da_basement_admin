@@ -17,6 +17,11 @@ function App(props) {
     .then(userObject => {
       props.setUser(userObject)
     })
+    fetch('http://localhost:5000/binders')
+    .then(res => res.json())
+    .then(binderObj => {
+      props.setBinders(binderObj)
+    })
   }, [props])
 
   return (
