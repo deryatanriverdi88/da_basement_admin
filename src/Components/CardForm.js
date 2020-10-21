@@ -13,7 +13,8 @@ class CardForm extends Component {
         foil: false,
         normal: false,
         errors: {},
-        cardAdded: false
+        cardAdded: false,
+        dropDown: false
     }
 
     handleChange = (e) => {
