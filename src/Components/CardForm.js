@@ -50,14 +50,27 @@ class CardForm extends Component {
     }
 
     handleCardVersionChange = (e) => {
-        if(e.target.name === 'normal'){
+        if(this.state.normal){
+            this.setState({
+                normal: false,
+                normalDisable: false,
+                foilDisable: !this.state.foilDisable
+            })
+        } else if(e.target.name === 'normal'){
             this.setState({
                 normal: true,
                 foil: false,
                 normalDisable: false,
                 foilDisable: !this.state.foilDisable
             })
-        } else if(e.target.name === 'foil') {
+        } else if(this.state.foil){
+            this.setState({
+                foil: false,
+                foilDisable: false,
+                normalDisable: !this.state.normalDisable
+            })
+        }
+        else if(e.target.name === 'foil') {
             this.setState({
                 foil: true,
                 normal: false,
