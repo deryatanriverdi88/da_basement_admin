@@ -256,8 +256,8 @@ li{
   margin: 15px auto;
 }
 
-#amount{
-  width: 30%;
+#amount, #binder{
+  width: 10%;
   margin-bottom: 1em;
   border-radius: 15px;
   outline: 0;
