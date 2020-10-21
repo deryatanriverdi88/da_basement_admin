@@ -237,6 +237,13 @@ li{
   margin: 0 auto;
 }
 
+.binder-div{
+  display: flex;
+}
+.binder-div form{
+  margin: auto;
+}
+
 .card-info-button{
   width: 10em;
 }
