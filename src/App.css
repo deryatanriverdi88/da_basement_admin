@@ -172,6 +172,20 @@ li{
   font-size: 30px;
 }
 
+.cardlist{
+  height: auto;
+  max-height: 50vh;
+  overflow: scroll;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.cardlist li:hover{
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
 .cards{
   padding-bottom: 0;
   background-color: rgba(250,250,250, 0.8);
