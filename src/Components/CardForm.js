@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 class CardForm extends Component {
     state={
-        amount: 0,
+        amount: 1,
         cardView: false,
         card: {},
         foilDisable: false,
