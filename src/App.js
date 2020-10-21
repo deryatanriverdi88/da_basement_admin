@@ -38,6 +38,11 @@ const mapDispatchToProps = (dispatch) =>{
       dispatch({
           type: 'SET_USER', payload: userObject
         })
+    },
+    setBinders: (binderObject) => {
+      dispatch({
+        type: 'SET_BINDERS', payload: binderObject
+      })
     }
   }
 }
