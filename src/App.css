@@ -386,7 +386,7 @@ tbody tr:hover{
   border-left: 1px solid transparent;
 }
 
-.edit-card, .submit, .delete-card, .x{
+.edit-card, .submit, .delete-card{
   display: flex;
   margin: 5px auto;
   width: 3em;
@@ -395,12 +395,28 @@ tbody tr:hover{
   font-size: 15px;
   outline: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
-.x {
+.x-div{
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-item-x-div{
+  left: 0;
+}
+
+.x-div .x {
+  width: 5%;
+  font-weight: bold;
+  font-size: 20px;
   border: none;
+  background:rgb(57,156,98);
 }
 
 .submit, .edit-input{
