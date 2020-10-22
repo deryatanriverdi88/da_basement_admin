@@ -12,6 +12,7 @@ export default class MyCards extends Component {
 
     componentDidMount =  () => {
         fetch('https://da-basement-games-api.herokuapp.com/favorite_cards')
+        // fetch('http://localhost:5000/favorite_cards')
         .then(res => res.json())
         .then(cardItems => {
               this.setState({
