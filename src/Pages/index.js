@@ -6,5 +6,6 @@ import MyBinders from './MyBinders'
 export default {
     Login,
     MyCards,
-    AddCards
+    AddCards,
+    MyBinders
 }
