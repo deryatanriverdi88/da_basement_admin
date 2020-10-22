@@ -30,6 +30,22 @@ function BinderForm({current_user, history, setBinderForm}) {
     }
     return (
         <div>
+            <div className="background-for-z-index">
+                <div className="binder-div">
+                    <div className="x-div">
+                        <button className="x" onClick={() => setBinderForm(false)}> X </button>
+                    </div>
+                    <form onSubmit={handleOnSubmit}>
+                        <label htmlFor="binderName"> Name : </label>
+                        <input
+                            name="binderName"
+                            value={binderName}
+                            onChange={handleOnChange}
+                        />
+                        <input type="submit"/>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }
