@@ -186,4 +186,23 @@ class MyBinders extends Component {
     }
 }
 
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        setBinders: (binderObject) => {
+            dispatch({
+                type: 'SET_BINDERS', payload: binderObject
+            })
+        },
+        clearBinder: () => {
+            dispatch({
+                type: 'CLEAR_BINDER'
+            })
+        },
+        setFavoriteCards: (card) => {
+            dispatch({
+                type: 'SET_FAVORITE_CARDS', payload: card
+            })
+        }
+    }
+}
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyBinders))
