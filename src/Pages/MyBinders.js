@@ -26,6 +26,17 @@ class MyBinders extends Component {
     handleAddCardClick = () => {
         this.props.history.push({pathname: `/addCards/${this.state.binderItem.name}`, state: {binder: this.state.binderItem}})
     }
+
+    handleDelete = () => {
+        fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.state.binderItem.id}`, {
+                  method: 'DELETE'
+             }).then(res => {
+          const newBinders = this.props.binders.filter(binder =>{
+            return binder.id !== this.state.binderItem.id
+           })
+           this.props.setBinders(newBinders)
+        })
+    }
     render() {
         return (
             <div>
