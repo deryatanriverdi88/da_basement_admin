@@ -37,6 +37,34 @@ class MyBinders extends Component {
            this.props.setBinders(newBinders)
         })
     }
+
+    handleCount = (v1, v2) => {
+        let count = 0
+        if(this.state.binderItem.id){
+            this.props.favoriteCards.map(card =>{
+                if(v1 === "amount"){
+                    count += card[v1]
+                }else{
+                    if(card.foil){
+                        delete card[v1]
+                        if(card[v2] === null){
+                            delete card[v2]
+                        }else {
+                            count += Number.parseFloat(card[v2] * card.amount)
+                        }
+                    } else if(card.normal){
+                        delete card[v2]
+                        if(card[v1] === null){
+                            delete card[v1]
+                        }else {
+                            count += Number.parseFloat(card[v1] * card.amount)
+                        }
+                    }
+                }
+            })
+        }
+        return count
+    }
     render() {
         return (
             <div>
