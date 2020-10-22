@@ -92,6 +92,9 @@ class AddCards extends Component {
         })
         return (
             <div className="add-card-div">
+                <h2>
+                    <b>Current Binder  : </b> { this.state.binder.name }
+                </h2>
                 <form className="add-card-form" htmlFor="search">
                     <label>Search</label>
                     <input className="add-card-input"
