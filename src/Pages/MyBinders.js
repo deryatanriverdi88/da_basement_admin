@@ -80,6 +80,33 @@ class MyBinders extends Component {
             amount: e.target.value
         })
     }
+
+    handleEditSubmit = (e) => {
+        e.preventDefault()
+        fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${this.state.editCard.id}`, {
+        // // fetch(`http://localhost:5000/favorite_cards/${this.state.editCard.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept':'application/json'
+          },
+            body: JSON.stringify({
+            amount: this.state.amount
+          })
+        })
+        .then(res => res.json())
+        .then(card => {
+            const newCards = this.props.favoriteCards.map(cardItem => {
+                return cardItem.id === card.id ? card : cardItem
+            })
+            this.setState({
+                editCard:  null,
+                editForm: false,
+                amount: null
+            })
+            this.props.setFavoriteCards(newCards)
+        })
+    }
     render() {
         return (
             <div>
