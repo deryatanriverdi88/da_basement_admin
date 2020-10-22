@@ -269,6 +269,9 @@ li{
   text-align: center;
 }
 
+.search, .search-dropdown{
+  width: 20%;
+}
 
 .dropbtn {
   padding: 16px;
