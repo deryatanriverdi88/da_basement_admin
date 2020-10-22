@@ -74,6 +74,12 @@ class MyBinders extends Component {
             editCard: card
         })
     }
+
+    handleChange = (e) => {
+        this.setState({
+            amount: e.target.value
+        })
+    }
     render() {
         return (
             <div>
