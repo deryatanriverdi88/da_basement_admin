@@ -4,7 +4,7 @@ const optionsCursorTrueWithMargin = {followCursor:true, shiftX: -280, shiftY: -2
 
 export default function MyBinderItem() {
     return (
-        <div>
-        </div>
+        <>
+        </>
     )
 }
