@@ -25,7 +25,6 @@ export default class MyBinderItem extends Component{
                                     <button className="edit-card" onClick={(e) => this.props.handleClick(e, this.props.card)}> Edit </button>
                                     <button className="delete-card" onClick={() => this.props.handleDelete(this.props.card)}> Delete </button>
                                 </>
-    
                         }
                     </td>
                     <td>
