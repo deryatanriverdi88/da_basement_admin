@@ -35,6 +35,7 @@ class MyBinders extends Component {
             return binder.id !== this.state.binderItem.id
            })
            this.props.setBinders(newBinders)
+           this.props.clearFavoriteCards()
         })
     }
 
@@ -196,6 +197,11 @@ const mapDispatchToProps = (dispatch)=>{
         clearBinder: () => {
             dispatch({
                 type: 'CLEAR_BINDER'
+            })
+        },
+        clearFavoriteCards: () => {
+            dispatch({
+                type: 'CLEAR_FAVORITE_CARDS'
             })
         },
         setFavoriteCards: (card) => {
