@@ -84,9 +84,9 @@ class AddCards extends Component {
     }
 
     render() {
-        const searchedCards = 
-        this.props.cards.filter(card => {
-            if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
+        const searchedCardNames =
+        this.state.cardNames.filter(card => {
+            if (card.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
                 return card
             }
         })
