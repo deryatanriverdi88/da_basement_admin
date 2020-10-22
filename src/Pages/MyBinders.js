@@ -109,8 +109,8 @@ class MyBinders extends Component {
     }
     render() {
         return (
-            <div>
-            </div>
+            <>
+            </>
         )
     }
 }
