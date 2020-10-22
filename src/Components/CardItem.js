@@ -8,6 +8,7 @@ export default function CardItem(props) {
           <img src={img_url} alt={name}/>
           <div className="price-list">
                 <h4><b>Set Name : </b>{group_name}</h4>
+                <h4><b>Rarity : </b>{rarity}</h4>
                 {
                   !props.normal && !props.foil ?
                   <>
