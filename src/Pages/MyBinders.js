@@ -132,6 +132,7 @@ class MyBinders extends Component {
                         </> :
                         null
                     }
+                    <button onClick={this.handleDelete}> Delete Collection </button>
                 </select>
             </>
         )
