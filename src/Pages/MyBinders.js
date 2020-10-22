@@ -199,6 +199,11 @@ const mapDispatchToProps = (dispatch)=>{
                 type: 'CLEAR_BINDER'
             })
         },
+        clearFavoriteCards: () => {
+            dispatch({
+                type: 'CLEAR_FAVORITE_CARDS'
+            })
+        },
         setFavoriteCards: (card) => {
             dispatch({
                 type: 'SET_FAVORITE_CARDS', payload: card
