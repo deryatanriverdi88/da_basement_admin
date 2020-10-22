@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {withRouter} from 'react-router-dom'
 
-function BinderForm() {
+function BinderForm({current_user, history, setBinderForm}) {
     return (
         <div>
         </div>
