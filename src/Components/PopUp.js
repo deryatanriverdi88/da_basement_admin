@@ -5,7 +5,8 @@ export default function PopUp(props) {
         <div className="pop-up">
             {console.log(props.card)}
             <div className ="pop-up-fade">
-               <p>{props.card.name} is added <span role="img" aria-label="emoji"> ✅ </span></p>
+               <p>{props.card.name} is added !</p>
+               <img src={props.card.img_url} alt={props.card.name}/>
             </div>
         </div>
     )

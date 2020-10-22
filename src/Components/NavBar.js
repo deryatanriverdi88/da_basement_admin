@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Link, NavLink, withRouter} from 'react-router-dom'
 import { connect, useSelector } from 'react-redux'
+import BinderForm from './BinderForm'
 
 function NavBar(props) {
+    const [binderForm, setBinderForm] = useState(false)
+
     const current_user = useSelector(state => {
         return state.user
     })
@@ -15,6 +18,11 @@ function NavBar(props) {
         clearToken()
         props.history.push('/')
     }
+
+    const handleBinderForm = () => {
+        setBinderForm(!binderForm)
+    }
+
     return (
        
         <>
@@ -29,15 +37,23 @@ function NavBar(props) {
                 <nav id="nav-bar">
                     <div className="link-div">
                         <Link className="link" to="/">My Cards</Link>
-                        <Link className="link" to="/addCards">
+                        <Link className="link" to={{pathname:"/addCards",state: {binder : {}}}}>
                             Add Cards
                         </Link>
+                        <Link className="link" to="/mybinders">
+                            My Binders
+                        </Link>
+                        <button id="add-binder" onClick={handleBinderForm}>Add Binder</button>
                         <NavLink className="link" to="/">
                             <button id="logout" onClick={logOut}>Logout</button>
                         </NavLink>
                     </div>
                 </nav>
              </>
+        }
+        {
+            binderForm ? <BinderForm  current_user={current_user} setBinderForm={setBinderForm}/> : null
+
         }
        
         </>

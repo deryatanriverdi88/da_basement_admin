@@ -8,6 +8,7 @@ import NavBar from './Components/NavBar'
 function App(props) {
   useEffect(() => {
     fetch("https://da-basement-games-api.herokuapp.com/profile", {
+    // fetch("http://localhost:5000/profile", {
       headers: {
         Authorization: localStorage.token
       }
@@ -15,6 +16,11 @@ function App(props) {
     .then(res => res.json())
     .then(userObject => {
       props.setUser(userObject)
+    })
+    fetch('https://da-basement-games-api.herokuapp.com/binders')
+    .then(res => res.json())
+    .then(binderObj => {
+      props.setBinders(binderObj)
     })
   }, [props])
 
@@ -32,6 +38,11 @@ const mapDispatchToProps = (dispatch) =>{
       dispatch({
           type: 'SET_USER', payload: userObject
         })
+    },
+    setBinders: (binderObject) => {
+      dispatch({
+        type: 'SET_BINDERS', payload: binderObject
+      })
     }
   }
 }

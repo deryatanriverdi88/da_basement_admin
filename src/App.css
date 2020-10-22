@@ -9,7 +9,7 @@ body{
   text-align: center;
   font-family: 'Comfortaa', cursive;
   height: 100vh;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 li{
@@ -113,7 +113,7 @@ li{
   background-color: rgba(250,250,250, 0.5)
 }
 
-#logout{
+#logout, #add-binder{
   display: inline-block;
   width: auto;
   height: auto;
@@ -123,12 +123,11 @@ li{
   margin-top: 0;
 }
 
-#logout:focus{
+#logout:focus, #add-binder:focus{
   outline: 0;
 }
 
 #header{
-  /* padding: 15px; */
   margin-top: 5px auto;
   width: auto;
   height: 20%;
@@ -159,6 +158,7 @@ li{
 
 .add-your-card {
   margin : 0 auto;
+  padding: 5px;
 }
 
 .add-card-input:focus{
@@ -170,6 +170,22 @@ li{
   flex-direction: column;
   margin:0 auto ;
   font-size: 30px;
+}
+
+.cardlist{
+  height: auto;
+  max-height: 50vh;
+  overflow: scroll;
+  width: 20%;
+  margin: 0 auto;
+}
+
+
+.cardlist li:hover{
+  background: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 15px;
 }
 
 .cards{
@@ -192,25 +208,42 @@ li{
   margin: 10px auto;
 }
 
-.card-form, .pop-up-fade{
-  padding: 10px;
-  background-color: rgb(57,156,98);
-  top: 25em;
-  left: 40em;
-  margin: 15em auto 4em;
-  width: 30em;
+.background-for-z-index{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  top:0em;
+  background-color: rgba(170,155,155, 0.3);
   display: flex;
+}
+
+.card-form, .pop-up-fade, .binder-div{
+  background-color: rgb(57,156,98);
+  margin: auto;
+  width: auto;
+  min-width: 70%;
+  display: flex;
+  height: auto;
+  min-height: 50%;
+  max-height: 100%;
+  overflow: scroll;
   flex-direction: column;
   border-radius: 15px;
-  -webkit-box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
-  -moz-box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
-  box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
+  padding: 5px;
 }
 
 .card-form label{
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+}
+
+.binder-div{
+  display: flex;
+}
+.binder-div form{
+  margin: auto;
 }
 
 .card-info-button{
@@ -221,21 +254,69 @@ li{
   outline: 0;
 }
 
-.background-for-z-index{
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  height: 100vh;
-  top:0em;
-  background-color: rgba(170,155,155, 0.3)
+.amount, .binder{
+  margin: 15px auto;
 }
 
-#amount{
-  width: 30%;
+#amount, #binder{
+  width: 10%;
   margin-bottom: 1em;
   border-radius: 15px;
   outline: 0;
-  height: 20px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+.search, .search-dropdown{
+  width: 20%;
+}
+
+.dropbtn {
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 15px;
+  outline-style: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  margin-top: 5px;
+  position: absolute;
+  width: 100%;
+  min-width: 160px;
+  overflow: auto;
+  z-index: 1;
+}
+
+.dropdown-list {
+  background-color: #f1f1f1;
+  margin: 0 auto;
+  width: 80%;
+  border-radius: 15px;
+  height: auto;
+  max-height: 25vh;
+  overflow: scroll;
+}
+
+.icon{
+  width: 5%;
+}
+
+.dropdown-content li {
+  color: black;
+  padding: 12px 16px;
+}
+
+.dropdown-content li:hover{
+  background: #aab1b4;
+  cursor: pointer;
 }
 
 .card-info-button{
@@ -310,7 +391,7 @@ tbody tr:hover{
   border-left: 1px solid transparent;
 }
 
-.edit-card, .submit, .delete-card, .x{
+.edit-card, .submit, .delete-card{
   display: flex;
   margin: 5px auto;
   width: 3em;
@@ -319,12 +400,28 @@ tbody tr:hover{
   font-size: 15px;
   outline: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
-.x {
+.x-div{
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-item-x-div{
+  left: 0;
+}
+
+.x-div .x {
+  width: 5%;
+  font-weight: bold;
+  font-size: 20px;
   border: none;
+  background:rgb(57,156,98);
 }
 
 .submit, .edit-input{
@@ -342,6 +439,58 @@ tbody tr:hover{
 
 .pop-up-fade{
   width: 15%;
+  padding: 10px;
+  background-color: rgb(57,156,98);
+  margin: auto;
+  display: flex;
+  height: auto;
+  min-width: 10%;
+  overflow: scroll;
+  flex-direction: column;
+  border-radius: 15px;
+}
+
+.pop-up-fade p {
+  padding: 5px;
+}
+
+.pop-up-fade img{
+  width: 100%;
+}
+
+.card-item, .foil-or-not{
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-item{
+  margin: 10px auto;
+  width: 70%;
+}
+
+.foil-or-not{
+  width: 20%;
+  margin: 0 auto;
+}
+
+.form-header{
+  margin: 15px auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.form-header h3{
+  width: auto;
+  font-size: 25px;
+}
+
+.form-header img{
+  width: 15%;
+}
+
+.price-list ul{
+  margin-top: 50px;
 }
 
 @media only screen and (min-width: 300px){
@@ -401,7 +550,6 @@ tbody tr:hover{
   .login-form{
     height: auto;
     width: 40%;
-    padding:30px;
   }
 
   .login-container{
@@ -409,9 +557,7 @@ tbody tr:hover{
   }
 
   .card-form{
-    height: auto;
     width: 40%;
-    padding:30px;
   }
 }
 

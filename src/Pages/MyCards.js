@@ -12,6 +12,7 @@ export default class MyCards extends Component {
 
     componentDidMount =  () => {
         fetch('https://da-basement-games-api.herokuapp.com/favorite_cards')
+        // fetch('http://localhost:5000/favorite_cards')
         .then(res => res.json())
         .then(cardItems => {
               this.setState({
@@ -72,6 +73,7 @@ export default class MyCards extends Component {
     handleEditSubmit = (e) => {
         e.preventDefault()
         fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${this.state.editCard.id}`, {
+        // fetch(`http://localhost:5000/favorite_cards/${this.state.editCard.id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -97,6 +99,7 @@ export default class MyCards extends Component {
 
     handleDelete = (card) => {
         fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${card.id}`, {
+        // fetch(`http://localhost:5000/favorite_cards/${card.id}`, {
                   method: 'DELETE'
              }).then(res => {
           const newCards = this.state.myCards.filter(myCard =>{
@@ -109,14 +112,13 @@ export default class MyCards extends Component {
     }
 
     render() {
-        console.log(this.state.myCards)
-        const searchedCards =
-            this.state.myCards.filter(card => {
+        const searchedCards = this.state.myCards.filter(card => {
+            if(card.name) {
                 if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
                     return card
                 }
-            })
-
+            }
+        })
         return (
             <div>
                 <form className="add-card-form" htmlFor="search">
