@@ -105,6 +105,9 @@ class AddCards extends Component {
                            onChange={this.handleChange}
                     />
                 </form>
+                {
+                    this.renderPopUp(this.state.popUp)
+                }
             </div>
         )
     }
