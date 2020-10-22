@@ -22,6 +22,10 @@ class MyBinders extends Component {
         })
         this.props.setFavoriteCards(binderItem.favorite_cards)
     }
+
+    handleAddCardClick = () => {
+        this.props.history.push({pathname: `/addCards/${this.state.binderItem.name}`, state: {binder: this.state.binderItem}})
+    }
     render() {
         return (
             <div>
