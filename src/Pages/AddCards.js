@@ -20,10 +20,15 @@ class AddCards extends Component {
         })
     }
 
-    handleClick = (cardItem) => {
+    handleClick = (cardName) => {
+        fetch(`http://localhost:4000/card?name=${cardName}`)
+        .then(res => res.json())
+        .then(cardItem => {
+            this.props.getCards(cardItem)
+        })
         this.setState({
-            card: cardItem,
-            cardForm: !this.state.cardForm
+            cardForm: !this.state.cardForm,
+            cardName: cardName
         })
     }
 
