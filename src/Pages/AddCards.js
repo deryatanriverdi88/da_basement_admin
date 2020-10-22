@@ -144,6 +144,11 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({
                 type: 'GET_CARDS', payload: cardObject
             })
+        },
+        clearCards: () => {
+            dispatch({
+                type: 'CLEAR_CARDS'
+            })
         }
     }
 }
