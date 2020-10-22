@@ -110,6 +110,11 @@ class MyBinders extends Component {
     render() {
         return (
             <>
+                {
+                    this.state.binderItem.id ?
+                        <h2> Current Binder : {this.state.binderItem.name} </h2> :
+                        null
+                }
             </>
         )
     }
