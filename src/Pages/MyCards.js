@@ -73,6 +73,7 @@ export default class MyCards extends Component {
     handleEditSubmit = (e) => {
         e.preventDefault()
         fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${this.state.editCard.id}`, {
+        // fetch(`http://localhost:5000/favorite_cards/${this.state.editCard.id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -98,6 +99,7 @@ export default class MyCards extends Component {
 
     handleDelete = (card) => {
         fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${card.id}`, {
+        // fetch(`http://localhost:5000/favorite_cards/${card.id}`, {
                   method: 'DELETE'
              }).then(res => {
           const newCards = this.state.myCards.filter(myCard =>{
