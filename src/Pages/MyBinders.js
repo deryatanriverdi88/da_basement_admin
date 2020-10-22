@@ -134,6 +134,53 @@ class MyBinders extends Component {
                     null
                 }
                 <button onClick={this.handleDelete}> Delete Collection </button>
+                <div className="table">
+                        <table>
+                            <thead>
+                                <tr className="row">
+                                <th className="amount"> Amount </th>
+                                <th className="name"> Card Name </th>
+                                <th className="rarity"> Rarity </th>
+                                <th className="foiled"> Foiled </th>
+                                <th className="set-name"> et Name </th>
+                                <th className="low-price"> Low Price </th>
+                                <th className="mid-price"> Mid Price </th>
+                                <th className="high-price"> High Price </th>
+                                <th className="market-price"> Market Price </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                              this.state.binderItem.id ?
+                              this.props.favoriteCards.map((card)=>{
+                                   return <MyBinderItem card={card}
+                                                        key={card.id}
+                                                        handleClick={this.handleClick}
+                                                        editForm={this.state.editForm}
+                                                        amount={this.state.amount}
+                                                        handleChange={this.handleChange}
+                                                        editCard={this.state.editCard}
+                                                        handleEditSubmit={this.handleEditSubmit}
+                                                        handleDelete={this.handleDelete}
+                                          />
+                                })
+                                 :
+                                null
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td> Total Cards </td>
+                                <td> {this.handleCount('amount')} </td>
+                                <td colSpan="3"> Value </td>
+                                <td> ${this.handleCount("normal_low_price", "foil_low_price").toFixed(2)} </td>
+                                <td> ${this.handleCount("normal_mid_price", "foil_mid_price").toFixed(2)} </td>
+                                <td> ${this.handleCount("normal_high_price", "foil_high_price").toFixed(2)} </td>
+                                <td> ${this.handleCount("normal_market_price", "foil_market_price").toFixed(2)} </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </>
         )
     }
