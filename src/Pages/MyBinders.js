@@ -65,6 +65,15 @@ class MyBinders extends Component {
         }
         return count
     }
+
+    handleClick = (e, card) => {
+        console.log(card)
+        this.setState({
+            amount: card.amount,
+            editForm: !this.state.editForm,
+            editCard: card
+        })
+    }
     render() {
         return (
             <div>
