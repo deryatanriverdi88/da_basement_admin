@@ -12,6 +12,16 @@ class MyBinders extends Component {
         editForm: false,
         editCard: null
     }
+
+    handleBinderClick = (e) => {
+        let binderItem= this.props.binders.filter(i => {
+            return i.id === parseInt(e.target.value)
+        })[0]
+        this.setState({
+            binderItem: binderItem
+        })
+        this.props.setFavoriteCards(binderItem.favorite_cards)
+    }
     render() {
         return (
             <div>
