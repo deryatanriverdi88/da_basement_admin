@@ -115,6 +115,16 @@ class MyBinders extends Component {
                         <h2> Current Binder : {this.state.binderItem.name} </h2> :
                         null
                 }
+                <select name="binderName" id="binder-name" onChange={this.handleBinderClick}>
+                    <option hidden> Select a binder </option>
+                    {
+                        this.props.binders.length > 0 ?
+                            this.props.binders.map(binder => {
+                                return <option value={binder.id} key={binder.id}> {binder.name} </option>
+                            }) :
+                            null
+                    }
+                </select>
             </>
         )
     }
