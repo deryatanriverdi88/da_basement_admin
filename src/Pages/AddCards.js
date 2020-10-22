@@ -108,6 +108,15 @@ class AddCards extends Component {
                 {
                     this.renderPopUp(this.state.popUp)
                 }
+                <div className="cardlist">
+                    {
+                        this.state.searchValue.length > 0 ?
+                            searchedCardNames.map(name => {
+                                return  <li onClick={() => this.handleClick(name)} key={name}> {name} </li>
+                            }) :
+                            null
+                    }
+                </div>
             </div>
         )
     }
