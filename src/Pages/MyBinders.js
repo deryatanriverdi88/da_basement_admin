@@ -35,6 +35,7 @@ class MyBinders extends Component {
             return binder.id !== this.state.binderItem.id
            })
            this.props.setBinders(newBinders)
+           this.props.clearFavoriteCards()
         })
     }
 
