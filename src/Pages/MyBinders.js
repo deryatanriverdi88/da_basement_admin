@@ -124,16 +124,16 @@ class MyBinders extends Component {
                             }) :
                             null
                     }
-                    {
-                        this.state.binderItem.id ?
-                        <>
-                            <button onClick={this.handleAddCardClick}> Add cards to this binder </button>
-                            <button onClick={this.handleEditCardClick}> Edit this binder </button>
-                        </> :
-                        null
-                    }
-                    <button onClick={this.handleDelete}> Delete Collection </button>
                 </select>
+                {
+                    this.state.binderItem.id ?
+                    <>
+                        <button onClick={this.handleAddCardClick}> Add cards to this binder </button>
+                        <button onClick={this.handleEditCardClick}> Edit this binder </button>
+                    </> :
+                    null
+                }
+                <button onClick={this.handleDelete}> Delete Collection </button>
             </>
         )
     }
