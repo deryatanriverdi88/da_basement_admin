@@ -12,4 +12,4 @@ class MyBinders extends Component {
     }
 }
 
-export default withRouter(MyBinders)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyBinders))
