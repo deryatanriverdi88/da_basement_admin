@@ -112,14 +112,13 @@ export default class MyCards extends Component {
     }
 
     render() {
-        console.log(this.state.myCards)
-        const searchedCards =
-            this.state.myCards.filter(card => {
+        const searchedCards = this.state.myCards.filter(card => {
+            if(card.name) {
                 if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
                     return card
                 }
-            })
-
+            }
+        })
         return (
             <div>
                 <form className="add-card-form" htmlFor="search">
