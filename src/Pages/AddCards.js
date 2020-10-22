@@ -48,7 +48,16 @@ class AddCards extends Component {
     }
 
     componentDidUpdate = () =>{
-        setTimeout(() => this.setState({popUp: false}), 8000)
+        if(this.state.popUp){
+            setTimeout(() => this.setState({popUp: false}), 300)
+        }
+        if(this.props.history.location.state){
+            if(this.props.history.location.state.binder.id !== this.state.binder.id){
+                this.setState({
+                    binder: this.props.history.location.state.binder
+                })
+            }
+        }
     }
 
     componentDidMount(){
