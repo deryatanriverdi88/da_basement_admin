@@ -7,5 +7,6 @@ import addBinders from './addBinderReducer'
 export default combineReducers({
     user: user,
     favoriteCards: favoriteCards,
-    addCards: addCards
+    addCards: addCards,
+    addBinders: addBinders
 })
