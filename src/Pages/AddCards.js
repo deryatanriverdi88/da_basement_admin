@@ -61,12 +61,18 @@ class AddCards extends Component {
     }
 
     componentDidMount(){
-        fetch('http://localhost:3000/last_ten')
-        // fetch('http://localhost:3000/magic_the_gatherig_cards')
-        .then(res=>res.json())
-        .then(cardData => {
-            this.props.getCards(cardData)
+        fetch('https://api.scryfall.com/catalog/card-names')
+        .then(res => res.json())
+        .then(cardNames => {
+            this.setState({
+                cardNames: cardNames.data
+            })
         })
+        if(this.props.history.location.state){
+            this.setState({
+                binder: this.props.history.location.state.binder
+            })
+        }
     }
 
     renderPopUp = (cond) => {
