@@ -4,6 +4,14 @@ import MyBinderItem from '../Components/MyBinderItem'
 import {withRouter} from 'react-router-dom'
 
 class MyBinders extends Component {
+
+    state={
+        binderItem: {},
+        binderName: "",
+        amount: null,
+        editForm: false,
+        editCard: null
+    }
     render() {
         return (
             <div>
