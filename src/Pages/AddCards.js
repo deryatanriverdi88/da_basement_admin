@@ -117,6 +117,22 @@ class AddCards extends Component {
                             null
                     }
                 </div>
+                {
+                    this.state.cardForm ?
+                        <>
+                            <CardForm
+                            cards={this.props.cards}
+                            cardName={this.state.cardName}
+                            handleClick={this.handleClick}
+                            handleCardFormTurnOff={this.handleCardFormTurnOff}
+                            cardForm={this.state.cardForm}
+                            handleClose={this.handleClose}
+                            binder={this.state.binder}
+                            />
+                        </>
+                        :
+                        null
+                }
             </div>
         )
     }
