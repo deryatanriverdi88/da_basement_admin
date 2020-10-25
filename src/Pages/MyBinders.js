@@ -10,7 +10,10 @@ class MyBinders extends Component {
         binderName: "",
         amount: null,
         editForm: false,
-        editCard: null
+        editCard: null,
+        editBinderForm: false,
+        search: "",
+        reversePriceList: "high-to-low"
     }
 
     handleBinderClick = (e) => {
