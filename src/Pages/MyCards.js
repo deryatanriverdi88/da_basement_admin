@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import MyCardItem from '../Components/MyCardItem'
 
-export default class MyCards extends Component {
+class MyCards extends Component {
     state={
         myCards: [],
         amount: null,
         editForm: false,
         editCard: null,
-        searchValue: ""
+        searchValue: "",
+        reversePriceList: "high-to-low"
     }
 
     componentDidMount =  () => {
