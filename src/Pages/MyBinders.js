@@ -239,7 +239,28 @@ class MyBinders extends Component {
                     </> :
                     null
                 }
-                <button onClick={this.handleDelete}> Delete Collection </button>
+
+                {
+                    this.state.editBinderForm ?
+                    <>
+                        <br></br>
+                        <label htmlFor="binderName"> Edit Binder Name : </label>
+                        <input type="text" name="binderName" value={this.state.binderName} onChange={this.handleChange}/>
+                        <input type="Submit" onClick={this.handleEditBinderSubmit}/>
+                    </>
+                    :
+                    null
+                }
+                <form className="add-card-form" htmlFor="search">
+                    <label>Search</label>
+                    <input className="add-card-input"
+                           type="text"
+                           name="search"
+                           autoComplete="off"
+                           autoCorrect="off"
+                           onChange={this.handleChange}
+                    />
+                </form>
                 <div className="table">
                         <table>
                             <thead>
