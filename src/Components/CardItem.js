@@ -3,7 +3,7 @@ import React from 'react'
 export default function CardItem( props ) {
   const { name, img_url, normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price, group_name, rarity } = props.card
   return (
-    <div>
+    <>
       <div className="card-item">
           <img src={img_url} alt={name}/>
           <div className="price-list">
@@ -47,9 +47,6 @@ export default function CardItem( props ) {
 
           </div>
       </div>
-        <div className="x-div">
-          <button  className="x" onClick={() => props.handleCardItemDetailsClick(props.card)}> X </button>
-        </div>
-    </div>
+    </>
   )
 }
