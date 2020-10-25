@@ -111,7 +111,7 @@ class CardForm extends Component {
     }
 
     render() {
-        const {normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price} = this.state.card
+        const { foil_low_price, foil_mid_price, foil_high_price, foil_market_price } = this.state.card
 
         return (
             <div className="background-for-z-index">
