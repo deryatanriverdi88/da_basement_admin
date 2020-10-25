@@ -247,3 +247,5 @@ class MyCards extends Component {
         )
     }
 }
+
+export default MyCards
