@@ -52,8 +52,8 @@ class MyBinders extends Component {
         fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.state.binderItem.id}`, {
                   method: 'DELETE'
              }).then(res => {
-          const newBinders = this.props.binders.filter(binder =>{
-            return binder.id !== this.state.binderItem.id
+            const newBinders = this.props.binders.filter(binder =>{
+              return binder.id !== this.state.binderItem.id
            })
            this.props.setBinders(newBinders)
            this.props.clearFavoriteCards()
