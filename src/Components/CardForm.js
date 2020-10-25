@@ -220,24 +220,6 @@ class CardForm extends Component {
                                             :
                                             null
                                     }
-                                    {
-                                        normal_low_price || normal_mid_price || normal_high_price || normal_market_price ?
-                                            <div>
-                                                <label htmlFor="normal">
-                                                    <span className="normal"> Normal </span>
-                                                </label>
-                                                <input
-                                                    id="normal"
-                                                    name="normal"
-                                                    type="checkbox"
-                                                    disabled={this.state.normalDisable}
-                                                    onChange={this.handleCardVersionChange}
-                                                    value={this.state.normal}
-                                                />
-                                            </div>
-                                            :
-                                            null
-                                    }
                                 </div>
                                 <input
                                     type="hidden"
