@@ -11,7 +11,6 @@ class CardForm extends Component {
         foilDisable: false,
         normalDisable: false,
         foil: false,
-        normal: false,
         errors: {},
         cardAdded: false,
         dropDown: false
