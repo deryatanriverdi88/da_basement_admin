@@ -204,7 +204,7 @@ class CardForm extends Component {
                                 <div className="foil-or-not">
                                     {
                                         foil_low_price || foil_mid_price || foil_high_price || foil_market_price ?
-                                            <div>
+                                            <div className="foil-div">
                                                 <label htmlFor="foil">
                                                     <span className="foil"> Foiled </span>
                                                 </label>
