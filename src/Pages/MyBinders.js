@@ -26,6 +26,12 @@ class MyBinders extends Component {
         this.props.setFavoriteCards(binderItem.favorite_cards)
     }
 
+    handleEditBinderClick = () => {
+        this.setState({
+            editBinderForm: !this.state.editBinderForm
+        })
+    }
+
     handleAddCardClick = () => {
         this.props.history.push({pathname: `/addCards/${this.state.binderItem.name}`, state: {binder: this.state.binderItem}})
     }
