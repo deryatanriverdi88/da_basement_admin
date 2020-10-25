@@ -23,7 +23,8 @@ class MyBinders extends Component {
         this.setState({
             binderItem: binderItem
         })
-        this.props.setFavoriteCards(binderItem.favorite_cards)
+        const sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
+        this.props.setFavoriteCards(sortedCards)
     }
 
     handleEditBinderClick = () => {
