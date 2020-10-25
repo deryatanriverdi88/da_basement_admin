@@ -48,35 +48,10 @@ class CardForm extends Component {
         }
     }
 
-    handleCardVersionChange = (e) => {
-        if(this.state.normal){
-            this.setState({
-                normal: false,
-                normalDisable: false,
-                foilDisable: !this.state.foilDisable
-            })
-        } else if(e.target.name === 'normal'){
-            this.setState({
-                normal: true,
-                foil: false,
-                normalDisable: false,
-                foilDisable: !this.state.foilDisable
-            })
-        } else if(this.state.foil){
-            this.setState({
-                foil: false,
-                foilDisable: false,
-                normalDisable: !this.state.normalDisable
-            })
-        }
-        else if(e.target.name === 'foil') {
-            this.setState({
-                foil: true,
-                normal: false,
-                foilDisable: false,
-                normalDisable: !this.state.normalDisable
-            })
-        }
+    handleCardVersionChange = () => {
+        this.setState({
+            foil: !this.state.foil
+        })
     }
 
     handleCardItemDetailsClick = (cardItem) => {
