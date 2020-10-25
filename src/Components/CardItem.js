@@ -18,39 +18,65 @@ export default function CardItem( props ) {
                 {
                   props.foil ===  true ?
                   <>
-              <ul>
-                  <li>Normal Low Price : ${normal_low_price}</li>
-                  <li>Normal Mid Price : ${normal_mid_price}</li>
-                  <li>Normal High Price : ${normal_high_price}</li>
-                  <li>Normal Market Price : ${normal_market_price}</li>
-              </ul>
-              <ul>
-                  <li>Foil Low Price : ${foil_low_price}</li>
-                  <li>Foil Mid Price : ${foil_mid_price}</li>
-                  <li>Foil High Price : ${foil_high_price}</li>
-                  <li>Foil Market Price : ${foil_market_price}</li>
-              </ul> </>
-              : null
-              }
-              {
-                props.normal ?
-                <ul>
-                  <li>Normal Low Price : ${normal_low_price}</li>
-                  <li>Normal Mid Price  : ${normal_mid_price}</li>
-                  <li>Normal High Price : ${normal_high_price}</li>
-                  <li>Normal Market Price : ${normal_market_price}</li>
-              </ul> : null
-              }
-              {
-                props.foil ?
-                <ul>
-                  <li>Foil Low Price : ${foil_low_price}</li>
-                  <li>Foil Mid Price : ${foil_mid_price}</li>
-                  <li>Foil High Price : ${foil_high_price}</li>
-                  <li>Foil Market Price : ${foil_market_price}</li>
-              </ul> : null
-              }
-
+                    <ul>
+                      <li>
+                        <span>Foil Low Price :</span>
+                        ${foil_low_price}
+                      </li>
+                      <li>
+                        <span>Foil Mid Price : </span>
+                        ${foil_mid_price}
+                      </li>
+                      <li>
+                        <span>Foil High Price :</span>
+                        ${foil_high_price}
+                      </li>
+                      <li>
+                        <span>Foil Market Price : </span>
+                        ${foil_market_price}
+                      </li>
+                    </ul>
+                  </>
+                  :
+                  <>
+                    <ul>
+                      <li>
+                        <span>Normal Low Price :</span>
+                        ${normal_low_price}
+                      </li>
+                      <li>
+                        <span>Normal Mid Price :</span>
+                        ${normal_mid_price}
+                      </li>
+                      <li>
+                        <span>Normal High Price :</span>
+                        ${normal_high_price}
+                      </li>
+                      <li>
+                        <span>Normal Market Price : </span>
+                        ${normal_market_price}
+                      </li>
+                    </ul>
+                    <ul>
+                      <li>
+                        <span>Foil Low Price : </span>
+                        ${foil_low_price}
+                      </li>
+                      <li>
+                        <span>Foil Mid Price : </span>
+                        ${foil_mid_price}
+                      </li>
+                      <li>
+                        <span>Foil High Price :</span>
+                        ${foil_high_price}
+                      </li>
+                      <li>
+                        <span>Foil Market Price : </span>
+                        ${foil_market_price}
+                      </li>
+                    </ul>
+                </>
+                }
           </div>
       </div>
     </>
