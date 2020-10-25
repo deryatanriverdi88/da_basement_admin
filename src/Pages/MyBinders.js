@@ -36,7 +36,19 @@ class MyBinders extends Component {
         this.props.history.push({pathname: `/addCards/${this.state.binderItem.name}`, state: {binder: this.state.binderItem}})
     }
 
-    handleDelete = () => {
+    handleCardDelete = (card) => {
+        fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${card.id}`, {
+        // fetch(`http://localhost:5000/favorite_cards/${card.id}`, {
+                  method: 'DELETE'
+            }).then(res => {
+            const newCards = this.props.favoriteCards.filter(myCard =>{
+              return myCard.id !== card.id
+           })
+           this.props.setFavoriteCards(newCards)
+        })
+    }
+
+    handleBinderDelete = () => {
         fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.state.binderItem.id}`, {
                   method: 'DELETE'
              }).then(res => {
