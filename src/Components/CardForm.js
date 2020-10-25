@@ -234,20 +234,10 @@ class CardForm extends Component {
                                 <p>Select a card from above</p>
                             }
                     </form>
-                    {
-                        !this.state.cardView ?
-                            <button className="card-info-button" onClick={() => this.handleCardItemDetailsClick(this.state.card)}> See card info </button> :
-                            null
-                    }
-                    {
-                        this.state.cardView ?
                         <CardItem
                             card={this.state.card}
-                            handleCardItemDetailsClick={this.handleCardItemDetailsClick}
                             foil={this.state.foil}
-                            normal={this.state.normal}/> :
-                        null
-                    }
+                        />
                  </div>
             </div>
         )
