@@ -17,7 +17,7 @@ export default class MyBinderItem extends Component{
                         {
                             this.props.editForm && this.props.editCard.id === this.props.card.id ?
                                 <>
-                                    <button className="submit" onClick={this.props.handleEditSubmit}> Submit </button>
+                                    <input className="submit" type="Submit" onClick={this.props.handleEditSubmit}/>
                                     <button onClick={(e) => this.props.handleClick(e, this.props.card)}> X </button>
                                 </>
                                     :
