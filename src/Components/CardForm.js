@@ -164,12 +164,22 @@ class CardForm extends Component {
                                 <ul>
                                     {
                                         this.state.dropDown && this.props.cards.length  > 0 ?
-                                        this.props.cards.map(card =>{
-                                        return <li onClick={() => this.handleCardClick(card)} key={card.id}>{card.name}
-                                           { card.icon !== "" ? <img className="icon" src={card.icon} alt={card.icon}/> : ` - ${card.group_name}`}
-                                            </li>
-                                        }) :
-                                        null
+                                            this.props.cards.map(card =>{
+                                            return <div className="dropdown-item" key={card.id} onClick={() => this.handleCardClick(card)}>
+                                                   <li> {card.name} </li>
+                                            { card.icon !== "" ?
+                                                <>
+                                                    <div className="icon-div">
+                                                    <img className="icon" src={card.icon} alt={card.icon}/>
+                                                    </div>
+                                                </>
+                                                :
+                                                `${card.group_name}`
+                                            }
+                                                </div>
+                                            })
+                                            :
+                                            null
                                     }
                                 </ul>
                             </div>
