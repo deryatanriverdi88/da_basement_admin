@@ -269,11 +269,24 @@ class MyBinders extends Component {
                                 <th className="name"> Card Name </th>
                                 <th className="rarity"> Rarity </th>
                                 <th className="foiled"> Foiled </th>
-                                <th className="set-name"> et Name </th>
-                                <th className="low-price"> Low Price </th>
-                                <th className="mid-price"> Mid Price </th>
-                                <th className="high-price"> High Price </th>
-                                <th className="market-price"> Market Price </th>
+                                <th className="set-name"> Set Name </th>
+                                <th className="set-icon"> Set Icon </th>
+                                <th className="low-price price" onClick={() => this.handlePriceClick("low_price")}>
+                                    Low Price
+                                    {this.handlePriceLogo()}
+                                </th>
+                                <th className="mid-price price" onClick={() => this.handlePriceClick("mid_price")}>
+                                    Mid Price
+                                    {this.handlePriceLogo()}
+                                </th>
+                                <th className="high-price price" onClick={() => this.handlePriceClick("high_price")}>
+                                    High Price
+                                    {this.handlePriceLogo()}
+                                </th>
+                                <th className="market-price price" onClick={() => this.handlePriceClick("market_price")}>
+                                    Market Price
+                                    {this.handlePriceLogo()}
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
