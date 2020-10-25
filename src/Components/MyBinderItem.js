@@ -10,7 +10,7 @@ export default class MyBinderItem extends Component{
                     <td>
                         {
                             this.props.editForm && this.props.editCard.id === this.props.card.id ?
-                                <input className="edit-input" type="number" min="0" value={this.props.amount} onChange={this.props.handleChange}/>
+                                <input className="edit-input" type="number" min="0" value={this.props.amount} name="amount" onChange={this.props.handleChange}/>
                                 :
                                 <p> {this.props.card.amount} </p>
                         }
