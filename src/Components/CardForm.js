@@ -77,6 +77,7 @@ class CardForm extends Component {
                 foil: this.state.foil,
                 name: this.state.card.name,
                 img_url: this.state.card.img_url,
+                icon: this.state.card.icon,
                 category_id: this.state.card.category_id,
                 product_id: this.state.card.product_id,
                 group_id: this.state.card.group_id,
