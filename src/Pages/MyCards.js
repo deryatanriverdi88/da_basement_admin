@@ -234,7 +234,7 @@ class MyCards extends Component {
                             <tr>
                                 <td>Total Cards</td>
                                 <td>{this.handleCount('amount')}</td>
-                                <td colSpan="3">Value</td>
+                                <td colSpan="5">Value</td>
                                 <td>${this.handleCount("normal_low_price", "foil_low_price").toFixed(2)}</td>
                                 <td>${this.handleCount("normal_mid_price", "foil_mid_price").toFixed(2)}</td>
                                 <td>${this.handleCount("normal_high_price", "foil_high_price").toFixed(2)}</td>
