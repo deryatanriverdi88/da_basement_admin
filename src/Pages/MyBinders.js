@@ -159,6 +159,41 @@ class MyBinders extends Component {
             this.props.setFavoriteCards(newCards)
         })
     }
+
+    handleEditBinderSubmit = (e) =>{
+        e.preventDefault()
+        fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.state.binderItem.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': "application/json",
+                'Accept': "application/json"
+            },
+            body: JSON.stringify({
+                name: this.state.binderName
+            })
+        })
+        .then(res => res.json())
+        .then(binder => {
+            const newBinders = this.props.binders.map(binderItem => {
+                return binderItem.id === binder.id ? binder : binderItem
+            })
+            this.props.setBinders(newBinders)
+            this.setState({
+               binderItem: binder,
+               binderName: "",
+               editBinderForm: !this.state.editBinderForm
+           })
+        })
+    }
+
+    handlePriceLogo = () => {
+        if(this.state.reversePriceList === 'high-to-low'){
+            return <img src="https://img.icons8.com/ultraviolet/20/000000/up-squared.png" alt="up-arrow"/>
+        } else {
+            return <img src="https://img.icons8.com/ultraviolet/20/000000/down-squared.png" alt="down-arrow"/>
+        }
+    }
+
     render() {
         return (
             <>
