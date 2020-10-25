@@ -292,7 +292,7 @@ class MyBinders extends Component {
                         <tbody>
                             {
                               this.state.binderItem.id ?
-                              this.props.favoriteCards.map((card)=>{
+                              searchedCards.map((card)=>{
                                    return <MyBinderItem card={card}
                                                         key={card.id}
                                                         handleClick={this.handleClick}
