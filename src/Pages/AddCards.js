@@ -64,8 +64,16 @@ class AddCards extends Component {
         fetch('https://api.scryfall.com/catalog/card-names')
         .then(res => res.json())
         .then(cardNames => {
+            const newNames = cardNames.data.map(name => {
+                if(name.includes("//")){
+                    let i = name.indexOf("//")
+                    return name.slice(0, i-1)
+                } else{
+                    return name
+                }
+            })
             this.setState({
-                cardNames: cardNames.data
+                cardNames: newNames
             })
         })
         if(this.props.history.location.state){
