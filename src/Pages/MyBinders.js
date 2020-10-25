@@ -195,6 +195,24 @@ class MyBinders extends Component {
     }
 
     render() {
+        this.props.favoriteCards.map(card => {
+            if(card.name.toLowerCase().startsWith("the")){
+                card.name = card.name.slice(4, card.name.length).concat(', The')
+                return card
+            } else{
+                return card
+            }
+        })
+
+        this.props.favoriteCards.sort((a,b) => a.name > b.name ? 1 : -1)
+
+        const searchedCards = this.props.favoriteCards.filter(card => {
+            if(card.name) {
+                if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.search.length).toLowerCase() === this.state.search.toLowerCase()) {
+                    return card
+                }
+            }
+        })
         return (
             <>
                 {
