@@ -101,10 +101,11 @@ class AddCards extends Component {
         return (
             <div className="add-card-div">
                 <h2>
-                    <b>Current Binder  : </b> { this.state.binder.name }
+                    <b> Current Binder  : </b>
+                    { this.state.binder.name }
                 </h2>
                 <form className="add-card-form" htmlFor="search">
-                    <label>Search</label>
+                    <label> Search </label>
                     <input className="add-card-input search"
                            type="text"
                            name="search"
@@ -119,8 +120,8 @@ class AddCards extends Component {
                 <div className="cardlist">
                     {
                         this.state.searchValue.length > 0 ?
-                            searchedCardNames.map(name => {
-                                return  <li onClick={() => this.handleClick(name)} key={name}> {name} </li>
+                            searchedCardNames.map((name,i )=> {
+                                return  <li onClick={() => this.handleClick(name)} key={i}> {name} </li>
                             }) :
                             null
                     }
@@ -129,13 +130,13 @@ class AddCards extends Component {
                     this.state.cardForm ?
                         <>
                             <CardForm
-                            cards={this.props.cards}
-                            cardName={this.state.cardName}
-                            handleClick={this.handleClick}
-                            handleCardFormTurnOff={this.handleCardFormTurnOff}
-                            cardForm={this.state.cardForm}
-                            handleClose={this.handleClose}
-                            binder={this.state.binder}
+                                cards={this.props.cards}
+                                cardName={this.state.cardName}
+                                handleClick={this.handleClick}
+                                handleCardFormTurnOff={this.handleCardFormTurnOff}
+                                cardForm={this.state.cardForm}
+                                handleClose={this.handleClose}
+                                binder={this.state.binder}
                             />
                         </>
                         :
