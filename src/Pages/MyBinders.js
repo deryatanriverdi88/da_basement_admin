@@ -301,7 +301,7 @@ class MyBinders extends Component {
                                                         handleChange={this.handleChange}
                                                         editCard={this.state.editCard}
                                                         handleEditSubmit={this.handleEditSubmit}
-                                                        handleDelete={this.handleDelete}
+                                                        handleCardDelete={this.handleCardDelete}
                                           />
                                 })
                                  :
