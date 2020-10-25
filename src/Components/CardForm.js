@@ -148,12 +148,15 @@ class CardForm extends Component {
                             !this.state.dropDown ?
                                 <button onClick={this.handleDropdown} className="dropbtn">
                                     {this.props.cards.length > 0 ?
-                                        "Select a card ⬇" :
+                                        "Select a card ⬇"
+                                        :
                                         "Cards are loading..."
                                     }
-                                </button> :
+                                </button>
+                                :
                                 <button onClick={this.handleDropdown}className="dropbtn">
-                                    Select Cards <span>⬆</span>
+                                    Select Cards
+                                    <span> ⬆ </span>
                                 </button>
                         }
                         <div className="dropdown-content">
