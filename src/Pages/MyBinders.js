@@ -98,7 +98,7 @@ class MyBinders extends Component {
 
     handleChange = (e) => {
         this.setState({
-            amount: e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
