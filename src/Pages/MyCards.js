@@ -186,10 +186,12 @@ class MyCards extends Component {
                     <table>
                         <thead>
                             <tr className="row">
-                                <th className="amount">Amount</th>
-                                <th className="name">Card Name</th>
-                                <th className="rarity">Rarity</th>
-                                <th className="foiled">Foiled</th>
+                                <th className="amount"> Amount </th>
+                                <th className="name"> Card Name </th>
+                                <th className="rarity"> Rarity </th>
+                                <th className="foiled"> Foiled </th>
+                                <th className="binder-name"> Binder Name</th>
+                                <th className="set-icon"> Set Icon </th>
                                 <th className="set-name">Set Name</th>
                                 <th className="low-price">Low Price</th>
                                 <th className="mid-price">Mid Price</th>
