@@ -121,18 +121,26 @@ class CardForm extends Component {
                     </div>
                     {
                         this.state.errors ?
-                            <p> {this.state.errors[0]} </p> :
+                            <p> {this.state.errors[0]} </p>
+                            :
                             null
                     }
                     {
                         !this.state.card.name ?
-                            null:
+                            null
+                            :
                             <div className="form-header">
-                        {
-                            this.state.card.icon !== "" ?
-                                <h3>{this.state.card.name} <img src={this.state.card.icon} alt="icon" className="icon"/></h3> :
-                                <h3>{this.state.card.name} - {this.state.card.group_name}</h3>
-                        }
+                            {
+                                this.state.card.icon !== "" ?
+                                    <>
+                                        <h3> {this.state.card.name} </h3>
+                                        <div className="icon-div">
+                                            <img src={this.state.card.icon} alt="icon" className="icon"/>
+                                        </div>
+                                    </>
+                                    :
+                                    <h3> {this.state.card.name} - {this.state.card.group_name} </h3>
+                            }
                             </div>
                     }
                     <div className="dropdown" onClick={this.handleCardDropdownClose}>
