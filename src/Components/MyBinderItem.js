@@ -46,6 +46,16 @@ export default class MyBinderItem extends Component{
                     }
                     <td> {this.props.card.group_name}</td>
                     {
+                        this.props.card.icon ?
+                            <td>
+                                <div className="icon-div">
+                                    <img className="icon" src={this.props.card.icon} alt={`${this.props.card.name} icon`}/>
+                                </div>
+                            </td>
+                            :
+                            <td> No Icon </td>
+                    }
+                    {
                         this.props.card.foil ?
                             <>
                                 <td> ${this.props.card.foil_low_price} </td>
