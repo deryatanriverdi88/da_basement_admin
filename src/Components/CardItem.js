@@ -16,7 +16,7 @@ export default function CardItem( props ) {
                   {rarity}
                 </h4>
                 {
-                  !props.normal && !props.foil ?
+                  props.foil ===  true ?
                   <>
               <ul>
                   <li>Normal Low Price : ${normal_low_price}</li>
