@@ -229,7 +229,8 @@ class CardForm extends Component {
                         </div>
                             {
                                 this.state.card.id ?
-                                <input className="add-your-card" type="submit" value="Add!" />:
+                                <input className="add-your-card" type="submit" value="Add!" />
+                                :
                                 <p>Select a card from above</p>
                             }
                     </form>
