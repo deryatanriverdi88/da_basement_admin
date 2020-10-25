@@ -70,6 +70,47 @@ class MyCards extends Component {
         return count
     }
 
+    handlePriceClick = (price) => {
+        const [normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price] = this.state.myCards
+        let newList = []
+        if(normal_low_price || normal_mid_price || normal_high_price || normal_market_price){
+            if(this.state.reversePriceList === "high-to-low"){
+                this.setState({
+                    reversePriceList: "low-to-high"
+                })
+                return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+            } else if (this.state.reversePriceList === "low-to-high") {
+                this.setState({
+                    reversePriceList: "high-to-low"
+                })
+               return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+            }
+        } else if(foil_low_price  || foil_mid_price || foil_high_price || foil_market_price) {
+            if(this.state.reversePriceList === "high-to-low"){
+                this.setState({
+                    reversePriceList: "low-to-high"
+                })
+                return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+            } else if (this.state.reversePriceList === "low-to-high") {
+                this.setState({
+                    reversePriceList: "high-to-low"
+                })
+               return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+            }
+        }
+        this.setState({
+            myCards: newList
+        })
+    }
+
+    handlePriceLogo = () => {
+        if(this.state.reversePriceList === 'low-to-high'){
+            return <img src="https://img.icons8.com/ultraviolet/20/000000/up-squared.png" alt="up-arrow"/>
+        } else if(this.state.reversePriceList === 'high-to-low'){
+            return <img src="https://img.icons8.com/ultraviolet/20/000000/down-squared.png" alt="down-arrow"/>
+        }
+    }
+
     handleEditSubmit = (e) => {
         e.preventDefault()
         fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${this.state.editCard.id}`, {
