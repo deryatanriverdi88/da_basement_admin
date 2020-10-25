@@ -187,14 +187,20 @@ class CardForm extends Component {
                     </div>
                     <form onSubmit={this.handleSubmit} id="add-card-form">
                         <div className="form-fields">
-                            <label htmlFor="amount"> <span className="amount"> Amount </span></label>
-                                <input
-                                    id="amount"
-                                    name="amount"
-                                    type="number"
-                                    onChange={this.handleChange}
-                                    value={this.state.amount}
-                                />
+                            <div className="amount-div">
+                                <div>
+                                    <label htmlFor="amount">
+                                        <span className="amount"> Amount </span>
+                                    </label>
+                                    <input
+                                        id="amount"
+                                        name="amount"
+                                        type="number"
+                                        onChange={this.handleChange}
+                                        value={this.state.amount}
+                                    />
+                                </div>
+                            </div>
                                 <div className="foil-or-not">
                                     {
                                         foil_low_price || foil_mid_price || foil_high_price || foil_market_price ?
