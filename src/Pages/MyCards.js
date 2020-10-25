@@ -126,7 +126,7 @@ class MyCards extends Component {
         })
         .then(res => res.json())
         .then(card => {
-          const newCards =  this.state.myCards.map(cardItem => {
+            const newCards =  this.state.myCards.map(cardItem => {
               return cardItem.id === card.id ? card : cardItem
           })
           this.setState({
@@ -143,8 +143,8 @@ class MyCards extends Component {
         // fetch(`http://localhost:5000/favorite_cards/${card.id}`, {
                   method: 'DELETE'
              }).then(res => {
-          const newCards = this.state.myCards.filter(myCard =>{
-            return myCard.id !== card.id
+            const newCards = this.state.myCards.filter(myCard =>{
+               return myCard.id !== card.id
            })
            this.setState({
             myCards: newCards
@@ -153,17 +153,27 @@ class MyCards extends Component {
     }
 
     render() {
-        const searchedCards = this.state.myCards.filter(card => {
+        const newNames = this.state.myCards.map(card => {
+            if(card.name.toLowerCase().startsWith("the")){
+                card.name = card.name.slice(4, card.name.length).concat(', The')
+                return card
+            } else{
+                return card
+            }
+        })
+
+        const searchedCards = newNames.filter(card => {
             if(card.name) {
                 if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
                     return card
                 }
             }
         })
+
         return (
             <div>
                 <form className="add-card-form" htmlFor="search">
-                    <label>Search</label>
+                    <label> Search </label>
                     <input className="add-card-input"
                            type="text"
                            name="search"
