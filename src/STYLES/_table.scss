@@ -41,4 +41,10 @@
         background: #43456b;
         color:white;
     }
+    .delete-card, .submit{
+        width: 4em;
+    }
+    .hover-me:hover{
+        cursor: pointer;
+    }
 }
