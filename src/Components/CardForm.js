@@ -11,7 +11,6 @@ class CardForm extends Component {
         foilDisable: false,
         normalDisable: false,
         foil: false,
-        normal: false,
         errors: {},
         cardAdded: false,
         dropDown: false
@@ -49,35 +48,10 @@ class CardForm extends Component {
         }
     }
 
-    handleCardVersionChange = (e) => {
-        if(this.state.normal){
-            this.setState({
-                normal: false,
-                normalDisable: false,
-                foilDisable: !this.state.foilDisable
-            })
-        } else if(e.target.name === 'normal'){
-            this.setState({
-                normal: true,
-                foil: false,
-                normalDisable: false,
-                foilDisable: !this.state.foilDisable
-            })
-        } else if(this.state.foil){
-            this.setState({
-                foil: false,
-                foilDisable: false,
-                normalDisable: !this.state.normalDisable
-            })
-        }
-        else if(e.target.name === 'foil') {
-            this.setState({
-                foil: true,
-                normal: false,
-                foilDisable: false,
-                normalDisable: !this.state.normalDisable
-            })
-        }
+    handleCardVersionChange = () => {
+        this.setState({
+            foil: !this.state.foil
+        })
     }
 
     handleCardItemDetailsClick = (cardItem) => {
@@ -101,9 +75,9 @@ class CardForm extends Component {
                 amount: this.state.amount,
                 binder_id: this.props.binder.id,
                 foil: this.state.foil,
-                normal: this.state.normal,
                 name: this.state.card.name,
                 img_url: this.state.card.img_url,
+                icon: this.state.card.icon,
                 category_id: this.state.card.category_id,
                 product_id: this.state.card.product_id,
                 group_id: this.state.card.group_id,
@@ -137,7 +111,7 @@ class CardForm extends Component {
     }
 
     render() {
-        const {normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price} = this.state.card
+        const { foil_low_price, foil_mid_price, foil_high_price, foil_market_price } = this.state.card
 
         return (
             <div className="background-for-z-index">
@@ -147,18 +121,26 @@ class CardForm extends Component {
                     </div>
                     {
                         this.state.errors ?
-                            <p> {this.state.errors[0]} </p> :
+                            <p> {this.state.errors[0]} </p>
+                            :
                             null
                     }
                     {
                         !this.state.card.name ?
-                            null:
+                            null
+                            :
                             <div className="form-header">
-                        {
-                            this.state.card.icon !== "" ?
-                                <h3>{this.state.card.name} <img src={this.state.card.icon} alt="icon" className="icon"/></h3> :
-                                <h3>{this.state.card.name} - {this.state.card.group_name}</h3>
-                        }
+                            {
+                                this.state.card.icon !== "" ?
+                                    <>
+                                        <h3> {this.state.card.name} </h3>
+                                        <div className="icon-div">
+                                            <img src={this.state.card.icon} alt="icon" className="icon"/>
+                                        </div>
+                                    </>
+                                    :
+                                    <h3> {this.state.card.name} - {this.state.card.group_name} </h3>
+                            }
                             </div>
                     }
                     <div className="dropdown" onClick={this.handleCardDropdownClose}>
@@ -166,12 +148,15 @@ class CardForm extends Component {
                             !this.state.dropDown ?
                                 <button onClick={this.handleDropdown} className="dropbtn">
                                     {this.props.cards.length > 0 ?
-                                        "Select a card ⬇" :
+                                        "Select a card ⬇"
+                                        :
                                         "Cards are loading..."
                                     }
-                                </button> :
+                                </button>
+                                :
                                 <button onClick={this.handleDropdown}className="dropbtn">
-                                    Select Cards <span>⬆</span>
+                                    Select Cards
+                                    <span> ⬆ </span>
                                 </button>
                         }
                         <div className="dropdown-content">
@@ -179,12 +164,22 @@ class CardForm extends Component {
                                 <ul>
                                     {
                                         this.state.dropDown && this.props.cards.length  > 0 ?
-                                        this.props.cards.map(card =>{
-                                        return <li onClick={() => this.handleCardClick(card)} key={card.id}>{card.name}
-                                           { card.icon !== "" ? <img className="icon" src={card.icon} alt={card.icon}/> : ` - ${card.group_name}`}
-                                            </li>
-                                        }) :
-                                        null
+                                            this.props.cards.map(card =>{
+                                            return <div className="dropdown-item" key={card.id} onClick={() => this.handleCardClick(card)}>
+                                                   <li> {card.name} </li>
+                                            { card.icon !== "" ?
+                                                <>
+                                                    <div className="icon-div">
+                                                    <img className="icon" src={card.icon} alt={card.icon}/>
+                                                    </div>
+                                                </>
+                                                :
+                                                `${card.group_name}`
+                                            }
+                                                </div>
+                                            })
+                                            :
+                                            null
                                     }
                                 </ul>
                             </div>
@@ -192,18 +187,24 @@ class CardForm extends Component {
                     </div>
                     <form onSubmit={this.handleSubmit} id="add-card-form">
                         <div className="form-fields">
-                            <label htmlFor="amount"> <span className="amount"> Amount </span></label>
-                                <input
-                                    id="amount"
-                                    name="amount"
-                                    type="number"
-                                    onChange={this.handleChange}
-                                    value={this.state.amount}
-                                />
+                            <div className="amount-div">
+                                <div>
+                                    <label htmlFor="amount">
+                                        <span className="amount"> Amount </span>
+                                    </label>
+                                    <input
+                                        id="amount"
+                                        name="amount"
+                                        type="number"
+                                        onChange={this.handleChange}
+                                        value={this.state.amount}
+                                    />
+                                </div>
+                            </div>
                                 <div className="foil-or-not">
                                     {
                                         foil_low_price || foil_mid_price || foil_high_price || foil_market_price ?
-                                            <div>
+                                            <div className="foil-div">
                                                 <label htmlFor="foil">
                                                     <span className="foil"> Foiled </span>
                                                 </label>
@@ -219,24 +220,6 @@ class CardForm extends Component {
                                             :
                                             null
                                     }
-                                    {
-                                        normal_low_price || normal_mid_price || normal_high_price || normal_market_price ?
-                                            <div>
-                                                <label htmlFor="normal">
-                                                    <span className="normal"> Normal </span>
-                                                </label>
-                                                <input
-                                                    id="normal"
-                                                    name="normal"
-                                                    type="checkbox"
-                                                    disabled={this.state.normalDisable}
-                                                    onChange={this.handleCardVersionChange}
-                                                    value={this.state.normal}
-                                                />
-                                            </div>
-                                            :
-                                            null
-                                    }
                                 </div>
                                 <input
                                     type="hidden"
@@ -246,24 +229,15 @@ class CardForm extends Component {
                         </div>
                             {
                                 this.state.card.id ?
-                                <input className="add-your-card" type="submit" value="Add!" />:
+                                <input className="add-your-card" type="submit" value="Add!" />
+                                :
                                 <p>Select a card from above</p>
                             }
                     </form>
-                    {
-                        !this.state.cardView ?
-                            <button className="card-info-button" onClick={() => this.handleCardItemDetailsClick(this.state.card)}> See card info </button> :
-                            null
-                    }
-                    {
-                        this.state.cardView ?
                         <CardItem
                             card={this.state.card}
-                            handleCardItemDetailsClick={this.handleCardItemDetailsClick}
                             foil={this.state.foil}
-                            normal={this.state.normal}/> :
-                        null
-                    }
+                        />
                  </div>
             </div>
         )

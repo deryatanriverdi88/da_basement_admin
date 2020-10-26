@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import MyCardItem from '../Components/MyCardItem'
 
-export default class MyCards extends Component {
+class MyCards extends Component {
     state={
         myCards: [],
         amount: null,
         editForm: false,
         editCard: null,
-        searchValue: ""
+        searchValue: "",
+        reversePriceList: "high-to-low"
     }
 
     componentDidMount =  () => {
@@ -22,7 +23,6 @@ export default class MyCards extends Component {
     }
 
     handleClick = (e, card) => {
-        console.log(card)
         this.setState({
             amount: card.amount,
             editForm: !this.state.editForm,
@@ -56,7 +56,7 @@ export default class MyCards extends Component {
                         }else {
                             count += Number.parseFloat(card[v2] * card.amount)
                         }
-                    } else if(card.normal){
+                    } else if(!card.foil){
                         delete card[v2]
                         if(card[v1] === null){
                             delete card[v1]
@@ -68,6 +68,47 @@ export default class MyCards extends Component {
             })
         }
         return count
+    }
+
+    handlePriceClick = (price) => {
+        const [normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price] = this.state.myCards
+        let newList = []
+        if(normal_low_price || normal_mid_price || normal_high_price || normal_market_price){
+            if(this.state.reversePriceList === "high-to-low"){
+                this.setState({
+                    reversePriceList: "low-to-high"
+                })
+                return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+            } else if (this.state.reversePriceList === "low-to-high") {
+                this.setState({
+                    reversePriceList: "high-to-low"
+                })
+               return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+            }
+        } else if(foil_low_price  || foil_mid_price || foil_high_price || foil_market_price) {
+            if(this.state.reversePriceList === "high-to-low"){
+                this.setState({
+                    reversePriceList: "low-to-high"
+                })
+                return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+            } else if (this.state.reversePriceList === "low-to-high") {
+                this.setState({
+                    reversePriceList: "high-to-low"
+                })
+               return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+            }
+        }
+        this.setState({
+            myCards: newList
+        })
+    }
+
+    handlePriceLogo = () => {
+        if(this.state.reversePriceList === 'low-to-high'){
+            return <img src="https://img.icons8.com/ultraviolet/20/000000/up-squared.png" alt="up-arrow"/>
+        } else if(this.state.reversePriceList === 'high-to-low'){
+            return <img src="https://img.icons8.com/ultraviolet/20/000000/down-squared.png" alt="down-arrow"/>
+        }
     }
 
     handleEditSubmit = (e) => {
@@ -85,7 +126,7 @@ export default class MyCards extends Component {
         })
         .then(res => res.json())
         .then(card => {
-          const newCards =  this.state.myCards.map(cardItem => {
+            const newCards =  this.state.myCards.map(cardItem => {
               return cardItem.id === card.id ? card : cardItem
           })
           this.setState({
@@ -102,8 +143,8 @@ export default class MyCards extends Component {
         // fetch(`http://localhost:5000/favorite_cards/${card.id}`, {
                   method: 'DELETE'
              }).then(res => {
-          const newCards = this.state.myCards.filter(myCard =>{
-            return myCard.id !== card.id
+            const newCards = this.state.myCards.filter(myCard =>{
+               return myCard.id !== card.id
            })
            this.setState({
             myCards: newCards
@@ -112,17 +153,27 @@ export default class MyCards extends Component {
     }
 
     render() {
-        const searchedCards = this.state.myCards.filter(card => {
+        const newNames = this.state.myCards.map(card => {
+            if(card.name.toLowerCase().startsWith("the")){
+                card.name = card.name.slice(4, card.name.length).concat(', The')
+                return card
+            } else{
+                return card
+            }
+        })
+
+        const searchedCards = newNames.filter(card => {
             if(card.name) {
                 if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
                     return card
                 }
             }
         })
+
         return (
             <div>
                 <form className="add-card-form" htmlFor="search">
-                    <label>Search</label>
+                    <label> Search </label>
                     <input className="add-card-input"
                            type="text"
                            name="search"
@@ -135,15 +186,29 @@ export default class MyCards extends Component {
                     <table>
                         <thead>
                             <tr className="row">
-                                <th className="amount">Amount</th>
-                                <th className="name">Card Name</th>
-                                <th className="rarity">Rarity</th>
-                                <th className="foiled">Foiled</th>
+                                <th className="amount"> Amount </th>
+                                <th className="name"> Card Name </th>
+                                <th className="rarity"> Rarity </th>
+                                <th className="foiled"> Foiled </th>
+                                <th className="binder-name"> Binder Name</th>
+                                <th className="set-icon"> Set Icon </th>
                                 <th className="set-name">Set Name</th>
-                                <th className="low-price">Low Price</th>
-                                <th className="mid-price">Mid Price</th>
-                                <th className="high-price">High Price</th>
-                                <th className="market-price">Market Price</th>
+                                <th className="low-price price" onClick={()  => this.handlePriceClick("low_price")}>
+                                    Low Price
+                                    {this.handlePriceLogo()}
+                                </th>
+                                <th className="mid-price price" onClick={()  => this.handlePriceClick("mid_price")}>
+                                    Mid Price
+                                    {this.handlePriceLogo()}
+                                </th>
+                                <th className="high-price price" onClick={()  => this.handlePriceClick("high_price")}>
+                                    High Price
+                                    {this.handlePriceLogo()}
+                                </th>
+                                <th className="market-price price" onClick={()  => this.handlePriceClick("market_price")}>
+                                    Market Price
+                                    {this.handlePriceLogo()}
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -169,7 +234,7 @@ export default class MyCards extends Component {
                             <tr>
                                 <td>Total Cards</td>
                                 <td>{this.handleCount('amount')}</td>
-                                <td colSpan="3">Value</td>
+                                <td colSpan="5">Value</td>
                                 <td>${this.handleCount("normal_low_price", "foil_low_price").toFixed(2)}</td>
                                 <td>${this.handleCount("normal_mid_price", "foil_mid_price").toFixed(2)}</td>
                                 <td>${this.handleCount("normal_high_price", "foil_high_price").toFixed(2)}</td>
@@ -182,3 +247,5 @@ export default class MyCards extends Component {
         )
     }
 }
+
+export default MyCards
