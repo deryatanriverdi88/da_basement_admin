@@ -1,31 +1,31 @@
 #nav-bar{
-    background-color: rgba(44,134,81, 0.9);
-    width: auto;
-    padding-bottom: 15px;
+    background-color: #43456b;
+    margin-bottom: 15px;
     .link-div{
         padding: 25px;
+        display: flex;
+        justify-content: space-evenly;
         .link{
             color: white;
-            flex-grow: 1 1 1;
             display: inline-block;
-            width: 20%;
+            line-height: 50px;
+            vertical-align: middle;
+            width: auto;
             height: auto;
+            padding: 5px;
             text-decoration: none;
             font-size: 25px;
             font-weight: bold;
             &:hover{
-                color: darkgreen;
+                border-radius: 5px;
+                color: #43456b;
                 background-color: rgba(250,250,250, 0.5)
             }
         }
         #logout, #add-binder{
-            display: inline-block;
-            width: auto;
-            height: auto;
             font-weight: bold;
             font-size: 18px;
             padding: 15px;
-            margin-top: 0;
             &:focus{
                 outline: 0;
             }
