@@ -106,7 +106,7 @@ class AddCards extends Component {
                 </h2>
                 <form className="search-card" htmlFor="search">
                     <label> Search </label>
-                    <input className="add-card-input search"
+                    <input className="search"
                            type="text"
                            name="search"
                            autoComplete="off"

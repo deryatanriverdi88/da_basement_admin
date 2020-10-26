@@ -171,12 +171,13 @@ class MyCards extends Component {
         })
 
         return (
-            <div>
-                <form className="add-card-form" htmlFor="search">
+            <>
+                <form className="search-card" htmlFor="search">
                     <label> Search </label>
                     <input className="add-card-input"
                            type="text"
                            name="search"
+                           className="search"
                            autoComplete="off"
                            autoCorrect="off"
                            onChange={this.handleSearchChange}
@@ -243,7 +244,7 @@ class MyCards extends Component {
                         </tfoot>
                     </table>
                 </div>
-            </div>
+            </>
         )
     }
 }
