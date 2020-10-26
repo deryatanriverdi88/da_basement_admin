@@ -22,4 +22,17 @@
             }
         }
     }
+    .cardlist{
+        height: auto;
+        max-height: 50vh;
+        overflow: scroll;
+        width: 20%;
+        margin: 0 auto;
+        li:hover{
+            background: black;
+            color: white;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+    }
 }
