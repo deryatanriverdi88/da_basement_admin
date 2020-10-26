@@ -1,23 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap");
-.login-container .login_form {
-  margin: 3em auto;
+.login-container {
+  padding-top: 5px;
+  height: 100vh;
+  width: 100%;
+  background: #43456b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.login-container .login-form {
+  width: 40%;
+  height: 40%;
+  margin: auto;
   padding: 5%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: auto;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   border-radius: 15px;
-  -webkit-box-shadow: -11px 5px 42px 1px #b0a6b0;
-  box-shadow: -11px 5px 42px 1px #b0a6b0;
-  overflow: auto;
+  -webkit-box-shadow: -1px 2px 5px 3px #b0a6b0;
+          box-shadow: -1px 2px 5px 3px #b0a6b0;
   background-color: white;
+  z-index: 5;
 }
 
-.login-container .login_form .inputs {
+.login-container .login-form .inputs {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -25,10 +29,9 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  border-radius: 10px;
 }
 
-.login-container .login_form .inputs label {
+.login-container .login-form .inputs label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -39,86 +42,394 @@
   margin: 0 auto;
 }
 
-.login-container .login_form .inputs #email, .login-container .login_form .inputs #password {
+.login-container .login-form .inputs #email, .login-container .login-form .inputs #password {
   width: 15rem;
   height: 2rem;
   margin-bottom: 2rem;
 }
 
-.login-container .login_form .inputs #submit {
+.login-container .login-form .inputs #submit {
   margin: 0 auto;
-  display: inline-block;
   width: 15rem;
   height: 2rem;
   font-size: 20px;
   border-radius: 15px;
 }
 
-.login-container .login_form .inputs #submit:hover {
+.login-container .login-form .inputs #submit:hover {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
   z-index: 1;
-  background: #c3a922;
-  background: linear-gradient(95deg, rgba(195, 169, 34, 0.6) 0%, rgba(45, 213, 253, 0.8) 100%);
+  background: #43456b;
+  color: white;
 }
 
-.login-container .login_form .inputs #submit:focus {
+.login-container .login-form .inputs #submit:focus {
   outline: 0;
 }
 
 #nav-bar {
-  background-color: rgba(44, 134, 81, 0.9);
-  width: auto;
-  padding-bottom: 15px;
+  background-color: #43456b;
+  margin-bottom: 15px;
 }
 
 #nav-bar .link-div {
   padding: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 #nav-bar .link-div .link {
   color: white;
-  -webkit-box-flex: 1 1 1;
-      -ms-flex-positive: 1 1 1;
-          flex-grow: 1 1 1;
   display: inline-block;
-  width: 20%;
+  line-height: 50px;
+  vertical-align: middle;
+  width: auto;
   height: auto;
+  padding: 5px;
   text-decoration: none;
   font-size: 25px;
   font-weight: bold;
 }
 
 #nav-bar .link-div .link:hover {
-  color: darkgreen;
+  border-radius: 5px;
+  color: #43456b;
   background-color: rgba(250, 250, 250, 0.5);
 }
 
 #nav-bar .link-div #logout, #nav-bar .link-div #add-binder {
-  display: inline-block;
-  width: auto;
-  height: auto;
   font-weight: bold;
   font-size: 18px;
   padding: 15px;
-  margin-top: 0;
 }
 
 #nav-bar .link-div #logout:focus, #nav-bar .link-div #add-binder:focus {
   outline: 0;
 }
 
-#header {
-  margin-top: 5px auto;
-  width: auto;
-  height: 20%;
+#header .header-name {
+  color: #43456b;
+  text-shadow: 2px 2px 4px #9396d6;
+  letter-spacing: 10px;
+  font-size: 50px;
+  padding: 15px;
 }
 
-#header .header-name {
-  color: #6dd196;
-  text-shadow: 2px 2px 4px #000000;
-  letter-spacing: 20px;
-  font-size: 50px;
+.search-card label {
+  height: auto;
+  font-size: 25px;
+}
+
+.search-card .search {
+  height: 30px;
+  width: 30%;
+  border-radius: 5px;
+  display: block;
+  margin: 10px auto;
+  outline: 0;
+  text-align: center;
+}
+
+.table {
+  margin: 20px auto;
+  height: 60vh;
+  overflow-y: scroll;
+  width: 90%;
+}
+
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.table table th, .table table td {
+  height: 50px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.table table th, .table table tfoot td {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -5px;
+  background: #43456b;
+  color: white;
+  border: 3px solid #808080;
+}
+
+.table table tfoot td {
+  bottom: -5px;
+}
+
+.table table td {
+  border: 3px solid #ded5d1;
+}
+
+.table .edit-input {
+  width: 3em;
+}
+
+.table .edit-card, .table .submit, .table .delete-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 5px auto;
+  width: 3em;
+  border-radius: 5px;
+  font-size: 15px;
+  outline: 0;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #43456b;
+  color: white;
+}
+
+.table .delete-card, .table .submit {
+  width: 4em;
+}
+
+.table .hover-me:hover {
+  cursor: pointer;
+}
+
+.table .icon-div {
+  width: 50px;
+  height: 50px;
+}
+
+.table .icon-div .icon {
+  width: 100%;
+  height: 100%;
+}
+
+.cardlist {
+  width: 30%;
+  height: 50vh;
+  overflow-y: scroll;
+  margin: auto;
+}
+
+.cardlist li:hover {
+  background: #43456b;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.background-for-z-index {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(170, 155, 155, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 1;
+}
+
+.background-for-z-index .card-form, .background-for-z-index .binder-div {
+  background: #43456b;
+  width: 50%;
+  height: 70%;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.background-for-z-index .card-form .x-div, .background-for-z-index .binder-div .x-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.background-for-z-index .card-form .x-div .x, .background-for-z-index .binder-div .x-div .x {
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 0 5px 0 5px;
+}
+
+.background-for-z-index .card-form .form-header, .background-for-z-index .binder-div .form-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 60%;
+  margin: 15px auto;
+}
+
+.background-for-z-index .card-form .form-header h3, .background-for-z-index .binder-div .form-header h3 {
+  font-size: 25px;
+  width: 70%;
+  margin: auto;
+  color: white;
+}
+
+.background-for-z-index .card-form .form-header .icon-div, .background-for-z-index .binder-div .form-header .icon-div {
+  margin: auto;
+  width: 40px;
+  height: 30px;
+}
+
+.background-for-z-index .card-form .form-header .icon-div .icon, .background-for-z-index .binder-div .form-header .icon-div .icon {
+  width: 100%;
+  height: 100%;
+}
+
+.background-for-z-index .card-form .dropdown, .background-for-z-index .binder-div .dropdown {
+  position: relative;
+  display: inline-block;
+  width: 70%;
+}
+
+.background-for-z-index .card-form .dropdown .dropbtn, .background-for-z-index .binder-div .dropdown .dropbtn {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  outline: 0;
+}
+
+.background-for-z-index .card-form .dropdown .dropdown-content, .background-for-z-index .binder-div .dropdown .dropdown-content {
+  margin-top: 5px;
+  position: absolute;
+  width: 100%;
+  min-width: 160px;
+  overflow: auto;
+  z-index: 1;
+}
+
+.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list {
+  background-color: #f1f1f1;
+  margin: 0 auto;
+  width: 80%;
+  border-radius: 15px;
+  height: auto;
+  max-height: 30vh;
+  overflow-y: scroll;
+}
+
+.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 55px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid;
+  padding: 0 15px 0 15px;
+}
+
+.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item:hover, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item:hover {
+  color: white;
+  background: rgba(67, 69, 107, 0.5);
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item li, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item li {
+  padding: 12px 16px;
+}
+
+.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div {
+  width: 40px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div .icon, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div .icon {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.background-for-z-index .add-card-form .form-fields {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  margin: 15px auto;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.background-for-z-index .add-card-form .form-fields label {
+  font-size: 20px;
+  color: white;
+}
+
+.background-for-z-index .add-card-form .form-fields input {
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.background-for-z-index .add-card-form input {
+  width: 60px;
+  height: 40px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.background-for-z-index .card-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80%;
+  margin: 30px auto;
+  height: auto;
+}
+
+.background-for-z-index .card-item .price-list {
+  margin: auto;
+  color: white;
+}
+
+.background-for-z-index .card-item .price-list ul {
+  margin-top: 30px;
+}
+
+.background-for-z-index .card-item .price-list ul li {
+  margin-top: 5px;
+}
+
+.background-for-z-index .card-item .price-list span {
+  margin-right: 10px;
+}
+
+.background-for-z-index .binder-div form {
+  margin: auto;
+  width: 40%;
+  height: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.background-for-z-index .binder-div form label {
+  color: white;
+}
+
+.background-for-z-index .binder-div form label, .background-for-z-index .binder-div form input {
+  margin: auto;
 }
 
 * {
@@ -133,9 +444,22 @@ body {
   font-family: 'Comfortaa', cursive;
   height: 100vh;
   overflow: hidden;
+  background: #f3f1fd;
 }
 
 li {
   list-style: none;
+}
+
+.search-card-form label, .add-card-form label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 auto;
+  font-size: 30px;
 }
 /*# sourceMappingURL=style.css.map */
