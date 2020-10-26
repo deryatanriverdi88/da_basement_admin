@@ -132,6 +132,12 @@
         .price-list{
             margin: auto;
             color: white;
+            ul{
+                margin-top: 30px;
+                li{
+                    margin-top: 5px;
+                }
+            }
         }
     }
 }
