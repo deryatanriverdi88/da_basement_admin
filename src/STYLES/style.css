@@ -1,4 +1,71 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap");
+.login-container .login_form {
+  margin: 3em auto;
+  padding: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 15px;
+  -webkit-box-shadow: -11px 5px 42px 1px #b0a6b0;
+  box-shadow: -11px 5px 42px 1px #b0a6b0;
+  overflow: auto;
+  background-color: white;
+}
+
+.login-container .login_form .inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 10px;
+}
+
+.login-container .login_form .inputs label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 auto;
+}
+
+.login-container .login_form .inputs #email, .login-container .login_form .inputs #password {
+  width: 15rem;
+  height: 2rem;
+  margin-bottom: 2rem;
+}
+
+.login-container .login_form .inputs #submit {
+  margin: 0 auto;
+  display: inline-block;
+  width: 15rem;
+  height: 2rem;
+  font-size: 20px;
+  border-radius: 15px;
+}
+
+.login-container .login_form .inputs #submit:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  z-index: 1;
+  background: #c3a922;
+  background: linear-gradient(95deg, rgba(195, 169, 34, 0.6) 0%, rgba(45, 213, 253, 0.8) 100%);
+}
+
+.login-container .login_form .inputs #submit:focus {
+  outline: 0;
+}
+
 * {
   padding: 0;
   margin: 0;
