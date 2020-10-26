@@ -72,6 +72,10 @@
   padding-bottom: 15px;
 }
 
+#nav-bar .link-div {
+  padding: 25px;
+}
+
 * {
   padding: 0;
   margin: 0;
