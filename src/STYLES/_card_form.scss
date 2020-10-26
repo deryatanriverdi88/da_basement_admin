@@ -12,5 +12,16 @@
         height: 70%;
         margin: auto;
         border-radius: 5px;
+        x-div{
+            display: flex;
+            justify-content: flex-end;
+            .x{
+                width: 30px;
+                height: 30px;
+                font-weight: bold;
+                font-size: 15px;
+                border-radius: 0 5px 0 5px;
+            }
+        }
     }
 }
