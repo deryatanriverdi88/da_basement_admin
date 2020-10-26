@@ -1,2 +1,16 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
+body{
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+    height: 100vh;
+    overflow: hidden;
+}
 
+li{
+    list-style: none;
+}
