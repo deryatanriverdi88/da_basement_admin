@@ -66,6 +66,12 @@
   outline: 0;
 }
 
+#nav-bar {
+  background-color: rgba(44, 134, 81, 0.9);
+  width: auto;
+  padding-bottom: 15px;
+}
+
 * {
   padding: 0;
   margin: 0;
