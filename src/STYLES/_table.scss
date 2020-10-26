@@ -29,4 +29,16 @@
     .edit-input{
         width: 3em;
     }
+    .edit-card, .submit, .delete-card{
+        display: flex;
+        margin: 5px auto;
+        width: 3em;
+        border-radius: 5px;
+        font-size: 15px;
+        outline: 0;
+        display: flex;
+        justify-content: center;
+        background: #43456b;
+        color:white;
+    }
 }
