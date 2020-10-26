@@ -1,0 +1,29 @@
+.table{
+    margin:20px auto;
+    height: 60vh;
+    overflow-y: scroll;
+    width: 90%;
+    table{
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        th, td{
+            height: 50px;
+            text-align: center;
+            font-size: 15px;
+        }
+        th, tfoot td{
+            position: sticky;
+            top: -5px;
+            background: #43456b;
+            color:white;
+            border: 3px solid #808080;
+        }
+        tfoot td{
+            bottom: -5px;
+        }
+        td{
+            border: 3px solid #ded5d1;
+        }
+    }
+}
