@@ -6,4 +6,11 @@
     background-color: rgba(170,155,155, 0.3);
     display: flex;
     z-index: 1;
+    .card-form, .binder-div{
+        background: #43456b;
+        width: 50%;
+        height: 70%;
+        margin: auto;
+        border-radius: 5px;
+    }
 }
