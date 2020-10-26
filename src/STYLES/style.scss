@@ -17,8 +17,18 @@ body{
     font-family: 'Comfortaa', cursive;
     height: 100vh;
     overflow: hidden;
+    background: #f3f1fd;
 }
 
 li{
     list-style: none;
+}
+
+.search-card-form, .add-card-form{
+    label{
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        font-size: 30px;
+    }
 }
