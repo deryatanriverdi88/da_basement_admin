@@ -1,0 +1,15 @@
+.login-container{
+    .login_form{
+        margin: 3em auto;
+        padding: 5%;
+        display: flex;
+        height: auto;
+        flex-direction: column;
+        border-radius: 15px;
+        -webkit-box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
+        -moz-box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
+        box-shadow: -11px 5px 42px 1px rgba(176,166,176,1);
+        overflow: auto;
+        background-color: white;
+    }
+}
