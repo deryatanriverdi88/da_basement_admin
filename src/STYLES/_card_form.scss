@@ -143,4 +143,18 @@
             }
         }
     }
+    .binder-div{
+        form{
+            margin: auto;
+            width: 40%;
+            height: 90%;
+            display: flex;
+            label{
+                color: white;
+            }
+            label, input{
+                margin: auto;
+            }
+        }
+    }
 }
