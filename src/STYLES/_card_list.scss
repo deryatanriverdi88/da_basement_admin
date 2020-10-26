@@ -1,0 +1,14 @@
+.cardlist{
+    width: 30%;
+    height: 50vh;
+    overflow-y: scroll;
+    margin: auto;
+    li{
+        &:hover{
+            background: #43456b;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+}

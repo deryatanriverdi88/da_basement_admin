@@ -185,7 +185,7 @@ class CardForm extends Component {
                             </div>
                         </div>
                     </div>
-                    <form onSubmit={this.handleSubmit} id="add-card-form">
+                    <form onSubmit={this.handleSubmit} className="add-card-form">
                         <div className="form-fields">
                             <div className="amount-div">
                                 <div>

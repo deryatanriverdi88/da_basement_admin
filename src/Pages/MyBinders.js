@@ -251,11 +251,12 @@ class MyBinders extends Component {
                     :
                     null
                 }
-                <form className="add-card-form" htmlFor="search">
+                <form className="search-card" htmlFor="search">
                     <label>Search</label>
                     <input className="add-card-input"
                            type="text"
                            name="search"
+                           className="search"
                            autoComplete="off"
                            autoCorrect="off"
                            onChange={this.handleChange}

@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import Routes from './Routes'
 import {withRouter} from 'react-router-dom'
-import './App.css';
+// import './App.css';
+import './STYLES/style.css'
 import {connect} from 'react-redux'
 import NavBar from './Components/NavBar'
 
