@@ -95,7 +95,7 @@ class MyCards extends Component {
                 this.setState({
                     reversePriceList: "high-to-low"
                 })
-               return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+                return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             }
         }
         this.setState({
