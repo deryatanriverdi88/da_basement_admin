@@ -277,11 +277,40 @@ class MyCards extends Component {
                             <tr className="row">
                                 <th className="amount"> Amount </th>
                                 <th className="name"> Card Name </th>
-                                <th className="rarity"> Rarity </th>
+                                <th className="rarity">
+                                    <select name="rarity" value={this.state.rarity} onChange={this.handleDropdownChange}>
+                                        <option value="all-rarities" key="all"> All Rarities </option>
+                                            {
+                                                RARITIES.map(rarity => {
+                                                   return <option value={rarity} key={rarity}> {rarity} </option>
+                                                })
+                                            }
+                                    </select>
+                                </th>
                                 <th className="foiled"> Foiled </th>
-                                <th className="binder-name"> Binder Name</th>
+                                <th className="binder-name">
+                                <select name="binderName" value={this.state.binderName} onChange={this.handleDropdownChange}>
+                                        <option value="all-binders" key="all">All Binders</option>
+                                            {
+                                                this.state.binderNames.map(binder => {
+                                                    return <option value={binder.name} key={binder.name}> {binder.name} </option>
+                                                })
+                                            }
+                                    </select>
+                                </th>
                                 <th className="set-icon"> Set Icon </th>
-                                <th className="set-name">Set Name</th>
+                                <th className="set-name">
+                                <select name="setName" value={this.state.setName} onChange={this.handleDropdownChange}>
+                                        <option hidden> Select Set </option>
+                                        <option value="all-sets" key="all"> All Sets </option>
+                                            {
+                                                this.state.setNames.map(card => {
+                                                    return <option value={card.group_name} key={card.group_name}> {card.group_name} </option>
+                                                })
+                                            }
+                                    </select>
+                                </th>
+
                                 <th className="low-price price" onClick={()  => this.handlePriceClick("low_price")}>
                                     Low Price
                                     {this.handlePriceLogo()}
