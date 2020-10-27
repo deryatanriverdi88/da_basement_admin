@@ -114,6 +114,17 @@ class MyCards extends Component {
         }
     }
 
+    filterByBinder = () => {
+        const newCard = this.state.myCards.filter(card =>{
+             if(card.binder.name === this.state.binderName){
+                 return card
+             }
+        })
+        this.setState({
+            cardsWithBinderName: newCard
+        })
+    }
+
     handleSearchChange = (e) => {
         this.setState({
             searchValue: e.target.value
