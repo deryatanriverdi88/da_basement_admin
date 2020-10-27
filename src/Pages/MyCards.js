@@ -21,15 +21,31 @@ class MyCards extends Component {
     }
 
     componentDidMount =  () => {
+        this.fetchCards()
+    }
+
+    fetchCards = () => {
         fetch('https://da-basement-games-api.herokuapp.com/favorite_cards')
         // fetch('http://localhost:5000/favorite_cards')
         .then(res => res.json())
         .then(cardItems => {
+            const setNames = cardItems.filter(card=>{
+                return !this[card.group_name]? this[card.group_name] = true :false
+            })
               this.setState({
-                myCards: cardItems
+                myCards: cardItems,
+                setNames: setNames.sort((a,b) => a.group_name > b.group_name ? 1 : -1)
+            })
+        })
+        fetch('https://da-basement-games-api.herokuapp.com/binders')
+        .then(res => res.json())
+        .then(binderObj => {
+            this.setState({
+                binderNames: binderObj
             })
         })
     }
+
 
     handleClick = (e, card) => {
         this.setState({
