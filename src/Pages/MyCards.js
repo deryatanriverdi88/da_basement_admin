@@ -84,6 +84,24 @@ class MyCards extends Component {
         this.fetchCardsWithAttribute(e.target.name, e.target.value)
     }
 
+    fetchCardsWithAttribute = (att, value) => {
+        fetch(`https://da-basement-games-api.herokuapp.com/cards?${att}=${value}`)
+        .then(res => res.json())
+        .then(cardObj => {
+            if(att === "rarity"){
+                this.setState({
+                    cardsWithRarity: cardObj
+                })
+            } else if(att === "setName"){
+                this.setState({
+                    cardsWithSetName: cardObj
+                })
+            } else if(att === "binderName"){
+                this.filterByBinder()
+            }
+        })
+    }
+
     handleSearchChange = (e) => {
         this.setState({
             searchValue: e.target.value
