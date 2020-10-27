@@ -102,6 +102,18 @@ class MyCards extends Component {
         })
     }
 
+    cardsToRender = () => {
+        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.binderName === "all-binders"){
+            return this.state.myCards
+        }else if(this.state.rarity !== "all-rarities"){
+            return this.state.cardsWithRarity
+        }else if(this.state.setName !== "all-sets"){
+            return this.state.cardsWithSetName
+        }else if(this.state.binderName !== "all-binders"){
+            return this.state.cardsWithBinderName
+        }
+    }
+
     handleSearchChange = (e) => {
         this.setState({
             searchValue: e.target.value
