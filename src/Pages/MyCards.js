@@ -9,7 +9,15 @@ class MyCards extends Component {
         editForm: false,
         editCard: null,
         searchValue: "",
-        reversePriceList: "high-to-low"
+        reversePriceList: "high-to-low",
+        rarity: "all-rarities",
+        setName: "all-sets",
+        setNames: [],
+        binderNames: [], 
+        binderName: "all-binders",
+        cardsWithRarity : [],
+        cardsWithSetName: [],
+        cardsWithBinderName: []
     }
 
     componentDidMount =  () => {
