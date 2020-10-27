@@ -242,15 +242,14 @@ class MyCards extends Component {
     }
 
     render() {
-        const newNames = this.state.myCards.map(card => {
-            if(card.name.toLowerCase().startsWith("the")){
+        const newNames = this.cardsToRender().map(card => {
+            if(card.name.toLowerCase().startsWith("the ")){
                 card.name = card.name.slice(4, card.name.length).concat(', The')
                 return card
             } else{
                 return card
             }
         })
-
         const searchedCards = newNames.filter(card => {
             if(card.name) {
                 if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
