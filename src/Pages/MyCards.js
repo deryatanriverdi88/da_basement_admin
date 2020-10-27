@@ -134,7 +134,7 @@ class MyCards extends Component {
     handleCount = (v1, v2) => {
         let count = 0
         if(this.state.myCards.length > 0){
-            this.state.myCards.map(card =>{
+            this.cardsToRender().map(card =>{
                 if(v1 === "amount"){
                     count += card[v1]
                 }else{
@@ -160,31 +160,31 @@ class MyCards extends Component {
     }
 
     handlePriceClick = (price) => {
-        const [normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price] = this.state.myCards
+        const [normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price] = this.cardsToRender()
         let newList = []
         if(normal_low_price || normal_mid_price || normal_high_price || normal_market_price){
             if(this.state.reversePriceList === "high-to-low"){
                 this.setState({
                     reversePriceList: "low-to-high"
                 })
-                return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+                return newList = [...newList, this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             } else if (this.state.reversePriceList === "low-to-high") {
                 this.setState({
                     reversePriceList: "high-to-low"
                 })
-               return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+               return newList = [...newList, this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             }
         } else if(foil_low_price  || foil_mid_price || foil_high_price || foil_market_price) {
             if(this.state.reversePriceList === "high-to-low"){
                 this.setState({
                     reversePriceList: "low-to-high"
                 })
-                return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+                return newList = [...newList, this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             } else if (this.state.reversePriceList === "low-to-high") {
                 this.setState({
                     reversePriceList: "high-to-low"
                 })
-                return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+                return newList = [...newList, this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             }
         }
         this.setState({
