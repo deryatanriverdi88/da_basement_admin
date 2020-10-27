@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import MyCardItem from '../Components/MyCardItem'
+const RARITIES = [ "Common", "Land", "Uncommon","Mythic",  "Promo", "Special", "Rare", "Token"]
 
 class MyCards extends Component {
     state={
