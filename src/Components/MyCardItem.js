@@ -15,6 +15,7 @@ export default class MyCardItem extends Component {
                                     className="edit-input"
                                     type="number"
                                     min="0"
+                                    name="amount"
                                     value={this.props.amount}
                                     onChange={this.props.handleChange}/>
                                 :
