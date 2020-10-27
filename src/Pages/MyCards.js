@@ -61,6 +61,29 @@ class MyCards extends Component {
         })
     }
 
+    handleDropdownChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+        if(e.target.name === 'rarity'){
+            this.setState({
+                 setName: "all-sets",
+                 binderName: "all-binders"
+            })
+        }else if(e.target.name === 'setName'){
+            this.setState({
+                rarity: "all-rarities",
+                binderName: "all-binders"
+            })
+        }else if(e.target.name === 'binderName'){
+            this.setState({
+                rarity: "all-rarities",
+                setName: "all-sets"
+            })
+        }
+        this.fetchCardsWithAttribute(e.target.name, e.target.value)
+    }
+
     handleSearchChange = (e) => {
         this.setState({
             searchValue: e.target.value
