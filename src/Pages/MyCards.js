@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import MyCardItem from '../Components/MyCardItem'
+const RARITIES = [ "Common", "Land", "Uncommon","Mythic",  "Promo", "Special", "Rare", "Token"]
 
 class MyCards extends Component {
     state={
@@ -8,19 +9,43 @@ class MyCards extends Component {
         editForm: false,
         editCard: null,
         searchValue: "",
-        reversePriceList: "high-to-low"
+        reversePriceList: "high-to-low",
+        rarity: "all-rarities",
+        setName: "all-sets",
+        setNames: [],
+        binderNames: [], 
+        binderName: "all-binders",
+        cardsWithRarity : [],
+        cardsWithSetName: [],
+        cardsWithBinderName: []
     }
 
     componentDidMount =  () => {
+        this.fetchCards()
+    }
+
+    fetchCards = () => {
         fetch('https://da-basement-games-api.herokuapp.com/favorite_cards')
         // fetch('http://localhost:5000/favorite_cards')
         .then(res => res.json())
         .then(cardItems => {
+            const setNames = cardItems.filter(card=>{
+                return !this[card.group_name]? this[card.group_name] = true :false
+            })
               this.setState({
-                myCards: cardItems
+                myCards: cardItems,
+                setNames: setNames.sort((a,b) => a.group_name > b.group_name ? 1 : -1)
+            })
+        })
+        fetch('https://da-basement-games-api.herokuapp.com/binders')
+        .then(res => res.json())
+        .then(binderObj => {
+            this.setState({
+                binderNames: binderObj
             })
         })
     }
+
 
     handleClick = (e, card) => {
         this.setState({
@@ -32,7 +57,71 @@ class MyCards extends Component {
 
     handleChange = (e) => {
         this.setState({
-            amount: e.target.value
+            [e.target.name]: e.target.value
+        })
+    }
+
+    handleDropdownChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+        if(e.target.name === 'rarity'){
+            this.setState({
+                 setName: "all-sets",
+                 binderName: "all-binders"
+            })
+        }else if(e.target.name === 'setName'){
+            this.setState({
+                rarity: "all-rarities",
+                binderName: "all-binders"
+            })
+        }else if(e.target.name === 'binderName'){
+            this.setState({
+                rarity: "all-rarities",
+                setName: "all-sets"
+            })
+        }
+        this.fetchCardsWithAttribute(e.target.name, e.target.value)
+    }
+
+    fetchCardsWithAttribute = (att, value) => {
+        fetch(`https://da-basement-games-api.herokuapp.com/cards?${att}=${value}`)
+        .then(res => res.json())
+        .then(cardObj => {
+            if(att === "rarity"){
+                this.setState({
+                    cardsWithRarity: cardObj
+                })
+            } else if(att === "setName"){
+                this.setState({
+                    cardsWithSetName: cardObj
+                })
+            } else if(att === "binderName"){
+                this.filterByBinder()
+            }
+        })
+    }
+
+    cardsToRender = () => {
+        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.binderName === "all-binders"){
+            return this.state.myCards
+        }else if(this.state.rarity !== "all-rarities"){
+            return this.state.cardsWithRarity
+        }else if(this.state.setName !== "all-sets"){
+            return this.state.cardsWithSetName
+        }else if(this.state.binderName !== "all-binders"){
+            return this.state.cardsWithBinderName
+        }
+    }
+
+    filterByBinder = () => {
+        const newCard = this.state.myCards.filter(card =>{
+             if(card.binder.name === this.state.binderName){
+                 return card
+             }
+        })
+        this.setState({
+            cardsWithBinderName: newCard
         })
     }
 
@@ -45,7 +134,7 @@ class MyCards extends Component {
     handleCount = (v1, v2) => {
         let count = 0
         if(this.state.myCards.length > 0){
-            this.state.myCards.map(card =>{
+            this.cardsToRender().map(card =>{
                 if(v1 === "amount"){
                     count += card[v1]
                 }else{
@@ -71,31 +160,31 @@ class MyCards extends Component {
     }
 
     handlePriceClick = (price) => {
-        const [normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price] = this.state.myCards
+        const [normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price] = this.cardsToRender()
         let newList = []
         if(normal_low_price || normal_mid_price || normal_high_price || normal_market_price){
             if(this.state.reversePriceList === "high-to-low"){
                 this.setState({
                     reversePriceList: "low-to-high"
                 })
-                return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+                return newList = [...newList, this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             } else if (this.state.reversePriceList === "low-to-high") {
                 this.setState({
                     reversePriceList: "high-to-low"
                 })
-               return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+               return newList = [...newList, this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             }
         } else if(foil_low_price  || foil_mid_price || foil_high_price || foil_market_price) {
             if(this.state.reversePriceList === "high-to-low"){
                 this.setState({
                     reversePriceList: "low-to-high"
                 })
-                return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+                return newList = [...newList, this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             } else if (this.state.reversePriceList === "low-to-high") {
                 this.setState({
                     reversePriceList: "high-to-low"
                 })
-                return newList = [...newList, this.state.myCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+                return newList = [...newList, this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             }
         }
         this.setState({
@@ -153,15 +242,14 @@ class MyCards extends Component {
     }
 
     render() {
-        const newNames = this.state.myCards.map(card => {
-            if(card.name.toLowerCase().startsWith("the")){
+        const newNames = this.cardsToRender().map(card => {
+            if(card.name.toLowerCase().startsWith("the ")){
                 card.name = card.name.slice(4, card.name.length).concat(', The')
                 return card
             } else{
                 return card
             }
         })
-
         const searchedCards = newNames.filter(card => {
             if(card.name) {
                 if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
@@ -189,11 +277,40 @@ class MyCards extends Component {
                             <tr className="row">
                                 <th className="amount"> Amount </th>
                                 <th className="name"> Card Name </th>
-                                <th className="rarity"> Rarity </th>
+                                <th className="rarity">
+                                    <select name="rarity" value={this.state.rarity} onChange={this.handleDropdownChange}>
+                                        <option value="all-rarities" key="all"> All Rarities </option>
+                                            {
+                                                RARITIES.map(rarity => {
+                                                   return <option value={rarity} key={rarity}> {rarity} </option>
+                                                })
+                                            }
+                                    </select>
+                                </th>
                                 <th className="foiled"> Foiled </th>
-                                <th className="binder-name"> Binder Name</th>
+                                <th className="binder-name">
+                                <select name="binderName" value={this.state.binderName} onChange={this.handleDropdownChange}>
+                                        <option value="all-binders" key="all">All Binders</option>
+                                            {
+                                                this.state.binderNames.map(binder => {
+                                                    return <option value={binder.name} key={binder.name}> {binder.name} </option>
+                                                })
+                                            }
+                                    </select>
+                                </th>
                                 <th className="set-icon"> Set Icon </th>
-                                <th className="set-name">Set Name</th>
+                                <th className="set-name">
+                                <select name="setName" value={this.state.setName} onChange={this.handleDropdownChange}>
+                                        <option hidden> Select Set </option>
+                                        <option value="all-sets" key="all"> All Sets </option>
+                                            {
+                                                this.state.setNames.map(card => {
+                                                    return <option value={card.group_name} key={card.group_name}> {card.group_name} </option>
+                                                })
+                                            }
+                                    </select>
+                                </th>
+
                                 <th className="low-price price" onClick={()  => this.handlePriceClick("low_price")}>
                                     Low Price
                                     {this.handlePriceLogo()}

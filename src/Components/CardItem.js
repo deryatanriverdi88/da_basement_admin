@@ -41,19 +41,19 @@ export default function CardItem( props ) {
                   <>
                     <ul>
                       <li>
-                        <span>Normal Low Price :</span>
+                        <span>Low Price :</span>
                         ${normal_low_price}
                       </li>
                       <li>
-                        <span>Normal Mid Price :</span>
+                        <span>Mid Price :</span>
                         ${normal_mid_price}
                       </li>
                       <li>
-                        <span>Normal High Price :</span>
+                        <span>High Price :</span>
                         ${normal_high_price}
                       </li>
                       <li>
-                        <span>Normal Market Price : </span>
+                        <span>Market Price : </span>
                         ${normal_market_price}
                       </li>
                     </ul>

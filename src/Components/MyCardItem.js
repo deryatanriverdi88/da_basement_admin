@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactHover, {Trigger, Hover} from 'react-hover'
-const optionsCursorTrueWithMargin = {followCursor:true, shiftX: -280, shiftY: -280}
+const optionsCursorTrueWithMargin = {followCursor:true, shiftX: 80, shiftY: -280}
 
 export default class MyCardItem extends Component {
 
@@ -15,6 +15,7 @@ export default class MyCardItem extends Component {
                                     className="edit-input"
                                     type="number"
                                     min="0"
+                                    name="amount"
                                     value={this.props.amount}
                                     onChange={this.props.handleChange}/>
                                 :
