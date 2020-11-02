@@ -143,12 +143,12 @@ class AddCards extends Component {
                         <>
                             <CardForm
                                 cards={this.props.cards}
-                                cardName={this.state.cardName}
                                 handleClick={this.handleClick}
                                 handleCardFormTurnOff={this.handleCardFormTurnOff}
                                 cardForm={this.state.cardForm}
                                 handleClose={this.handleClose}
                                 binder={this.state.binder}
+                                handleEscape={this.handleEscape}
                             />
                         </>
                         :
