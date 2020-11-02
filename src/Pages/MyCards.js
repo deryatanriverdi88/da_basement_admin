@@ -67,23 +67,34 @@ class MyCards extends Component {
     }
 
     handleDropdownChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+            this.setState({
+                [e.target.name]: e.target.value,
+                attribute: e.target.name,
+                value: e.target.value
+            })
         if(e.target.name === 'rarity'){
             this.setState({
                  setName: "all-sets",
-                 binderName: "all-binders"
+                 binderName: "all-binders",
+                 isFoil: "all-types"
             })
         }else if(e.target.name === 'setName'){
             this.setState({
                 rarity: "all-rarities",
-                binderName: "all-binders"
+                binderName: "all-binders",
+                isFoil: "all-types"
             })
         }else if(e.target.name === 'binderName'){
             this.setState({
                 rarity: "all-rarities",
-                setName: "all-sets"
+                setName: "all-sets",
+                isFoil: "all-types"
+            })
+        }else if(e.target.name === "isFoil"){
+            this.setState({
+                rarity: "all-rarities",
+                setName: "all-sets",
+                binderName: "all-binders",
             })
         }
         this.fetchCardsWithAttribute(e.target.name, e.target.value)
