@@ -35,6 +35,16 @@ class AddCards extends Component {
         this.setState({
             cardForm: !this.state.cardForm
         })
+
+    }
+    handleEscape = (e)=>{
+        if(e.keyCode === 27){
+            this.props.clearCards()
+            this.setState({
+                cardForm: !this.state.cardForm,
+                card: {}
+            })
+        }
     }
 
     handleCardFormTurnOff = (card)=> {
