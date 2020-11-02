@@ -285,11 +285,16 @@ class MyCards extends Component {
             const newCards =  this.state.myCards.map(cardItem => {
               return cardItem.id === card.id ? card : cardItem
           })
+          const updatedCards = this.cardsAfterEdition(this.state.attribute, card, {})
           this.setState({
-            editCard:  null,
+            editCard:card,
             myCards:  newCards,
             editForm: false,
-            amount: null
+            amount: null,
+            cardsWithBinderName: updatedCards,
+            cardsWithIsfoil: updatedCards ,
+            cardsWithSetName: updatedCards,
+            cardsWithRarity: updatedCards
           })
         })
     }
