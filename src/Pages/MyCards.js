@@ -175,7 +175,7 @@ class MyCards extends Component {
     }
 
     cardsToRender = () => {
-        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.binderName === "all-binders"){
+        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.binderName === "all-binders" && this.state.isFoil === "all-types"){
             return this.state.myCards
         }else if(this.state.rarity !== "all-rarities"){
             return this.state.cardsWithRarity
@@ -183,6 +183,8 @@ class MyCards extends Component {
             return this.state.cardsWithSetName
         }else if(this.state.binderName !== "all-binders"){
             return this.state.cardsWithBinderName
+        }else if(this.state.isFoil !== "all-types"){
+            return this.state.cardsWithIsfoil
         }
     }
 
