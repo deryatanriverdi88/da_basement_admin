@@ -160,7 +160,7 @@ class CardForm extends Component {
         const {foil_low_price, foil_mid_price, foil_high_price, foil_market_price } = this.state.card
 
         return (
-            <div className="background-for-z-index">
+            <div className="background-for-z-index" onKeyDown={this.props.handleEscape}>
                 <div className="card-form">
                     <div className="x-div">
                         <button className="x" onClick={this.props.handleClose}> X </button>
