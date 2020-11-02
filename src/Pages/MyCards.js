@@ -189,13 +189,21 @@ class MyCards extends Component {
     }
 
     filterByBinder = () => {
-        const newCard = this.state.myCards.filter(card =>{
-             if(card.binder.name === this.state.binderName){
-                 return card
-             }
-        })
+            const newCards = this.state.myCards.filter(card =>{
+                if(this.state.binderName === 'no-binder'){
+                    if(card.binder === null){
+                        return card
+                    }
+                }else {
+                    if(card.binder !== null){
+                        if(card.binder.name === this.state.binderName){
+                            return card
+                        }
+                    }
+                }
+            })
         this.setState({
-            cardsWithBinderName: newCard
+            cardsWithBinderName: newCards
         })
     }
 
