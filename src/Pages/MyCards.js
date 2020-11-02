@@ -360,7 +360,7 @@ class MyCards extends Component {
                                 </th>
                                 <th className="name"> Card Name </th>
                                 <th className="rarity">
-                                    <select name="rarity" value={this.state.rarity} onChange={this.handleDropdownChange}>
+                                    <select name="rarity" value={this.state.rarity}onChange={this.handleDropdownChange}>
                                         <option value="all-rarities" key="all"> All Rarities </option>
                                             {
                                                 RARITIES.map(rarity => {
