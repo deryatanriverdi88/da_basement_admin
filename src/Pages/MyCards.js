@@ -307,8 +307,14 @@ class MyCards extends Component {
             const newCards = this.state.myCards.filter(myCard =>{
                return myCard.id !== card.id
            })
+           const updatedCards = this.cardsAfterEdition(this.state.attribute, {},card,)
            this.setState({
-            myCards: newCards
+            myCards: newCards,
+            cardDeleted: card,
+            cardsWithBinderName: updatedCards,
+            cardsWithIsfoil: updatedCards ,
+            cardsWithSetName: updatedCards,
+            cardsWithRarity: updatedCards
           })
         })
     }
