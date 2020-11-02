@@ -142,6 +142,38 @@ class MyCards extends Component {
         })
     }
 
+    cardsToMap = (att) => {
+        const {cardsWithRarity, cardsWithBinderName , cardsWithIsfoil, cardsWithSetName} = this.state
+        let arrayToMap = []
+        if(att === "rarity"){
+           return arrayToMap = cardsWithRarity
+        }else if(att === "binderName"){
+            return arrayToMap = cardsWithBinderName
+        }else if(att === "isFoil"){
+            return arrayToMap = cardsWithIsfoil
+        }else if(att === "setName"){
+            return arrayToMap = cardsWithSetName
+        }
+        return arrayToMap
+    }
+
+    cardsAfterEdition = (attr, editedCard=`${this.state.editCard}`, deletedCard=`${this.state.cardDeleted}`) =>{
+        let newCards = []
+        if(editedCard.id){
+            newCards = this.cardsToMap(attr).map(cardItem => {
+                    return cardItem.id === editedCard.id ? editedCard : cardItem
+                })
+        }else if (deletedCard.id){
+            newCards = this.cardsToMap(attr).filter(myCard =>{
+                    return myCard.id !== deletedCard.id
+                })
+        }
+        else {
+            newCards = this.cardsToMap(attr)
+        }
+        return newCards
+    }
+
     cardsToRender = () => {
         if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.binderName === "all-binders"){
             return this.state.myCards
