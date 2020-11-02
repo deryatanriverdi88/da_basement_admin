@@ -85,7 +85,9 @@
 
 #nav-bar .link-div .link {
   color: white;
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   line-height: 50px;
   vertical-align: middle;
   width: auto;
@@ -139,7 +141,7 @@
   margin: 20px auto;
   height: 50vh;
   overflow-y: scroll;
-  width: 95%;
+  width: 100%;
 }
 
 .table table {
@@ -148,10 +150,14 @@
   background: white;
 }
 
+.table table th {
+  width: 5%;
+}
+
 .table table th, .table table td {
   height: 50px;
   text-align: center;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .table table th, .table table tfoot td {
@@ -160,7 +166,7 @@
   top: -5px;
   background: #43456b;
   color: white;
-  border: 3px solid #808080;
+  border: 3px solid #f3f1fd;
 }
 
 .table table tfoot td {
@@ -168,7 +174,7 @@
 }
 
 .table table td {
-  border: 3px solid #ded5d1;
+  border: 3px solid #f3f1fd;
 }
 
 .table .edit-input {
@@ -200,6 +206,10 @@
   cursor: pointer;
 }
 
+.table .set-icon {
+  width: 2%;
+}
+
 .table .icon-div {
   width: 50px;
   height: 50px;
@@ -210,10 +220,21 @@
   height: 100%;
 }
 
+.table select {
+  width: 100%;
+  height: 100%;
+  background: #43456b;
+  color: white;
+  border-color: transparent;
+  font-size: 15px;
+  font-family: 'Comfortaa', cursive;
+  font-size: 13px;
+}
+
 .cardlist {
   width: 30%;
   height: 50vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   margin: auto;
 }
 
@@ -224,7 +245,7 @@
   cursor: pointer;
 }
 
-.background-for-z-index {
+.background-for-z-index, .background-for-pop-up-index {
   position: absolute;
   top: 0;
   width: 100%;
@@ -236,7 +257,21 @@
   z-index: 1;
 }
 
-.background-for-z-index .card-form, .background-for-z-index .binder-div {
+.background-for-z-index .background-for-pop-up-index, .background-for-pop-up-index .background-for-pop-up-index {
+  left: 0;
+  background: #43456b;
+}
+
+.background-for-z-index .background-for-pop-up-index .pop-up, .background-for-pop-up-index .background-for-pop-up-index .pop-up {
+  color: white;
+  margin: auto;
+}
+
+.background-for-z-index .background-for-pop-up-index .pop-up img, .background-for-pop-up-index .background-for-pop-up-index .pop-up img {
+  border-radius: 15px;
+}
+
+.background-for-z-index .card-form, .background-for-z-index .binder-div, .background-for-pop-up-index .card-form, .background-for-pop-up-index .binder-div {
   background: #43456b;
   width: 50%;
   height: 90%;
@@ -244,7 +279,7 @@
   border-radius: 5px;
 }
 
-.background-for-z-index .card-form .x-div, .background-for-z-index .binder-div .x-div {
+.background-for-z-index .card-form .x-div, .background-for-z-index .binder-div .x-div, .background-for-pop-up-index .card-form .x-div, .background-for-pop-up-index .binder-div .x-div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -253,7 +288,7 @@
           justify-content: flex-end;
 }
 
-.background-for-z-index .card-form .x-div .x, .background-for-z-index .binder-div .x-div .x {
+.background-for-z-index .card-form .x-div .x, .background-for-z-index .binder-div .x-div .x, .background-for-pop-up-index .card-form .x-div .x, .background-for-pop-up-index .binder-div .x-div .x {
   width: 30px;
   height: 30px;
   font-weight: bold;
@@ -261,7 +296,7 @@
   border-radius: 0 5px 0 5px;
 }
 
-.background-for-z-index .card-form .form-header, .background-for-z-index .binder-div .form-header {
+.background-for-z-index .card-form .form-header, .background-for-z-index .binder-div .form-header, .background-for-pop-up-index .card-form .form-header, .background-for-pop-up-index .binder-div .form-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -269,31 +304,31 @@
   margin: 15px auto;
 }
 
-.background-for-z-index .card-form .form-header h3, .background-for-z-index .binder-div .form-header h3 {
+.background-for-z-index .card-form .form-header h3, .background-for-z-index .binder-div .form-header h3, .background-for-pop-up-index .card-form .form-header h3, .background-for-pop-up-index .binder-div .form-header h3 {
   font-size: 25px;
   width: 70%;
   margin: auto;
   color: white;
 }
 
-.background-for-z-index .card-form .form-header .icon-div, .background-for-z-index .binder-div .form-header .icon-div {
+.background-for-z-index .card-form .form-header .icon-div, .background-for-z-index .binder-div .form-header .icon-div, .background-for-pop-up-index .card-form .form-header .icon-div, .background-for-pop-up-index .binder-div .form-header .icon-div {
   margin: auto;
   width: 40px;
   height: 30px;
 }
 
-.background-for-z-index .card-form .form-header .icon-div .icon, .background-for-z-index .binder-div .form-header .icon-div .icon {
+.background-for-z-index .card-form .form-header .icon-div .icon, .background-for-z-index .binder-div .form-header .icon-div .icon, .background-for-pop-up-index .card-form .form-header .icon-div .icon, .background-for-pop-up-index .binder-div .form-header .icon-div .icon {
   width: 100%;
   height: 100%;
 }
 
-.background-for-z-index .card-form .dropdown, .background-for-z-index .binder-div .dropdown {
+.background-for-z-index .card-form .dropdown, .background-for-z-index .binder-div .dropdown, .background-for-pop-up-index .card-form .dropdown, .background-for-pop-up-index .binder-div .dropdown {
   position: relative;
   display: inline-block;
   width: 70%;
 }
 
-.background-for-z-index .card-form .dropdown .dropbtn, .background-for-z-index .binder-div .dropdown .dropbtn {
+.background-for-z-index .card-form .dropdown .dropbtn, .background-for-z-index .binder-div .dropdown .dropbtn, .background-for-pop-up-index .card-form .dropdown .dropbtn, .background-for-pop-up-index .binder-div .dropdown .dropbtn {
   padding: 10px;
   font-size: 16px;
   border: none;
@@ -301,7 +336,7 @@
   outline: 0;
 }
 
-.background-for-z-index .card-form .dropdown .dropdown-content, .background-for-z-index .binder-div .dropdown .dropdown-content {
+.background-for-z-index .card-form .dropdown .dropdown-content, .background-for-z-index .binder-div .dropdown .dropdown-content, .background-for-pop-up-index .card-form .dropdown .dropdown-content, .background-for-pop-up-index .binder-div .dropdown .dropdown-content {
   margin-top: 5px;
   position: absolute;
   width: 100%;
@@ -310,7 +345,7 @@
   z-index: 1;
 }
 
-.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list {
+.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list, .background-for-pop-up-index .card-form .dropdown .dropdown-content .dropdown-list, .background-for-pop-up-index .binder-div .dropdown .dropdown-content .dropdown-list {
   background-color: #f1f1f1;
   margin: 0 auto;
   width: 80%;
@@ -320,7 +355,7 @@
   overflow-y: scroll;
 }
 
-.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item {
+.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item, .background-for-pop-up-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item, .background-for-pop-up-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -333,18 +368,18 @@
   padding: 0 15px 0 15px;
 }
 
-.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item:hover, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item:hover {
+.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item:hover, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item:hover, .background-for-pop-up-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item:hover, .background-for-pop-up-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item:hover {
   color: white;
   background: rgba(67, 69, 107, 0.5);
   cursor: -webkit-grab;
   cursor: grab;
 }
 
-.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item li, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item li {
+.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item li, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item li, .background-for-pop-up-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item li, .background-for-pop-up-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item li {
   padding: 12px 16px;
 }
 
-.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div {
+.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div, .background-for-pop-up-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div, .background-for-pop-up-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div {
   width: 40px;
   height: 40px;
   display: -webkit-box;
@@ -352,13 +387,13 @@
   display: flex;
 }
 
-.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div .icon, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div .icon {
+.background-for-z-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div .icon, .background-for-z-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div .icon, .background-for-pop-up-index .card-form .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div .icon, .background-for-pop-up-index .binder-div .dropdown .dropdown-content .dropdown-list .dropdown-item .icon-div .icon {
   margin: auto;
   width: 100%;
   height: 100%;
 }
 
-.background-for-z-index .add-card-form .form-fields {
+.background-for-z-index .add-card-form .form-fields, .background-for-pop-up-index .add-card-form .form-fields {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -369,12 +404,12 @@
           justify-content: space-evenly;
 }
 
-.background-for-z-index .add-card-form .form-fields label {
+.background-for-z-index .add-card-form .form-fields label, .background-for-pop-up-index .add-card-form .form-fields label {
   font-size: 20px;
   color: white;
 }
 
-.background-for-z-index .add-card-form .form-fields input {
+.background-for-z-index .add-card-form .form-fields input, .background-for-pop-up-index .add-card-form .form-fields input {
   display: inline-block;
   width: 50px;
   height: 30px;
@@ -382,14 +417,14 @@
   border-radius: 5px;
 }
 
-.background-for-z-index .add-card-form input {
+.background-for-z-index .add-card-form input, .background-for-pop-up-index .add-card-form input {
   width: 60px;
   height: 40px;
   border-radius: 5px;
   margin-bottom: 10px;
 }
 
-.background-for-z-index .card-item {
+.background-for-z-index .card-item, .background-for-pop-up-index .card-item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -398,24 +433,28 @@
   height: auto;
 }
 
-.background-for-z-index .card-item .price-list {
+.background-for-z-index .card-item img, .background-for-pop-up-index .card-item img {
+  border-radius: 15px;
+}
+
+.background-for-z-index .card-item .price-list, .background-for-pop-up-index .card-item .price-list {
   margin: auto;
   color: white;
 }
 
-.background-for-z-index .card-item .price-list ul {
+.background-for-z-index .card-item .price-list ul, .background-for-pop-up-index .card-item .price-list ul {
   margin-top: 30px;
 }
 
-.background-for-z-index .card-item .price-list ul li {
+.background-for-z-index .card-item .price-list ul li, .background-for-pop-up-index .card-item .price-list ul li {
   margin-top: 5px;
 }
 
-.background-for-z-index .card-item .price-list span {
+.background-for-z-index .card-item .price-list span, .background-for-pop-up-index .card-item .price-list span {
   margin-right: 10px;
 }
 
-.background-for-z-index .binder-div form {
+.background-for-z-index .binder-div form, .background-for-pop-up-index .binder-div form {
   margin: auto;
   width: 40%;
   height: 90%;
@@ -424,11 +463,11 @@
   display: flex;
 }
 
-.background-for-z-index .binder-div form label {
+.background-for-z-index .binder-div form label, .background-for-pop-up-index .binder-div form label {
   color: white;
 }
 
-.background-for-z-index .binder-div form label, .background-for-z-index .binder-div form input {
+.background-for-z-index .binder-div form label, .background-for-z-index .binder-div form input, .background-for-pop-up-index .binder-div form label, .background-for-pop-up-index .binder-div form input {
   margin: auto;
 }
 
@@ -451,6 +490,11 @@ li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 .search-card-form label, .add-card-form label {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -461,5 +505,9 @@ li {
           flex-direction: column;
   margin: 0 auto;
   font-size: 30px;
+}
+
+.css-1uccc91-singleValue {
+  width: 100%;
 }
 /*# sourceMappingURL=style.css.map */
