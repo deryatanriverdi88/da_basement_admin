@@ -349,6 +349,7 @@ class MyCards extends Component {
                            onChange={this.handleSearchChange}
                     />
                 </form>
+                <button onClick={this.handleFilterClick}>Clear Filter</button>
                 <div className="table">
                     <table>
                         <thead>
