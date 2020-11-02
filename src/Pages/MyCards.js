@@ -100,6 +100,15 @@ class MyCards extends Component {
         this.fetchCardsWithAttribute(e.target.name, e.target.value)
     }
 
+    handleFilterClick = () => {
+        this.setState({
+            rarity: "all-rarities",
+            setName: "all-sets",
+            isFoil: "all-types",
+            binderName: "all-binders"
+        })
+    }
+
     fetchCardsWithAttribute = (att, value) => {
         fetch(`https://da-basement-games-api.herokuapp.com/cards?${att}=${value}`)
         .then(res => res.json())
