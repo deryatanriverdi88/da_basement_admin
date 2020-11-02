@@ -129,16 +129,15 @@ class AddCards extends Component {
                 </form>
                 {/* {
                     this.renderPopUp(this.state.popUp)
-                }
-                <div className="cardlist">
-                    {
-                        this.state.searchValue.length > 0 ?
-                            searchedCardNames.map((name,i )=> {
-                                return  <li onClick={() => this.handleClick(name)} key={i}> {name} </li>
-                            }) :
-                            null
+                } */}
+                <select name="cardName" style={{width: "30%"}} onChange={this.handleClick} placeholder="Select a card">
+                     <option hidden>There are {searchedCardNames.length} names...</option>
+                     {
+                        searchedCardNames.map((name, i) =>{
+                            return <option value={name} key={i} >{name}</option>
+                        })
                     }
-                </div>
+                </select>
                 {
                     this.state.cardForm ?
                         <>
