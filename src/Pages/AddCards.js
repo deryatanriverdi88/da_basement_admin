@@ -91,21 +91,25 @@ class AddCards extends Component {
         }
     }
 
-    renderPopUp = (cond) => {
-        if(cond === true){
-           return  <PopUp card={this.state.card} />
-        } else if(cond === false) {
-           return null
-        }
-    }
+    // renderPopUp = (cond) => {
+    //     if(cond === true){
+    //        return  <PopUp card={this.state.card} />
+    //     } else if(cond === false) {
+    //        return null
+    //     }
+    // }
 
     render() {
-        const searchedCardNames =
-        this.state.cardNames.filter(card => {
-            if (card.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
-                return card
+        let searchedCardNames =[]
+        {
+            if(this.state.searchValue.length > 0 ){
+                searchedCardNames = this.state.cardNames.filter(card => {
+                    if (card.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
+                        return card
+                    }
+                })
             }
-        })
+        }
         return (
             <div className="add-card-div">
                 <h2>
