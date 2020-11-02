@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CardItem from "./CardItem"
 import { withRouter } from 'react-router-dom'
+import Select from 'react-select';
+import PopUp from "./PopUp"
 
 class CardForm extends Component {
     state={
