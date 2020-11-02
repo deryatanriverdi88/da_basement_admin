@@ -44,9 +44,11 @@ function NavBar(props) {
                             My Binders
                         </Link>
                         <button id="add-binder" onClick={handleBinderForm}>Add Binder</button>
-                        <NavLink className="link" to="/">
-                            <button id="logout" onClick={logOut}>Logout</button>
-                        </NavLink>
+                        <button id="logout" onClick={logOut}>
+                            <NavLink to="/">
+                                    Logout
+                            </NavLink>
+                        </button>
                     </div>
                 </nav>
              </>
