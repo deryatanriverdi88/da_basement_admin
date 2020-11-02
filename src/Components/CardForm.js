@@ -135,7 +135,29 @@ class CardForm extends Component {
     }
 
     render() {
-        const { foil_low_price, foil_mid_price, foil_high_price, foil_market_price } = this.state.card
+        let cards = []
+        if(this.props.cards.length > 0){
+            cards =
+                this.props.cards.map(card => {
+                return {
+                            value: card,
+                            label: <div className="select" style={{display: "flex", justifyContent: "left"}}>
+                                        <p> {card.name} </p>
+                                        {
+                                            card.icon.length > 0 ?
+                                                <div className="icon-div" style={{width: "30px", height: "30px", margin: "auto"}}>
+                                                    <img src={card.icon} className="icon"style={{width: "100%", height: "100%"}}/>
+                                                </div>
+                                                :
+                                                <div className="icon-div" style={{width: "auto", height: "30px", margin: "auto"}}>
+                                                    <p> {card.group_name} </p>
+                                                </div>
+                                        }
+                                    </div>
+                        }
+                })
+        }
+        const {foil_low_price, foil_mid_price, foil_high_price, foil_market_price } = this.state.card
 
         return (
             <div className="background-for-z-index">
