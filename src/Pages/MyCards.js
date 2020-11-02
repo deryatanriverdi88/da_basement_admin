@@ -379,6 +379,7 @@ class MyCards extends Component {
                                 <th className="binder-name">
                                 <select name="binderName" value={this.state.binderName} onChange={this.handleDropdownChange}>
                                         <option value="all-binders" key="all">All Binders</option>
+                                        <option value="no-binder"> No Binder</option>
                                             {
                                                 this.state.binderNames.map(binder => {
                                                     return <option value={binder.name} key={binder.name}> {binder.name} </option>
@@ -389,7 +390,6 @@ class MyCards extends Component {
                                 <th className="set-icon"> Set Icon </th>
                                 <th className="set-name">
                                 <select name="setName" value={this.state.setName} onChange={this.handleDropdownChange}>
-                                        <option hidden> Select Set </option>
                                         <option value="all-sets" key="all"> All Sets </option>
                                             {
                                                 this.state.setNames.map(card => {
