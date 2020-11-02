@@ -119,6 +119,21 @@ class CardForm extends Component {
         })
     }
 
+    componentDidUpdate = () => {
+        if(this.state.popUp){
+            setTimeout(() => this.setState({popUp: false}), 500)
+        }
+    }
+
+
+    renderPopUp = () => {
+        if(this.state.popUp){
+           return  <PopUp card={this.state.card} />
+        } else {
+           return null
+        }
+    }
+
     render() {
         const { foil_low_price, foil_mid_price, foil_high_price, foil_market_price } = this.state.card
 
