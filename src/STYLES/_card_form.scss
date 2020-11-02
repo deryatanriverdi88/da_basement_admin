@@ -1,4 +1,4 @@
-.background-for-z-index{
+.background-for-z-index, .background-for-pop-up-index{
     position: absolute;
     top: 0;
     width: 100%;
@@ -6,6 +6,17 @@
     background-color: rgba(170,155,155, 0.3);
     display: flex;
     z-index: 1;
+    .background-for-pop-up-index{
+        left: 0;
+        background: #43456b;
+        .pop-up{
+            color: white;
+            margin: auto;
+            img{
+                border-radius: 15px;
+            }
+        }
+    }
     .card-form, .binder-div{
         background: #43456b;
         width: 50%;
@@ -115,6 +126,7 @@
                 height: 30px;
                 text-align: center;
                 border-radius: 5px;
+                // outline: 0;
             }
         }
         input{
@@ -129,6 +141,9 @@
         width: 80%;
         margin: 30px auto;
         height: auto;
+        img{
+            border-radius: 15px;
+        }
         .price-list{
             margin: auto;
             color: white;

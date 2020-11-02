@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CardItem from "./CardItem"
 import { withRouter } from 'react-router-dom'
+import Select from 'react-select';
+import PopUp from "./PopUp"
 
 class CardForm extends Component {
     state={
@@ -13,7 +15,8 @@ class CardForm extends Component {
         foil: false,
         errors: {},
         cardAdded: false,
-        dropDown: false
+        dropDown: false,
+        popUp: false
     }
 
     handleChange = (e) => {
@@ -22,10 +25,16 @@ class CardForm extends Component {
         })
     }
 
-    handleDropdown  = ()=>{
+    handleDropdown  = (card)=>{
+        const { normal_low_price, normal_mid_price, normal_high_price, normal_market_price } = card.value
         this.setState({
-            dropDown: !this.state.dropDown
+            card: card.value
         })
+        if(!normal_low_price && !normal_mid_price && !normal_high_price && !normal_market_price){
+            this.setState({
+                foil: true
+            })
+        }
     }
 
     handleCardClick = (card) => {
@@ -104,17 +113,54 @@ class CardForm extends Component {
             } else {
                 this.setState({
                     card: card,
-                    cardAdded: true
+                    popUp: true
                 })
             }
         })
     }
 
+    componentDidUpdate = () => {
+        if(this.state.popUp){
+            setTimeout(() => this.setState({popUp: false}), 500)
+        }
+    }
+
+
+    renderPopUp = () => {
+        if(this.state.popUp){
+           return  <PopUp card={this.state.card} />
+        } else {
+           return null
+        }
+    }
+
     render() {
-        const { foil_low_price, foil_mid_price, foil_high_price, foil_market_price } = this.state.card
+        let cards = []
+        if(this.props.cards.length > 0){
+            cards =
+                this.props.cards.map(card => {
+                return {
+                            value: card,
+                            label: <div className="select" style={{display: "flex", justifyContent: "left"}}>
+                                        <p> {card.name} </p>
+                                        {
+                                            card.icon.length > 0 ?
+                                                <div className="icon-div" style={{width: "30px", height: "30px", margin: "auto"}}>
+                                                    <img src={card.icon} className="icon"style={{width: "100%", height: "100%"}}/>
+                                                </div>
+                                                :
+                                                <div className="icon-div" style={{width: "auto", height: "30px", margin: "auto"}}>
+                                                    <p> {card.group_name} </p>
+                                                </div>
+                                        }
+                                    </div>
+                        }
+                })
+        }
+        const {foil_low_price, foil_mid_price, foil_high_price, foil_market_price } = this.state.card
 
         return (
-            <div className="background-for-z-index">
+            <div className="background-for-z-index" onKeyDown={this.props.handleEscape}>
                 <div className="card-form">
                     <div className="x-div">
                         <button className="x" onClick={this.props.handleClose}> X </button>
@@ -142,49 +188,14 @@ class CardForm extends Component {
                                     <h3> {this.state.card.name} - {this.state.card.group_name} </h3>
                             }
                             </div>
-                    }
-                    <div className="dropdown" onClick={this.handleCardDropdownClose}>
-                        {
-                            !this.state.dropDown ?
-                                <button onClick={this.handleDropdown} className="dropbtn">
-                                    {this.props.cards.length > 0 ?
-                                        "Select a card ⬇"
-                                        :
-                                        "Cards are loading..."
-                                    }
-                                </button>
-                                :
-                                <button onClick={this.handleDropdown}className="dropbtn">
-                                    Select Cards
-                                    <span> ⬆ </span>
-                                </button>
                         }
-                        <div className="dropdown-content">
-                            <div className="dropdown-list">
-                                <ul>
-                                    {
-                                        this.state.dropDown && this.props.cards.length  > 0 ?
-                                            this.props.cards.map(card =>{
-                                            return <div className="dropdown-item" key={card.id} onClick={() => this.handleCardClick(card)}>
-                                                   <li> {card.name} </li>
-                                            { card.icon !== "" ?
-                                                <>
-                                                    <div className="icon-div">
-                                                    <img className="icon" src={card.icon} alt={card.icon}/>
-                                                    </div>
-                                                </>
-                                                :
-                                                `${card.group_name}`
-                                            }
-                                                </div>
-                                            })
-                                            :
-                                            null
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <Select
+                        autoFocus
+                        placeholder="Select a card..."
+                        value={this.state.card.value}
+                        onChange={this.handleDropdown}
+                        options={cards}
+                    />
                     <form onSubmit={this.handleSubmit} className="add-card-form">
                         <div className="form-fields">
                             <div className="amount-div">
@@ -233,6 +244,9 @@ class CardForm extends Component {
                                 :
                                 <p>Select a card from above</p>
                             }
+                                   {
+                                    this.renderPopUp()
+                                   }
                     </form>
                         <CardItem
                             card={this.state.card}

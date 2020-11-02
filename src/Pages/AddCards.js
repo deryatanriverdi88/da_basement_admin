@@ -10,8 +10,7 @@ class AddCards extends Component {
         cardForm: false,
         popUp: false,
         cardNames: [],
-        cardName: "",
-        binder: {}
+        binder: {},
     }
 
     handleChange = (event) => {
@@ -20,15 +19,14 @@ class AddCards extends Component {
         })
     }
 
-    handleClick = (cardName) => {
-        fetch(`http://localhost:4000/card?name=${cardName}`)
+    handleClick = (e) => {
+        fetch(`http://localhost:4000/card?name=${e.target.value}`)
         .then(res => res.json())
         .then(cardItem => {
             this.props.getCards(cardItem)
         })
         this.setState({
-            cardForm: !this.state.cardForm,
-            cardName: cardName
+            cardForm: !this.state.cardForm
         })
     }
 
@@ -37,6 +35,16 @@ class AddCards extends Component {
         this.setState({
             cardForm: !this.state.cardForm
         })
+
+    }
+    handleEscape = (e)=>{
+        if(e.keyCode === 27){
+            this.props.clearCards()
+            this.setState({
+                cardForm: !this.state.cardForm,
+                card: {}
+            })
+        }
     }
 
     handleCardFormTurnOff = (card)=> {
@@ -83,21 +91,25 @@ class AddCards extends Component {
         }
     }
 
-    renderPopUp = (cond) => {
-        if(cond === true){
-           return  <PopUp card={this.state.card} />
-        } else if(cond === false) {
-           return null
-        }
-    }
+    // renderPopUp = (cond) => {
+    //     if(cond === true){
+    //        return  <PopUp card={this.state.card} />
+    //     } else if(cond === false) {
+    //        return null
+    //     }
+    // }
 
     render() {
-        const searchedCardNames =
-        this.state.cardNames.filter(card => {
-            if (card.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
-                return card
+        let searchedCardNames =[]
+        {
+            if(this.state.searchValue.length > 0 ){
+                searchedCardNames = this.state.cardNames.filter(card => {
+                    if (card.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
+                        return card
+                    }
+                })
             }
-        })
+        }
         return (
             <div className="add-card-div">
                 <h2>
@@ -111,32 +123,32 @@ class AddCards extends Component {
                            name="search"
                            autoComplete="off"
                            autoCorrect="off"
+                           onFocus={this.handleChange}
                            onChange={this.handleChange}
                     />
                 </form>
-                {
+                {/* {
                     this.renderPopUp(this.state.popUp)
-                }
-                <div className="cardlist">
-                    {
-                        this.state.searchValue.length > 0 ?
-                            searchedCardNames.map((name,i )=> {
-                                return  <li onClick={() => this.handleClick(name)} key={i}> {name} </li>
-                            }) :
-                            null
+                } */}
+                <select name="cardName" style={{width: "30%"}} onChange={this.handleClick} placeholder="Select a card">
+                     <option hidden>There are {searchedCardNames.length} names...</option>
+                     {
+                        searchedCardNames.map((name, i) =>{
+                            return <option value={name} key={i} >{name}</option>
+                        })
                     }
-                </div>
+                </select>
                 {
                     this.state.cardForm ?
                         <>
                             <CardForm
                                 cards={this.props.cards}
-                                cardName={this.state.cardName}
                                 handleClick={this.handleClick}
                                 handleCardFormTurnOff={this.handleCardFormTurnOff}
                                 cardForm={this.state.cardForm}
                                 handleClose={this.handleClose}
                                 binder={this.state.binder}
+                                handleEscape={this.handleEscape}
                             />
                         </>
                         :

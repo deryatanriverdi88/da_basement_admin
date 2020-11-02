@@ -2,22 +2,27 @@ import React, { Component } from 'react'
 import MyCardItem from '../Components/MyCardItem'
 const RARITIES = [ "Common", "Land", "Uncommon","Mythic",  "Promo", "Special", "Rare", "Token"]
 
+
 class MyCards extends Component {
     state={
         myCards: [],
         amount: null,
         editForm: false,
-        editCard: null,
+        editCard: {},
         searchValue: "",
-        reversePriceList: "high-to-low",
         rarity: "all-rarities",
         setName: "all-sets",
+        isFoil: "all-types",
         setNames: [],
         binderNames: [], 
         binderName: "all-binders",
         cardsWithRarity : [],
         cardsWithSetName: [],
-        cardsWithBinderName: []
+        cardsWithBinderName: [],
+        cardsWithIsfoil: [],
+        cardDeleted: {},
+        attribute: "",
+        value: ""
     }
 
     componentDidMount =  () => {
@@ -62,26 +67,46 @@ class MyCards extends Component {
     }
 
     handleDropdownChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+            this.setState({
+                [e.target.name]: e.target.value,
+                attribute: e.target.name,
+                value: e.target.value
+            })
         if(e.target.name === 'rarity'){
             this.setState({
                  setName: "all-sets",
-                 binderName: "all-binders"
+                 binderName: "all-binders",
+                 isFoil: "all-types"
             })
         }else if(e.target.name === 'setName'){
             this.setState({
                 rarity: "all-rarities",
-                binderName: "all-binders"
+                binderName: "all-binders",
+                isFoil: "all-types"
             })
         }else if(e.target.name === 'binderName'){
             this.setState({
                 rarity: "all-rarities",
-                setName: "all-sets"
+                setName: "all-sets",
+                isFoil: "all-types"
+            })
+        }else if(e.target.name === "isFoil"){
+            this.setState({
+                rarity: "all-rarities",
+                setName: "all-sets",
+                binderName: "all-binders",
             })
         }
         this.fetchCardsWithAttribute(e.target.name, e.target.value)
+    }
+
+    handleFilterClick = () => {
+        this.setState({
+            rarity: "all-rarities",
+            setName: "all-sets",
+            isFoil: "all-types",
+            binderName: "all-binders"
+        })
     }
 
     fetchCardsWithAttribute = (att, value) => {
@@ -98,12 +123,59 @@ class MyCards extends Component {
                 })
             } else if(att === "binderName"){
                 this.filterByBinder()
+            } else if(att === "isFoil"){
+                const newCards = this.state.myCards.filter(card => {
+                    if(value === "true"){
+                        if(card.foil === true){
+                            return card
+                        }
+                    }else if(value === "false"){
+                        if(card.foil === false){
+                            return card
+                        }
+                    }
+                })
+                this.setState({
+                    cardsWithIsfoil: newCards
+                })
             }
         })
     }
 
+    cardsToMap = (att) => {
+        const {cardsWithRarity, cardsWithBinderName , cardsWithIsfoil, cardsWithSetName} = this.state
+        let arrayToMap = []
+        if(att === "rarity"){
+           return arrayToMap = cardsWithRarity
+        }else if(att === "binderName"){
+            return arrayToMap = cardsWithBinderName
+        }else if(att === "isFoil"){
+            return arrayToMap = cardsWithIsfoil
+        }else if(att === "setName"){
+            return arrayToMap = cardsWithSetName
+        }
+        return arrayToMap
+    }
+
+    cardsAfterEdition = (attr, editedCard=`${this.state.editCard}`, deletedCard=`${this.state.cardDeleted}`) =>{
+        let newCards = []
+        if(editedCard.id){
+            newCards = this.cardsToMap(attr).map(cardItem => {
+                    return cardItem.id === editedCard.id ? editedCard : cardItem
+                })
+        }else if (deletedCard.id){
+            newCards = this.cardsToMap(attr).filter(myCard =>{
+                    return myCard.id !== deletedCard.id
+                })
+        }
+        else {
+            newCards = this.cardsToMap(attr)
+        }
+        return newCards
+    }
+
     cardsToRender = () => {
-        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.binderName === "all-binders"){
+        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.binderName === "all-binders" && this.state.isFoil === "all-types"){
             return this.state.myCards
         }else if(this.state.rarity !== "all-rarities"){
             return this.state.cardsWithRarity
@@ -111,17 +183,27 @@ class MyCards extends Component {
             return this.state.cardsWithSetName
         }else if(this.state.binderName !== "all-binders"){
             return this.state.cardsWithBinderName
+        }else if(this.state.isFoil !== "all-types"){
+            return this.state.cardsWithIsfoil
         }
     }
 
     filterByBinder = () => {
-        const newCard = this.state.myCards.filter(card =>{
-             if(card.binder.name === this.state.binderName){
-                 return card
-             }
-        })
+            const newCards = this.state.myCards.filter(card =>{
+                if(this.state.binderName === 'no-binder'){
+                    if(card.binder === null){
+                        return card
+                    }
+                }else {
+                    if(card.binder !== null){
+                        if(card.binder.name === this.state.binderName){
+                            return card
+                        }
+                    }
+                }
+            })
         this.setState({
-            cardsWithBinderName: newCard
+            cardsWithBinderName: newCards
         })
     }
 
@@ -139,16 +221,16 @@ class MyCards extends Component {
                     count += card[v1]
                 }else{
                     if(card.foil){
-                        delete card[v1]
+                       count = count
                         if(card[v2] === null){
-                            delete card[v2]
+                            count = count
                         }else {
                             count += Number.parseFloat(card[v2] * card.amount)
                         }
                     } else if(!card.foil){
-                        delete card[v2]
+                        count = count
                         if(card[v1] === null){
-                            delete card[v1]
+                            count = count
                         }else {
                             count += Number.parseFloat(card[v1] * card.amount)
                         }
@@ -159,32 +241,19 @@ class MyCards extends Component {
         return count
     }
 
-    handlePriceClick = (price) => {
-        const [normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price] = this.cardsToRender()
+    handlePriceAndAmountClick = (value, reversePriceListType) => {
         let newList = []
-        if(normal_low_price || normal_mid_price || normal_high_price || normal_market_price){
-            if(this.state.reversePriceList === "high-to-low"){
-                this.setState({
-                    reversePriceList: "low-to-high"
-                })
-                return newList = [...newList, this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
-            } else if (this.state.reversePriceList === "low-to-high") {
-                this.setState({
-                    reversePriceList: "high-to-low"
-                })
-               return newList = [...newList, this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+        if(value === "amount") {
+            if(reversePriceListType === "high"){
+                newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[value])  <  Number.parseFloat(b[value]) ?  1 : -1 ))
+            } else if (reversePriceListType === "low") {
+                newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[value])  > Number.parseFloat(b[value]) ?  1 : -1 ))
             }
-        } else if(foil_low_price  || foil_mid_price || foil_high_price || foil_market_price) {
-            if(this.state.reversePriceList === "high-to-low"){
-                this.setState({
-                    reversePriceList: "low-to-high"
-                })
-                return newList = [...newList, this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
-            } else if (this.state.reversePriceList === "low-to-high") {
-                this.setState({
-                    reversePriceList: "high-to-low"
-                })
-                return newList = [...newList, this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+        } else {
+            if(reversePriceListType === "high"){
+                newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${value}`] || a[`foil_${value}`])  <  Number.parseFloat(b[`normal_${value}`] || b[`foil_${value}`]) ?  1 : -1 ))
+            }else if (reversePriceListType === "low") {
+                newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${value}`] || a[`foil_${value}`])  >  Number.parseFloat(b[`normal_${value}`] || b[`foil_${value}`]) ?  1 : -1 ))
             }
         }
         this.setState({
@@ -192,14 +261,12 @@ class MyCards extends Component {
         })
     }
 
-    handlePriceLogo = () => {
-        if(this.state.reversePriceList === 'low-to-high'){
-            return <img src="https://img.icons8.com/ultraviolet/20/000000/up-squared.png" alt="up-arrow"/>
-        } else if(this.state.reversePriceList === 'high-to-low'){
-            return <img src="https://img.icons8.com/ultraviolet/20/000000/down-squared.png" alt="down-arrow"/>
-        }
+    renderPriceLogo = (value) => {
+        return <>
+                <img src="https://img.icons8.com/ultraviolet/15/000000/up-squared.png" alt="up-arrow" onClick={()  => this.handlePriceAndAmountClick(value, "high")}/>
+                <img src="https://img.icons8.com/ultraviolet/15/000000/down-squared.png" alt="down-arrow" onClick={()  => this.handlePriceAndAmountClick(value, "low")}/>
+            </>
     }
-
     handleEditSubmit = (e) => {
         e.preventDefault()
         fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${this.state.editCard.id}`, {
@@ -218,11 +285,16 @@ class MyCards extends Component {
             const newCards =  this.state.myCards.map(cardItem => {
               return cardItem.id === card.id ? card : cardItem
           })
+          const updatedCards = this.cardsAfterEdition(this.state.attribute, card, {})
           this.setState({
-            editCard:  null,
+            editCard:card,
             myCards:  newCards,
             editForm: false,
-            amount: null
+            amount: null,
+            cardsWithBinderName: updatedCards,
+            cardsWithIsfoil: updatedCards ,
+            cardsWithSetName: updatedCards,
+            cardsWithRarity: updatedCards
           })
         })
     }
@@ -235,8 +307,14 @@ class MyCards extends Component {
             const newCards = this.state.myCards.filter(myCard =>{
                return myCard.id !== card.id
            })
+           const updatedCards = this.cardsAfterEdition(this.state.attribute, {},card,)
            this.setState({
-            myCards: newCards
+            myCards: newCards,
+            cardDeleted: card,
+            cardsWithBinderName: updatedCards,
+            cardsWithIsfoil: updatedCards ,
+            cardsWithSetName: updatedCards,
+            cardsWithRarity: updatedCards
           })
         })
     }
@@ -271,14 +349,18 @@ class MyCards extends Component {
                            onChange={this.handleSearchChange}
                     />
                 </form>
+                <button onClick={this.handleFilterClick}>Clear Filter</button>
                 <div className="table">
                     <table>
                         <thead>
                             <tr className="row">
-                                <th className="amount"> Amount </th>
+                                <th className="amount">
+                                    Amount
+                                    {this.renderPriceLogo("amount")}
+                                </th>
                                 <th className="name"> Card Name </th>
                                 <th className="rarity">
-                                    <select name="rarity" value={this.state.rarity} onChange={this.handleDropdownChange}>
+                                    <select name="rarity" value={this.state.rarity}onChange={this.handleDropdownChange}>
                                         <option value="all-rarities" key="all"> All Rarities </option>
                                             {
                                                 RARITIES.map(rarity => {
@@ -287,10 +369,17 @@ class MyCards extends Component {
                                             }
                                     </select>
                                 </th>
-                                <th className="foiled"> Foiled </th>
+                                <th className="foiled">
+                                    <select name="isFoil" value={this.state.isFoil} onChange={this.handleDropdownChange}>
+                                            <option value="all-types" key="all"> All Types </option>
+                                            <option value={true}> Foil </option>
+                                            <option value={false}> Non Foil</option>
+                                    </select>
+                                </th>
                                 <th className="binder-name">
                                 <select name="binderName" value={this.state.binderName} onChange={this.handleDropdownChange}>
                                         <option value="all-binders" key="all">All Binders</option>
+                                        <option value="no-binder"> No Binder</option>
                                             {
                                                 this.state.binderNames.map(binder => {
                                                     return <option value={binder.name} key={binder.name}> {binder.name} </option>
@@ -301,7 +390,6 @@ class MyCards extends Component {
                                 <th className="set-icon"> Set Icon </th>
                                 <th className="set-name">
                                 <select name="setName" value={this.state.setName} onChange={this.handleDropdownChange}>
-                                        <option hidden> Select Set </option>
                                         <option value="all-sets" key="all"> All Sets </option>
                                             {
                                                 this.state.setNames.map(card => {
@@ -310,22 +398,21 @@ class MyCards extends Component {
                                             }
                                     </select>
                                 </th>
-
-                                <th className="low-price price" onClick={()  => this.handlePriceClick("low_price")}>
+                                <th className="low-price price">
                                     Low Price
-                                    {this.handlePriceLogo()}
+                                    {this.renderPriceLogo("low_price")}
                                 </th>
-                                <th className="mid-price price" onClick={()  => this.handlePriceClick("mid_price")}>
+                                <th className="mid-price price">
                                     Mid Price
-                                    {this.handlePriceLogo()}
+                                    {this.renderPriceLogo("mid_price")}
                                 </th>
-                                <th className="high-price price" onClick={()  => this.handlePriceClick("high_price")}>
+                                <th className="high-price price">
                                     High Price
-                                    {this.handlePriceLogo()}
+                                    {this.renderPriceLogo("high_price")}
                                 </th>
-                                <th className="market-price price" onClick={()  => this.handlePriceClick("market_price")}>
+                                <th className="market-price price">
                                     Market Price
-                                    {this.handlePriceLogo()}
+                                    {this.renderPriceLogo("market_price")}
                                 </th>
                             </tr>
                         </thead>
@@ -365,5 +452,4 @@ class MyCards extends Component {
         )
     }
 }
-
 export default MyCards

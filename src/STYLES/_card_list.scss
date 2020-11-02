@@ -1,7 +1,7 @@
 .cardlist{
     width: 30%;
     height: 50vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin: auto;
     li{
         &:hover{
