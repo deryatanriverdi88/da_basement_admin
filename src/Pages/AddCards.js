@@ -123,6 +123,7 @@ class AddCards extends Component {
                            name="search"
                            autoComplete="off"
                            autoCorrect="off"
+                           onFocus={this.handleChange}
                            onChange={this.handleChange}
                     />
                 </form>
