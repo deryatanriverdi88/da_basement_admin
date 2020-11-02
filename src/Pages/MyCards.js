@@ -261,14 +261,12 @@ class MyCards extends Component {
         })
     }
 
-    handlePriceLogo = () => {
-        if(this.state.reversePriceList === 'low-to-high'){
-            return <img src="https://img.icons8.com/ultraviolet/20/000000/up-squared.png" alt="up-arrow"/>
-        } else if(this.state.reversePriceList === 'high-to-low'){
-            return <img src="https://img.icons8.com/ultraviolet/20/000000/down-squared.png" alt="down-arrow"/>
-        }
+    renderPriceLogo = (value) => {
+        return <>
+                <img src="https://img.icons8.com/ultraviolet/15/000000/up-squared.png" alt="up-arrow" onClick={()  => this.handlePriceAndAmountClick(value, "high")}/>
+                <img src="https://img.icons8.com/ultraviolet/15/000000/down-squared.png" alt="down-arrow" onClick={()  => this.handlePriceAndAmountClick(value, "low")}/>
+            </>
     }
-
     handleEditSubmit = (e) => {
         e.preventDefault()
         fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${this.state.editCard.id}`, {
