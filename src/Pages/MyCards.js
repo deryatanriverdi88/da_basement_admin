@@ -221,16 +221,16 @@ class MyCards extends Component {
                     count += card[v1]
                 }else{
                     if(card.foil){
-                        delete card[v1]
+                       count = count
                         if(card[v2] === null){
-                            delete card[v2]
+                            count = count
                         }else {
                             count += Number.parseFloat(card[v2] * card.amount)
                         }
                     } else if(!card.foil){
-                        delete card[v2]
+                        count = count
                         if(card[v1] === null){
-                            delete card[v1]
+                            count = count
                         }else {
                             count += Number.parseFloat(card[v1] * card.amount)
                         }
