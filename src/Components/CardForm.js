@@ -244,6 +244,9 @@ class CardForm extends Component {
                                 :
                                 <p>Select a card from above</p>
                             }
+                                   {
+                                    this.renderPopUp()
+                                   }
                     </form>
                         <CardItem
                             card={this.state.card}
