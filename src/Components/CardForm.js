@@ -113,7 +113,7 @@ class CardForm extends Component {
             } else {
                 this.setState({
                     card: card,
-                    cardAdded: true
+                    popUp: true
                 })
             }
         })
