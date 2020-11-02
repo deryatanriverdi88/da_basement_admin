@@ -398,22 +398,21 @@ class MyCards extends Component {
                                             }
                                     </select>
                                 </th>
-
-                                <th className="low-price price" onClick={()  => this.handlePriceClick("low_price")}>
+                                <th className="low-price price">
                                     Low Price
-                                    {this.handlePriceLogo()}
+                                    {this.renderPriceLogo("low_price")}
                                 </th>
-                                <th className="mid-price price" onClick={()  => this.handlePriceClick("mid_price")}>
+                                <th className="mid-price price">
                                     Mid Price
-                                    {this.handlePriceLogo()}
+                                    {this.renderPriceLogo("mid_price")}
                                 </th>
-                                <th className="high-price price" onClick={()  => this.handlePriceClick("high_price")}>
+                                <th className="high-price price">
                                     High Price
-                                    {this.handlePriceLogo()}
+                                    {this.renderPriceLogo("high_price")}
                                 </th>
-                                <th className="market-price price" onClick={()  => this.handlePriceClick("market_price")}>
+                                <th className="market-price price">
                                     Market Price
-                                    {this.handlePriceLogo()}
+                                    {this.renderPriceLogo("market_price")}
                                 </th>
                             </tr>
                         </thead>
