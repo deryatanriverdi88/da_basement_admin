@@ -354,7 +354,10 @@ class MyCards extends Component {
                     <table>
                         <thead>
                             <tr className="row">
-                                <th className="amount"> Amount </th>
+                                <th className="amount">
+                                    Amount
+                                    {this.renderPriceLogo("amount")}
+                                </th>
                                 <th className="name"> Card Name </th>
                                 <th className="rarity">
                                     <select name="rarity" value={this.state.rarity} onChange={this.handleDropdownChange}>
