@@ -10,8 +10,7 @@ class AddCards extends Component {
         cardForm: false,
         popUp: false,
         cardNames: [],
-        cardName: "",
-        binder: {}
+        binder: {},
     }
 
     handleChange = (event) => {
