@@ -188,49 +188,14 @@ class CardForm extends Component {
                                     <h3> {this.state.card.name} - {this.state.card.group_name} </h3>
                             }
                             </div>
-                    }
-                    <div className="dropdown" onClick={this.handleCardDropdownClose}>
-                        {
-                            !this.state.dropDown ?
-                                <button onClick={this.handleDropdown} className="dropbtn">
-                                    {this.props.cards.length > 0 ?
-                                        "Select a card ⬇"
-                                        :
-                                        "Cards are loading..."
-                                    }
-                                </button>
-                                :
-                                <button onClick={this.handleDropdown}className="dropbtn">
-                                    Select Cards
-                                    <span> ⬆ </span>
-                                </button>
                         }
-                        <div className="dropdown-content">
-                            <div className="dropdown-list">
-                                <ul>
-                                    {
-                                        this.state.dropDown && this.props.cards.length  > 0 ?
-                                            this.props.cards.map(card =>{
-                                            return <div className="dropdown-item" key={card.id} onClick={() => this.handleCardClick(card)}>
-                                                   <li> {card.name} </li>
-                                            { card.icon !== "" ?
-                                                <>
-                                                    <div className="icon-div">
-                                                    <img className="icon" src={card.icon} alt={card.icon}/>
-                                                    </div>
-                                                </>
-                                                :
-                                                `${card.group_name}`
-                                            }
-                                                </div>
-                                            })
-                                            :
-                                            null
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <Select
+                        autoFocus
+                        placeholder="Select a card..."
+                        value={this.state.card.value}
+                        onChange={this.handleDropdown}
+                        options={cards}
+                    />
                     <form onSubmit={this.handleSubmit} className="add-card-form">
                         <div className="form-fields">
                             <div className="amount-div">
