@@ -25,10 +25,16 @@ class CardForm extends Component {
         })
     }
 
-    handleDropdown  = ()=>{
+    handleDropdown  = (card)=>{
+        const { normal_low_price, normal_mid_price, normal_high_price, normal_market_price } = card.value
         this.setState({
-            dropDown: !this.state.dropDown
+            card: card.value
         })
+        if(!normal_low_price && !normal_mid_price && !normal_high_price && !normal_market_price){
+            this.setState({
+                foil: true
+            })
+        }
     }
 
     handleCardClick = (card) => {
