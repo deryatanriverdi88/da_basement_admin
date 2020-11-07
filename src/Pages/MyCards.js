@@ -107,6 +107,7 @@ class MyCards extends Component {
             isFoil: "all-types",
             binderName: "all-binders"
         })
+        this.cardsToRender()
     }
 
     fetchCardsWithAttribute = (att, value) => {
