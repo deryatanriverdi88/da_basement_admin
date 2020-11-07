@@ -19,6 +19,20 @@ class AddCards extends Component {
         })
     }
 
+    updateBinder = (card) => {
+        let clonedBinder = JSON.parse(JSON.stringify(this.state.binder))
+        if(clonedBinder.favorite_cards){
+            clonedBinder.favorite_cards.push(card)
+        }
+        this.setState({
+            binder: clonedBinder
+        })
+    }
+
+    handleBinderBackClick = () => {
+        this.props.history.push({pathname: `/mybinders/${this.state.binder.name}`, state: {binder: this.state.binder}})
+    }
+
     handleClick = (e) => {
         fetch(`http://localhost:4000/card?name=${e.target.value}`)
         .then(res => res.json())
