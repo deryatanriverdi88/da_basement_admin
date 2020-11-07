@@ -274,6 +274,7 @@ class MyCards extends Component {
                 <img src="https://img.icons8.com/ultraviolet/15/000000/down-squared.png" alt="down-arrow" onClick={()  => this.handlePriceAndAmountClick(value, "low")}/>
             </>
     }
+
     handleEditSubmit = (e) => {
         e.preventDefault()
         fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${this.state.editCard.id}`, {
