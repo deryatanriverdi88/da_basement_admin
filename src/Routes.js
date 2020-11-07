@@ -20,6 +20,7 @@ const Routes = () => {
                 <Route exact path='/addCards' component={Pages.AddCards}></Route>
                 <Route exact path='/addCards/:binder' component={Pages.AddCards}></Route>
                 <Route exact path='/mybinders' component={Pages.MyBinders}></Route>
+                <Route exact path="/mybinders/:binder" component={Pages.MyBinders}></Route>
             </Switch>
         </div>
     )
