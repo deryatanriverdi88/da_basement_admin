@@ -223,7 +223,7 @@ class MyBinders extends Component {
 
         const searchedCards = this.props.favoriteCards.filter(card => {
             if(card.name) {
-                if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.search.length).toLowerCase() === this.state.search.toLowerCase()) {
+                if (card.name.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.search.length).toLowerCase() === this.state.search.toLowerCase()) {
                     return card
                 }
             }
