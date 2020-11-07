@@ -383,7 +383,7 @@ class MyCards extends Component {
                                 </th>
                                 <th className="foiled">
                                     <select name="isFoil" value={this.state.isFoil} onChange={this.handleDropdownChange}>
-                                            <option value="all-types" key="all"> All Types </option>
+                                            <option value="all-types" key="all"> All Types</option>
                                             <option value={true}> Foil </option>
                                             <option value={false}> Non Foil</option>
                                     </select>
