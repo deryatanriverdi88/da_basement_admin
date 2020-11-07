@@ -119,7 +119,7 @@ class AddCards extends Component {
         {
             if(this.state.searchValue.length > 0 ){
                 searchedCardNames = this.state.cardNames.filter(card => {
-                    if (card.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
+                    if (card.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
                         return card
                     }
                 })
