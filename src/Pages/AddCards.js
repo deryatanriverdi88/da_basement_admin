@@ -129,7 +129,9 @@ class AddCards extends Component {
             <div className="add-card-div">
                 <h2>
                     <b> Current Binder  : </b>
-                    { this.state.binder.name }
+                    <button onClick={this.handleBinderBackClick}>
+                        { this.state.binder.name }
+                    </button>
                 </h2>
                 <form className="search-card" htmlFor="search">
                     <label> Search </label>
