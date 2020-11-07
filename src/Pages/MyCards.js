@@ -336,9 +336,10 @@ class MyCards extends Component {
                 return card
             }
         })
+
         const searchedCards = newNames.filter(card => {
             if(card.name) {
-                if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
+                if (card.name.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
                     return card
                 }
             }
