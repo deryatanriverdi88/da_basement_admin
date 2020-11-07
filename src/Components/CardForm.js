@@ -122,7 +122,7 @@ class CardForm extends Component {
 
     componentDidUpdate = () => {
         if(this.state.popUp){
-            setTimeout(() => this.setState({popUp: false}), 500)
+            setTimeout(() => this.setState({popUp: false, amount: 1}), 500)
         }
     }
 
