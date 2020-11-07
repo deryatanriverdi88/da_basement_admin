@@ -129,7 +129,7 @@ class CardForm extends Component {
 
     renderPopUp = () => {
         if(this.state.popUp){
-           return  <PopUp card={this.state.card} />
+           return  <PopUp card={this.state.card} amount={this.state.amount}/>
         } else {
            return null
         }
