@@ -366,8 +366,11 @@ class MyCards extends Component {
                                 <th className="amount">
                                     Amount
                                     {this.renderPriceLogo("amount")}
+                                    </th>
+                                <th className="name">
+                                    Card Name
+                                    {this.renderPriceLogo("name")}
                                 </th>
-                                <th className="name"> Card Name </th>
                                 <th className="rarity">
                                     <select name="rarity" value={this.state.rarity}onChange={this.handleDropdownChange}>
                                         <option value="all-rarities" key="all"> All Rarities </option>
