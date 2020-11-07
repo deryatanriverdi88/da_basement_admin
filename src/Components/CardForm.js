@@ -116,6 +116,7 @@ class CardForm extends Component {
                     popUp: true
                 })
             }
+            this.props.updateBinder(card)
         })
     }
 
