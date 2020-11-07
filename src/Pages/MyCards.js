@@ -107,6 +107,7 @@ class MyCards extends Component {
             isFoil: "all-types",
             binderName: "all-binders"
         })
+        this.cardsToRender()
     }
 
     fetchCardsWithAttribute = (att, value) => {
@@ -249,7 +250,13 @@ class MyCards extends Component {
             } else if (reversePriceListType === "low") {
                 newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[value])  > Number.parseFloat(b[value]) ?  1 : -1 ))
             }
-        } else {
+        } else if(value === "name"){
+            if(reversePriceListType === "high"){
+                newList = this.cardsToRender().sort((a,b ) => (a[value]  <  b[value] ?  1 : -1 ))
+            } else if (reversePriceListType === "low") {
+                newList = this.cardsToRender().sort((a,b ) => (a[value] > b[value] ?  1 : -1 ))
+            }
+        }else {
             if(reversePriceListType === "high"){
                 newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${value}`] || a[`foil_${value}`])  <  Number.parseFloat(b[`normal_${value}`] || b[`foil_${value}`]) ?  1 : -1 ))
             }else if (reversePriceListType === "low") {
@@ -267,6 +274,7 @@ class MyCards extends Component {
                 <img src="https://img.icons8.com/ultraviolet/15/000000/down-squared.png" alt="down-arrow" onClick={()  => this.handlePriceAndAmountClick(value, "low")}/>
             </>
     }
+
     handleEditSubmit = (e) => {
         e.preventDefault()
         fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${this.state.editCard.id}`, {
@@ -328,9 +336,10 @@ class MyCards extends Component {
                 return card
             }
         })
+
         const searchedCards = newNames.filter(card => {
             if(card.name) {
-                if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
+                if (card.name.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
                     return card
                 }
             }
@@ -357,8 +366,11 @@ class MyCards extends Component {
                                 <th className="amount">
                                     Amount
                                     {this.renderPriceLogo("amount")}
+                                    </th>
+                                <th className="name">
+                                    Card Name
+                                    {this.renderPriceLogo("name")}
                                 </th>
-                                <th className="name"> Card Name </th>
                                 <th className="rarity">
                                     <select name="rarity" value={this.state.rarity}onChange={this.handleDropdownChange}>
                                         <option value="all-rarities" key="all"> All Rarities </option>
@@ -371,7 +383,7 @@ class MyCards extends Component {
                                 </th>
                                 <th className="foiled">
                                     <select name="isFoil" value={this.state.isFoil} onChange={this.handleDropdownChange}>
-                                            <option value="all-types" key="all"> All Types </option>
+                                            <option value="all-types" key="all"> All Types</option>
                                             <option value={true}> Foil </option>
                                             <option value={false}> Non Foil</option>
                                     </select>

@@ -81,7 +81,7 @@ class CardForm extends Component {
             },
             body: JSON.stringify({
                 user_id: this.props.current_user.id,
-                amount: this.state.amount,
+                amount: Number.parseInt(this.state.amount),
                 binder_id: this.props.binder.id,
                 foil: this.state.foil,
                 name: this.state.card.name,
@@ -116,19 +116,20 @@ class CardForm extends Component {
                     popUp: true
                 })
             }
+            this.props.updateBinder(card)
         })
     }
 
     componentDidUpdate = () => {
         if(this.state.popUp){
-            setTimeout(() => this.setState({popUp: false}), 500)
+            setTimeout(() => this.setState({popUp: false, amount: 1}), 500)
         }
     }
 
 
     renderPopUp = () => {
         if(this.state.popUp){
-           return  <PopUp card={this.state.card} />
+           return  <PopUp card={this.state.card} amount={this.state.amount}/>
         } else {
            return null
         }

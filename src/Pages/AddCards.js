@@ -19,6 +19,20 @@ class AddCards extends Component {
         })
     }
 
+    updateBinder = (card) => {
+        let clonedBinder = JSON.parse(JSON.stringify(this.state.binder))
+        if(clonedBinder.favorite_cards){
+            clonedBinder.favorite_cards.push(card)
+        }
+        this.setState({
+            binder: clonedBinder
+        })
+    }
+
+    handleBinderBackClick = () => {
+        this.props.history.push({pathname: `/mybinders/${this.state.binder.name}`, state: {binder: this.state.binder}})
+    }
+
     handleClick = (e) => {
         fetch(`http://localhost:4000/card?name=${e.target.value}`)
         .then(res => res.json())
@@ -26,7 +40,8 @@ class AddCards extends Component {
             this.props.getCards(cardItem)
         })
         this.setState({
-            cardForm: !this.state.cardForm
+            cardForm: !this.state.cardForm,
+            searchValue: ""
         })
     }
 
@@ -104,7 +119,7 @@ class AddCards extends Component {
         {
             if(this.state.searchValue.length > 0 ){
                 searchedCardNames = this.state.cardNames.filter(card => {
-                    if (card.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
+                    if (card.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
                         return card
                     }
                 })
@@ -114,7 +129,9 @@ class AddCards extends Component {
             <div className="add-card-div">
                 <h2>
                     <b> Current Binder  : </b>
-                    { this.state.binder.name }
+                    <button onClick={this.handleBinderBackClick}>
+                        { this.state.binder.name }
+                    </button>
                 </h2>
                 <form className="search-card" htmlFor="search">
                     <label> Search </label>
@@ -149,6 +166,7 @@ class AddCards extends Component {
                                 handleClose={this.handleClose}
                                 binder={this.state.binder}
                                 handleEscape={this.handleEscape}
+                                updateBinder={this.updateBinder}
                             />
                         </>
                         :

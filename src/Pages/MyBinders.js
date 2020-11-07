@@ -16,6 +16,21 @@ class MyBinders extends Component {
         reversePriceList: "high-to-low"
     }
 
+    componentDidMount = () =>{
+        if(this.props.history.location.state && this.props.history.location.state.binder.id){
+            this.setState({
+                binderItem: this.props.history.location.state.binder
+            })
+            const sortedCards = this.props.history.location.state.binder.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
+            this.props.setFavoriteCards(sortedCards)
+            }
+        else {
+            this.setState({
+                binderItem: {}
+            })
+        }
+    }
+
     handleBinderClick = (e) => {
         let binderItem= this.props.binders.filter(i => {
             return i.id === parseInt(e.target.value)
@@ -25,6 +40,7 @@ class MyBinders extends Component {
         })
         const sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
         this.props.setFavoriteCards(sortedCards)
+        this.props.history.push({pathname: `/mybinders/${binderItem.name}`, state: {binder: binderItem}})
     }
 
     handleEditBinderClick = () => {
@@ -207,7 +223,7 @@ class MyBinders extends Component {
 
         const searchedCards = this.props.favoriteCards.filter(card => {
             if(card.name) {
-                if (card.name.replace(/[^a-zA-Z0-9]/g, "").substr(0, this.state.search.length).toLowerCase() === this.state.search.toLowerCase()) {
+                if (card.name.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.search.length).toLowerCase() === this.state.search.toLowerCase()) {
                     return card
                 }
             }
