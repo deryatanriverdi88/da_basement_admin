@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import ReactHover, {Trigger, Hover} from 'react-hover'
 const optionsCursorTrueWithMargin = {followCursor:true, shiftX: 80, shiftY: -280}
 
-export default class MyCardItem extends Component {
-
-    render() {
-        return (
-            <>
+export default function MyCardItem() {
+    return (
+        <>
                 <tr className="row" key={this.props.card.id}>
                     <td>
                         {
@@ -87,6 +85,5 @@ export default class MyCardItem extends Component {
                     }
                 </tr>
             </>
-        )
-    }
+    )
 }
