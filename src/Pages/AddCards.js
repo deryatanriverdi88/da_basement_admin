@@ -166,6 +166,7 @@ class AddCards extends Component {
                                 handleClose={this.handleClose}
                                 binder={this.state.binder}
                                 handleEscape={this.handleEscape}
+                                updateBinder={this.updateBinder}
                             />
                         </>
                         :
