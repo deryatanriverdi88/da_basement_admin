@@ -81,7 +81,7 @@ class CardForm extends Component {
             },
             body: JSON.stringify({
                 user_id: this.props.current_user.id,
-                amount: this.state.amount,
+                amount: Number.parseInt(this.state.amount),
                 binder_id: this.props.binder.id,
                 foil: this.state.foil,
                 name: this.state.card.name,
