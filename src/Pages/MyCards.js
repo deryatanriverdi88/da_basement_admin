@@ -250,7 +250,13 @@ class MyCards extends Component {
             } else if (reversePriceListType === "low") {
                 newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[value])  > Number.parseFloat(b[value]) ?  1 : -1 ))
             }
-        } else {
+        } else if(value === "name"){
+            if(reversePriceListType === "high"){
+                newList = this.cardsToRender().sort((a,b ) => (a[value]  <  b[value] ?  1 : -1 ))
+            } else if (reversePriceListType === "low") {
+                newList = this.cardsToRender().sort((a,b ) => (a[value] > b[value] ?  1 : -1 ))
+            }
+        }else {
             if(reversePriceListType === "high"){
                 newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${value}`] || a[`foil_${value}`])  <  Number.parseFloat(b[`normal_${value}`] || b[`foil_${value}`]) ?  1 : -1 ))
             }else if (reversePriceListType === "low") {
