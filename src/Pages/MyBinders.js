@@ -16,6 +16,21 @@ class MyBinders extends Component {
         reversePriceList: "high-to-low"
     }
 
+    componentDidMount = () =>{
+        if(this.props.history.location.state && this.props.history.location.state.binder.id){
+            this.setState({
+                binderItem: this.props.history.location.state.binder
+            })
+            const sortedCards = this.props.history.location.state.binder.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
+            this.props.setFavoriteCards(sortedCards)
+            }
+        else {
+            this.setState({
+                binderItem: {}
+            })
+        }
+    }
+
     handleBinderClick = (e) => {
         let binderItem= this.props.binders.filter(i => {
             return i.id === parseInt(e.target.value)
