@@ -440,6 +440,7 @@ class MyCards extends Component {
                                                       handleClick={this.handleClick}
                                                       editForm={this.state.editForm}
                                                       amount={this.state.amount}
+                                                      foil={this.state.foil}
                                                       handleChange={this.handleChange}
                                                       editCard={this.state.editCard}
                                                       handleEditSubmit={this.handleEditSubmit}
