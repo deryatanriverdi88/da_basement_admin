@@ -145,7 +145,7 @@ class CardForm extends Component {
                             label: <div className="select" style={{display: "flex", justifyContent: "left"}}>
                                         <p> {card.name} </p>
                                         {
-                                            card.icon.length > 0 ?
+                                            card.icon ?
                                                 <div className="icon-div" style={{width: "30px", height: "30px", margin: "auto"}}>
                                                     <img src={card.icon} className="icon"style={{width: "100%", height: "100%"}}/>
                                                 </div>
