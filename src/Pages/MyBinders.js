@@ -18,11 +18,16 @@ class MyBinders extends Component {
 
     componentDidMount = () =>{
         if(this.props.history.location.state && this.props.history.location.state.binder.id){
-            this.setState({
-                binderItem: this.props.history.location.state.binder
-            })
-            const sortedCards = this.props.history.location.state.binder.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
-            this.props.setFavoriteCards(sortedCards)
+            fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.props.history.location.state.binder.id}`)
+            .then(res => res.json())
+            .then(binderObj => {
+                console.log(binderObj)
+                const sortedCards = binderObj.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
+                this.props.setFavoriteCards(sortedCards)
+                this.setState({
+                    binderItem: binderObj
+                })
+             })
             }
         else {
             this.setState({
