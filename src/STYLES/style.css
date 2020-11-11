@@ -114,12 +114,40 @@
   outline: 0;
 }
 
+@media only screen and (max-width: 600px) {
+  #nav-bar .link-div {
+    padding: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  #nav-bar .link-div .link {
+    font-size: 15px;
+    width: 100%;
+    line-height: normal;
+  }
+  #nav-bar .link-div #logout, #nav-bar .link-div #add-binder {
+    width: 50%;
+    padding: 5px;
+    font-size: 15px;
+  }
+}
+
 #header .header-name {
   color: #43456b;
   text-shadow: 2px 2px 4px #9396d6;
   letter-spacing: 10px;
   font-size: 50px;
   padding: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  #header .header-name {
+    font-size: 30px;
+    padding: 5px;
+  }
 }
 
 .search-card label {
@@ -140,7 +168,7 @@
 .table {
   margin: 20px auto;
   height: 50vh;
-  overflow-y: scroll;
+  overflow: scroll;
   width: 100%;
 }
 
@@ -226,6 +254,39 @@
   font-size: 15px;
   font-family: 'Comfortaa', cursive;
   font-size: 13px;
+}
+
+@media only screen and (max-width: 600px) {
+  .table {
+    width: 90%;
+    overflow: scroll;
+  }
+  .table table {
+    overflow: scroll;
+  }
+  .table table th, .table table td {
+    width: auto;
+    height: 50px;
+    font-size: 10px;
+  }
+  .table .edit-input {
+    width: 1.5em;
+  }
+  .table .edit-card, .table .submit, .table .delete-card {
+    margin: 5px auto;
+    width: auto;
+    font-size: 10px;
+  }
+  .table select {
+    width: inherit;
+    height: 100%;
+    background: #43456b;
+    color: white;
+    border-color: transparent;
+    font-size: 15px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 10px;
+  }
 }
 
 .cardlist {

@@ -32,3 +32,23 @@
         }
     }
 }
+
+@media only screen and (max-width: 600px){
+    #nav-bar{
+        .link-div{
+            padding: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            .link{
+                font-size: 15px;
+                width: 100%;
+                line-height: normal;
+            }
+            #logout, #add-binder{
+                width: 50%;
+                padding: 5px;
+                font-size: 15px;
+            }
+        }
+    }
+}
