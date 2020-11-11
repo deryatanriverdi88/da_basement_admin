@@ -46,7 +46,7 @@ function NavBar(props) {
                         <button id="add-binder" onClick={handleBinderForm}>Add Binder</button>
                         <button id="logout" onClick={logOut}>
                             <NavLink to="/">
-                                    Logout
+                                Logout
                             </NavLink>
                         </button>
                     </div>
