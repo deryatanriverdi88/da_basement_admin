@@ -134,9 +134,6 @@ class AddCards extends Component {
                            onChange={this.handleChange}
                     />
                 </form>
-                {/* {
-                    this.renderPopUp(this.state.popUp)
-                } */}
                 <select name="cardName" style={{width: "30%"}} onChange={this.handleClick} placeholder="Select a card">
                      <option hidden>There are {searchedCardNames.length} names...</option>
                      {
