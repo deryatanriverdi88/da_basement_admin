@@ -8,10 +8,8 @@ $base-color: #43456b;
         width: 100%;
         border-collapse: collapse;
         background: white;
-        th{
-            width: 5%;
-        }
         th, td{
+            width: auto;
             height: 50px;
             text-align: center;
             font-size: 13px;
