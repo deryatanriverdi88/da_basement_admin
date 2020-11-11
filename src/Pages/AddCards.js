@@ -33,7 +33,7 @@ class AddCards extends Component {
     }
 
     handleClick = (e) => {
-        fetch(`http://localhost:4000/card?name=${e.target.value}`)
+        fetch(`https://da-basement-magic-cards-api.herokuapp.com/card?name=${e.target.value}`)
         .then(res => res.json())
         .then(cardItem => {
             this.props.getCards(cardItem)
