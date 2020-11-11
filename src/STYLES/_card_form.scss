@@ -173,3 +173,17 @@
         }
     }
 }
+
+@media only screen and (max-width: 600px){
+    .background-for-z-index, .background-for-pop-up-index{
+        .card-form, .binder-div{
+            width: 100%;
+        }
+        .card-item{
+            font-size: 10px;
+            img{
+                width: 50%;
+            }
+        }
+    }
+}
