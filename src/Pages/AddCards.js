@@ -104,14 +104,6 @@ class AddCards extends Component {
         }
     }
 
-    // renderPopUp = (cond) => {
-    //     if(cond === true){
-    //        return  <PopUp card={this.state.card} />
-    //     } else if(cond === false) {
-    //        return null
-    //     }
-    // }
-
     render() {
         let searchedCardNames =[]
         {
