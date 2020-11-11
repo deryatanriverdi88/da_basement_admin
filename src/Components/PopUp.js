@@ -3,6 +3,7 @@ import React from 'react'
 export default function PopUp(props) {
     return (
         <div className="background-for-pop-up-index">
+             {console.log(props.card.foil)}
             <div className="pop-up">
                 {console.log(props.card)}
                 <div className ="pop-up-fade">
