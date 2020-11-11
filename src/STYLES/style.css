@@ -533,6 +533,18 @@
   margin: auto;
 }
 
+@media only screen and (max-width: 600px) {
+  .background-for-z-index .card-form, .background-for-z-index .binder-div, .background-for-pop-up-index .card-form, .background-for-pop-up-index .binder-div {
+    width: 100%;
+  }
+  .background-for-z-index .card-item, .background-for-pop-up-index .card-item {
+    font-size: 10px;
+  }
+  .background-for-z-index .card-item img, .background-for-pop-up-index .card-item img {
+    width: 50%;
+  }
+}
+
 * {
   padding: 0;
   margin: 0;
