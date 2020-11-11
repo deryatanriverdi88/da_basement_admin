@@ -18,11 +18,16 @@ class MyBinders extends Component {
 
     componentDidMount = () =>{
         if(this.props.history.location.state && this.props.history.location.state.binder.id){
-            this.setState({
-                binderItem: this.props.history.location.state.binder
-            })
-            const sortedCards = this.props.history.location.state.binder.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
-            this.props.setFavoriteCards(sortedCards)
+            fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.props.history.location.state.binder.id}`)
+            .then(res => res.json())
+            .then(binderObj => {
+                console.log(binderObj)
+                const sortedCards = binderObj.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
+                this.props.setFavoriteCards(sortedCards)
+                this.setState({
+                    binderItem: binderObj
+                })
+             })
             }
         else {
             this.setState({
@@ -212,7 +217,7 @@ class MyBinders extends Component {
     }
 
     render() {
-        this.props.favoriteCards.map(card => {
+        const newNames = this.props.favoriteCards.map(card => {
             if(card.name.toLowerCase().startsWith("the ")){
                 card.name = card.name.slice(4, card.name.length).concat(', The')
                 return card
@@ -221,7 +226,9 @@ class MyBinders extends Component {
             }
         })
 
-        const searchedCards = this.props.favoriteCards.filter(card => {
+        newNames.sort((a,b) => a.name > b.name ? 1 : -1)
+
+        const searchedCards = newNames.filter(card => {
             if(card.name) {
                 if (card.name.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.search.length).toLowerCase() === this.state.search.toLowerCase()) {
                     return card

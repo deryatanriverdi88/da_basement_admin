@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CardForm from '../Components/CardForm'
-import PopUp from '../Components/PopUp'
 
 class AddCards extends Component {
     state = {
@@ -10,7 +9,7 @@ class AddCards extends Component {
         cardForm: false,
         popUp: false,
         cardNames: [],
-        binder: {},
+        binder: {}
     }
 
     handleChange = (event) => {
@@ -30,7 +29,7 @@ class AddCards extends Component {
     }
 
     handleBinderBackClick = () => {
-        this.props.history.push({pathname: `/mybinders/${this.state.binder.name}`, state: {binder: this.state.binder}})
+       this.props.history.push({pathname: `/mybinders/${this.state.binder.name}`, state: {binder: this.state.binder}})
     }
 
     handleClick = (e) => {
@@ -40,8 +39,7 @@ class AddCards extends Component {
             this.props.getCards(cardItem)
         })
         this.setState({
-            cardForm: !this.state.cardForm,
-            searchValue: ""
+            cardForm: !this.state.cardForm
         })
     }
 
@@ -106,14 +104,6 @@ class AddCards extends Component {
         }
     }
 
-    // renderPopUp = (cond) => {
-    //     if(cond === true){
-    //        return  <PopUp card={this.state.card} />
-    //     } else if(cond === false) {
-    //        return null
-    //     }
-    // }
-
     render() {
         let searchedCardNames =[]
         {
@@ -144,9 +134,6 @@ class AddCards extends Component {
                            onChange={this.handleChange}
                     />
                 </form>
-                {/* {
-                    this.renderPopUp(this.state.popUp)
-                } */}
                 <select name="cardName" style={{width: "30%"}} onChange={this.handleClick} placeholder="Select a card">
                      <option hidden>There are {searchedCardNames.length} names...</option>
                      {

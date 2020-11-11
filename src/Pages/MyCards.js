@@ -7,6 +7,7 @@ class MyCards extends Component {
     state={
         myCards: [],
         amount: null,
+        foil: null,
         editForm: false,
         editCard: {},
         searchValue: "",
@@ -285,7 +286,8 @@ class MyCards extends Component {
             'Accept':'application/json'
           },
           body: JSON.stringify({
-           amount: this.state.amount
+           amount: this.state.amount,
+           foil: this.state.foil
           })
         })
         .then(res => res.json())
@@ -299,6 +301,7 @@ class MyCards extends Component {
             myCards:  newCards,
             editForm: false,
             amount: null,
+            foil: null,
             cardsWithBinderName: updatedCards,
             cardsWithIsfoil: updatedCards ,
             cardsWithSetName: updatedCards,
@@ -437,6 +440,7 @@ class MyCards extends Component {
                                                       handleClick={this.handleClick}
                                                       editForm={this.state.editForm}
                                                       amount={this.state.amount}
+                                                      foil={this.state.foil}
                                                       handleChange={this.handleChange}
                                                       editCard={this.state.editCard}
                                                       handleEditSubmit={this.handleEditSubmit}
