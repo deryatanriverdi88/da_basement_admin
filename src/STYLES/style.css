@@ -271,8 +271,6 @@
     overflow: scroll;
   }
   .table table th, .table table td {
-    width: auto;
-    height: 50px;
     font-size: 10px;
   }
   .table .edit-input {
