@@ -150,11 +150,8 @@
   background: white;
 }
 
-.table table th {
-  width: 5%;
-}
-
 .table table th, .table table td {
+  width: auto;
   height: 50px;
   text-align: center;
   font-size: 13px;
