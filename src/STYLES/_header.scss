@@ -7,3 +7,12 @@
         padding: 15px;
     }
 }
+
+@media only screen and (max-width: 600px){
+    #header{
+        .header-name{
+            font-size: 30px;
+            padding: 5px;
+        }
+    }
+}
