@@ -39,8 +39,7 @@ class AddCards extends Component {
             this.props.getCards(cardItem)
         })
         this.setState({
-            cardForm: !this.state.cardForm,
-            searchValue: ""
+            cardForm: !this.state.cardForm
         })
     }
 
