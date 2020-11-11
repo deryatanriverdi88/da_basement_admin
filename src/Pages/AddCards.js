@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CardForm from '../Components/CardForm'
-import PopUp from '../Components/PopUp'
 
 class AddCards extends Component {
     state = {
