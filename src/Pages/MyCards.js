@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import MyCardItem from '../Components/MyCardItem'
 const RARITIES = [ "Common", "Land", "Uncommon","Mythic",  "Promo", "Special", "Rare", "Token"]
 
-
 class MyCards extends Component {
     state={
-        myCards: [],
         amount: null,
         foil: null,
         editForm: false,
@@ -15,7 +14,6 @@ class MyCards extends Component {
         setName: "all-sets",
         isFoil: "all-types",
         setNames: [],
-        binderNames: [], 
         binderName: "all-binders",
         cardsWithRarity : [],
         cardsWithSetName: [],
@@ -31,33 +29,20 @@ class MyCards extends Component {
     }
 
     fetchCards = () => {
-        fetch('https://da-basement-games-api.herokuapp.com/favorite_cards')
-        // fetch('http://localhost:5000/favorite_cards')
-        .then(res => res.json())
-        .then(cardItems => {
-            const setNames = cardItems.filter(card=>{
-                return !this[card.group_name]? this[card.group_name] = true :false
-            })
-              this.setState({
-                myCards: cardItems,
-                setNames: setNames.sort((a,b) => a.group_name > b.group_name ? 1 : -1)
-            })
+        const setNames = this.props.favoriteCards.filter(card=>{
+            return !this[card.group_name]? this[card.group_name] = true :false
         })
-        fetch('https://da-basement-games-api.herokuapp.com/binders')
-        .then(res => res.json())
-        .then(binderObj => {
-            this.setState({
-                binderNames: binderObj
-            })
-        })
+          this.setState({
+            setNames: setNames.sort((a,b) => a.group_name > b.group_name ? 1 : -1)
+          })
     }
-
 
     handleClick = (e, card) => {
         this.setState({
             amount: card.amount,
             editForm: !this.state.editForm,
-            editCard: card
+            editCard: card,
+            foil: card.foil
         })
     }
 
@@ -126,16 +111,18 @@ class MyCards extends Component {
             } else if(att === "binderName"){
                 this.filterByBinder()
             } else if(att === "isFoil"){
-                const newCards = this.state.myCards.filter(card => {
+                let newCards = []
+                 this.props.favoriteCards.filter(card => {
                     if(value === "true"){
                         if(card.foil === true){
-                            return card
+                            newCards.push(card)
                         }
                     }else if(value === "false"){
                         if(card.foil === false){
-                            return card
+                            newCards.push(card)
                         }
                     }
+                    return newCards
                 })
                 this.setState({
                     cardsWithIsfoil: newCards
@@ -178,7 +165,7 @@ class MyCards extends Component {
 
     cardsToRender = () => {
         if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.binderName === "all-binders" && this.state.isFoil === "all-types"){
-            return this.state.myCards
+            return this.props.favoriteCards
         }else if(this.state.rarity !== "all-rarities"){
             return this.state.cardsWithRarity
         }else if(this.state.setName !== "all-sets"){
@@ -191,17 +178,20 @@ class MyCards extends Component {
     }
 
     filterByBinder = () => {
-            const newCards = this.state.myCards.filter(card =>{
+        let newCards = []
+            this.props.favoriteCards.filter(card =>{
                 if(this.state.binderName === 'no-binder'){
                     if(card.binder === null){
-                        return card
+                        newCards.push(card)
                     }
+                    return newCards
                 }else {
                     if(card.binder !== null){
                         if(card.binder.name === this.state.binderName){
-                            return card
+                            newCards.push(card)
                         }
                     }
+                    return newCards
                 }
             })
         this.setState({
@@ -217,22 +207,20 @@ class MyCards extends Component {
 
     handleCount = (v1, v2) => {
         let count = 0
-        if(this.state.myCards.length > 0){
-            this.cardsToRender().map(card =>{
+        if(this.props.favoriteCards.length > 0){
+            this.cardsToRender().forEach(card =>{
                 if(v1 === "amount"){
-                    count += card[v1]
+                   count += card[v1]
                 }else{
                     if(card.foil){
-                       count = count
                         if(card[v2] === null){
-                            count = count
+                           return null
                         }else {
                             count += Number.parseFloat(card[v2] * card.amount)
                         }
                     } else if(!card.foil){
-                        count = count
                         if(card[v1] === null){
-                            count = count
+                            return null
                         }else {
                             count += Number.parseFloat(card[v1] * card.amount)
                         }
@@ -292,13 +280,13 @@ class MyCards extends Component {
         })
         .then(res => res.json())
         .then(card => {
-            const newCards =  this.state.myCards.map(cardItem => {
+            const newCards =  this.props.favoriteCards.map(cardItem => {
               return cardItem.id === card.id ? card : cardItem
           })
           const updatedCards = this.cardsAfterEdition(this.state.attribute, card, {})
+          this.props.setFavoriteCards(newCards)
           this.setState({
             editCard:card,
-            myCards:  newCards,
             editForm: false,
             amount: null,
             foil: null,
@@ -315,12 +303,12 @@ class MyCards extends Component {
         // fetch(`http://localhost:5000/favorite_cards/${card.id}`, {
                   method: 'DELETE'
              }).then(res => {
-            const newCards = this.state.myCards.filter(myCard =>{
+            const newCards = this.props.favoriteCards.filter(myCard =>{
                return myCard.id !== card.id
            })
            const updatedCards = this.cardsAfterEdition(this.state.attribute, {},card,)
+           this.props.setFavoriteCards(newCards)
            this.setState({
-            myCards: newCards,
             cardDeleted: card,
             cardsWithBinderName: updatedCards,
             cardsWithIsfoil: updatedCards ,
@@ -340,22 +328,23 @@ class MyCards extends Component {
             }
         })
 
-        const searchedCards = newNames.filter(card => {
+        let searchedCards= []
+        newNames.filter(card => {
             if(card.name) {
                 if (card.name.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
-                    return card
+                    searchedCards.push(card)
                 }
             }
+            return searchedCards
         })
 
         return (
             <>
                 <form className="search-card" htmlFor="search">
                     <label> Search </label>
-                    <input className="add-card-input"
+                    <input className="add-card-input search"
                            type="text"
                            name="search"
-                           className="search"
                            autoComplete="off"
                            autoCorrect="off"
                            onChange={this.handleSearchChange}
@@ -396,7 +385,7 @@ class MyCards extends Component {
                                         <option value="all-binders" key="all">All Binders</option>
                                         <option value="no-binder"> No Binder</option>
                                             {
-                                                this.state.binderNames.map(binder => {
+                                                this.props.binders.map(binder => {
                                                     return <option value={binder.name} key={binder.name}> {binder.name} </option>
                                                 })
                                             }
@@ -433,7 +422,7 @@ class MyCards extends Component {
                         </thead>
                         <tbody>
                             {
-                              this.state.myCards.length > 0 ?
+                              this.props.favoriteCards.length > 0 ?
                                 searchedCards.map((card)=>{
                                    return <MyCardItem card={card}
                                                       key={card.id}
@@ -468,4 +457,21 @@ class MyCards extends Component {
         )
     }
 }
-export default MyCards
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setFavoriteCards: (cardObject) => {
+            dispatch({
+              type: 'SET_FAVORITE_CARDS', payload: cardObject
+            })
+        }
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        favoriteCards: state.favoriteCards,
+        binders: state.addBinders
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyCards)

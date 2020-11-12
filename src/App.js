@@ -23,6 +23,11 @@ function App(props) {
     .then(binderObj => {
       props.setBinders(binderObj)
     })
+    fetch('https://da-basement-games-api.herokuapp.com/favorite_cards')
+        .then(res => res.json())
+        .then(cardItems => {
+            props.setFavoriteCards(cardItems)
+        })
   }, [props])
 
   return (
@@ -39,6 +44,11 @@ const mapDispatchToProps = (dispatch) =>{
       dispatch({
           type: 'SET_USER', payload: userObject
         })
+    },
+    setFavoriteCards: (cardObject) => {
+      dispatch({
+        type: 'SET_FAVORITE_CARDS', payload: cardObject
+      })
     },
     setBinders: (binderObject) => {
       dispatch({

@@ -21,7 +21,6 @@ class MyBinders extends Component {
             fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.props.history.location.state.binder.id}`)
             .then(res => res.json())
             .then(binderObj => {
-                console.log(binderObj)
                 const sortedCards = binderObj.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
                 this.props.setFavoriteCards(sortedCards)
                 this.setState({
@@ -85,26 +84,24 @@ class MyBinders extends Component {
     handleCount = (v1, v2) => {
         let count = 0
         if(this.state.binderItem.id){
-            this.props.favoriteCards.map(card =>{
+            this.props.favoriteCards.forEach(card =>{
                 if(v1 === "amount"){
                     count += card[v1]
-                }else{
-                    if(card.foil){
-                        delete card[v1]
-                        if(card[v2] === null){
-                            delete card[v2]
-                        }else {
-                            count += Number.parseFloat(card[v2] * card.amount)
-                        }
-                    } else if(!card.foil){
-                        delete card[v2]
-                        if(card[v1] === null){
-                            delete card[v1]
-                        }else {
-                            count += Number.parseFloat(card[v1] * card.amount)
-                        }
-                    }
-                }
+                 }else{
+                     if(card.foil){
+                         if(card[v2] === null){
+                            return null
+                         }else {
+                             count += Number.parseFloat(card[v2] * card.amount)
+                         }
+                     } else if(!card.foil){
+                         if(card[v1] === null){
+                             return null
+                         }else {
+                             count += Number.parseFloat(card[v1] * card.amount)
+                         }
+                     }
+                 }
             })
         }
         return count
@@ -228,12 +225,15 @@ class MyBinders extends Component {
 
         newNames.sort((a,b) => a.name > b.name ? 1 : -1)
 
-        const searchedCards = newNames.filter(card => {
+        let searchedCards = []
+
+        newNames.filter(card => {
             if(card.name) {
                 if (card.name.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.search.length).toLowerCase() === this.state.search.toLowerCase()) {
-                    return card
+                    searchedCards.push(card)
                 }
             }
+            return searchedCards
         })
 
         return (
@@ -276,10 +276,9 @@ class MyBinders extends Component {
                 }
                 <form className="search-card" htmlFor="search">
                     <label>Search</label>
-                    <input className="add-card-input"
+                    <input className="add-card-input search"
                            type="text"
                            name="search"
-                           className="search"
                            autoComplete="off"
                            autoCorrect="off"
                            onChange={this.handleChange}
