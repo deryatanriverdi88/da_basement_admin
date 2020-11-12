@@ -303,12 +303,12 @@ class MyCards extends Component {
         // fetch(`http://localhost:5000/favorite_cards/${card.id}`, {
                   method: 'DELETE'
              }).then(res => {
-            const newCards = this.state.myCards.filter(myCard =>{
+            const newCards = this.props.favoriteCards.filter(myCard =>{
                return myCard.id !== card.id
            })
            const updatedCards = this.cardsAfterEdition(this.state.attribute, {},card,)
+           this.props.setFavoriteCards(newCards)
            this.setState({
-            myCards: newCards,
             cardDeleted: card,
             cardsWithBinderName: updatedCards,
             cardsWithIsfoil: updatedCards ,
