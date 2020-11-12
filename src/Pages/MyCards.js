@@ -385,7 +385,7 @@ class MyCards extends Component {
                                         <option value="all-binders" key="all">All Binders</option>
                                         <option value="no-binder"> No Binder</option>
                                             {
-                                                this.state.binderNames.map(binder => {
+                                                this.props.binders.map(binder => {
                                                     return <option value={binder.name} key={binder.name}> {binder.name} </option>
                                                 })
                                             }
