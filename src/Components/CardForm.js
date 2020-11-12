@@ -147,7 +147,7 @@ class CardForm extends Component {
                                         {
                                             card.icon ?
                                                 <div className="icon-div" style={{width: "30px", height: "30px", margin: "auto"}}>
-                                                    <img src={card.icon} className="icon"style={{width: "100%", height: "100%"}}/>
+                                                    <img src={card.icon} className="icon"style={{width: "100%", height: "100%"}} alt="card icon"/>
                                                 </div>
                                                 :
                                                 <div className="icon-div" style={{width: "auto", height: "30px", margin: "auto"}}>
