@@ -175,6 +175,7 @@
   margin: 20px auto;
   height: 50vh;
   overflow: scroll;
+  -webkit-overflow-scrolling: auto;
   width: 100%;
 }
 
@@ -191,16 +192,16 @@
   font-size: 13px;
 }
 
-.table table th, .table table tfoot td {
-  position: -webkit-sticky;
+.table table th, .table table tfoot {
   position: sticky;
+  position: -webkit-sticky;
   top: -5px;
   background: #43456b;
   color: white;
   border: 3px solid #f3f1fd;
 }
 
-.table table tfoot td {
+.table table tfoot {
   bottom: -5px;
 }
 
