@@ -422,7 +422,7 @@ class MyCards extends Component {
                         </thead>
                         <tbody>
                             {
-                              this.state.myCards.length > 0 ?
+                              this.props.favoriteCards.length > 0 ?
                                 searchedCards.map((card)=>{
                                    return <MyCardItem card={card}
                                                       key={card.id}
