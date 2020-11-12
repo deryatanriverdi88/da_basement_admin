@@ -3,6 +3,7 @@ $base-color: #43456b;
     margin:20px auto;
     height: 50vh;
     overflow: scroll;
+    -webkit-overflow-scrolling: auto;
     width: 100%;
     table{
         width: 100%;
@@ -14,14 +15,15 @@ $base-color: #43456b;
             text-align: center;
             font-size: 13px;
         }
-        th, tfoot td{
+        th, tfoot{
             position: sticky;
+            position: -webkit-sticky;
             top: -5px;
             background: #43456b;
             color:white;
             border: 3px solid #f3f1fd;;
         }
-        tfoot td{
+        tfoot{
             bottom: -5px;
         }
         td{
