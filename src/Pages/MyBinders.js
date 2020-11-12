@@ -54,7 +54,7 @@ class MyBinders extends Component {
     }
 
     handleAddCardClick = () => {
-        this.props.history.push({pathname: `/addCards/${this.state.binderItem.name}`, state: {binder: this.state.binderItem}})
+        this.props.history.push({pathname: `/add-cards/${this.state.binderItem.name}`, state: {binder: this.state.binderItem}})
     }
 
     handleCardDelete = (card) => {
