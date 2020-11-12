@@ -18,7 +18,6 @@ class Login extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         fetch('https://da-basement-games-api.herokuapp.com/login', {
-        // fetch('http://localhost:5000/login', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -31,7 +30,6 @@ class Login extends Component {
         })
         .then(res => res.json())
         .then(admin => {
-            console.log(admin)
                 if(admin.error){
                     this.setState({
                         errors: admin.error
