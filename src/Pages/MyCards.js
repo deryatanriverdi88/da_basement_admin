@@ -111,16 +111,18 @@ class MyCards extends Component {
             } else if(att === "binderName"){
                 this.filterByBinder()
             } else if(att === "isFoil"){
-                const newCards = this.state.myCards.filter(card => {
+                let newCards = []
+                 this.props.favoriteCards.filter(card => {
                     if(value === "true"){
                         if(card.foil === true){
-                            return card
+                            newCards.push(card)
                         }
                     }else if(value === "false"){
                         if(card.foil === false){
-                            return card
+                            newCards.push(card)
                         }
                     }
+                    return newCards
                 })
                 this.setState({
                     cardsWithIsfoil: newCards
