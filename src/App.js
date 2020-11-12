@@ -9,7 +9,6 @@ import NavBar from './Components/NavBar'
 function App(props) {
   useEffect(() => {
     fetch("https://da-basement-games-api.herokuapp.com/profile", {
-    // fetch("http://localhost:5000/profile", {
       headers: {
         Authorization: localStorage.token
       }
@@ -24,10 +23,10 @@ function App(props) {
       props.setBinders(binderObj)
     })
     fetch('https://da-basement-games-api.herokuapp.com/favorite_cards')
-        .then(res => res.json())
-        .then(cardItems => {
-            props.setFavoriteCards(cardItems)
-        })
+    .then(res => res.json())
+    .then(cardItems => {
+      props.setFavoriteCards(cardItems)
+    })
   }, [props])
 
   return (

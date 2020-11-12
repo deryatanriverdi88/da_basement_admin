@@ -22,7 +22,7 @@ function BinderForm({current_user, history, setBinderForm}) {
         })
         .then(res => res.json())
         .then(binderObj => {
-            history.push({pathname: `/addCards/${binderObj.name}`,
+            history.push({pathname: `/add-cards/${binderObj.name}`,
             state: {binder: binderObj},
             })
             setBinderForm(false)
