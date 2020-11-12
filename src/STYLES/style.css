@@ -192,16 +192,16 @@
   font-size: 13px;
 }
 
-.table table th, .table table tfoot {
-  position: sticky;
+.table table th, .table table tfoot td {
   position: -webkit-sticky;
+  position: sticky;
   top: -5px;
   background: #43456b;
   color: white;
   border: 3px solid #f3f1fd;
 }
 
-.table table tfoot {
+.table table tfoot td {
   bottom: -5px;
 }
 
