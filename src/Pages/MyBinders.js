@@ -44,7 +44,7 @@ class MyBinders extends Component {
         })
         const sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
         this.props.setFavoriteCards(sortedCards)
-        this.props.history.push({pathname: `/mybinders/${binderItem.name}`, state: {binder: binderItem}})
+        this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
     }
 
     handleEditBinderClick = () => {

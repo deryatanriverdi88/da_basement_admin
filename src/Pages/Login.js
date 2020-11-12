@@ -38,7 +38,7 @@ class Login extends Component {
                     if(admin.current_user.role === "admin"){
                         localStorage.setItem('token', admin.token)
                         this.props.setUser(admin.current_user)
-                        this.props.history.push('/myCards')
+                        this.props.history.push('/my-cards')
                     }  else {
                         this.setState({
                             errors: "This is admin page, you have no permission to login."

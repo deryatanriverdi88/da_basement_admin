@@ -29,7 +29,7 @@ class AddCards extends Component {
     }
 
     handleBinderBackClick = () => {
-       this.props.history.push({pathname: `/mybinders/${this.state.binder.name}`, state: {binder: this.state.binder}})
+       this.props.history.push({pathname: `/my-binders/${this.state.binder.name}`, state: {binder: this.state.binder}})
     }
 
     handleClick = (e) => {

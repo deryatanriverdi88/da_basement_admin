@@ -15,11 +15,11 @@ const Routes = () => {
                 {!localStorage.token ?
                 <Redirect to="/" component={Pages.Login}/> :
                 <>
-                    <Route exact path='/myCards' component={Pages.MyCards}></Route>
-                    <Route exact path='/addCards' component={Pages.AddCards}></Route>
-                    <Route exact path='/addCards/:binder' component={Pages.AddCards}></Route>
-                    <Route exact path='/mybinders' component={Pages.MyBinders}></Route>
-                    <Route exact path="/mybinders/:binder" component={Pages.MyBinders}></Route>
+                    <Route exact path='/my-cards' component={Pages.MyCards}></Route>
+                    <Route exact path='/add-cards' component={Pages.AddCards}></Route>
+                    <Route exact path='/add-cards/:binder' component={Pages.AddCards}></Route>
+                    <Route exact path='/my-binders' component={Pages.MyBinders}></Route>
+                    <Route exact path='/my-binders/:binder' component={Pages.MyBinders}></Route>
                 </>
                 }
             </Switch>
