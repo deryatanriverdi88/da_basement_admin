@@ -207,22 +207,20 @@ class MyCards extends Component {
 
     handleCount = (v1, v2) => {
         let count = 0
-        if(this.state.myCards.length > 0){
-            this.cardsToRender().map(card =>{
+        if(this.props.favoriteCards.length > 0){
+            this.cardsToRender().forEach(card =>{
                 if(v1 === "amount"){
-                    count += card[v1]
+                   count += card[v1]
                 }else{
                     if(card.foil){
-                       count = count
                         if(card[v2] === null){
-                            count = count
+                           return null
                         }else {
                             count += Number.parseFloat(card[v2] * card.amount)
                         }
                     } else if(!card.foil){
-                        count = count
                         if(card[v1] === null){
-                            count = count
+                            return null
                         }else {
                             count += Number.parseFloat(card[v1] * card.amount)
                         }
