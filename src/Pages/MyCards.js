@@ -467,7 +467,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        favoriteCards: state.favoriteCards,
+        favoriteCards: state.favoriteCards.favoriteCards,
         binders: state.addBinders
     }
 }
