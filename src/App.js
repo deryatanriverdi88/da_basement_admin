@@ -23,10 +23,10 @@ function App(props) {
       props.setBinders(binderObj)
     })
     fetch('https://da-basement-games-api.herokuapp.com/favorite_cards')
-        .then(res => res.json())
-        .then(cardItems => {
-            props.setFavoriteCards(cardItems)
-        })
+    .then(res => res.json())
+    .then(cardItems => {
+      props.setFavoriteCards(cardItems)
+    })
   }, [props])
 
   return (
