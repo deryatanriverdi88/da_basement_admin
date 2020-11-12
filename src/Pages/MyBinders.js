@@ -21,7 +21,6 @@ class MyBinders extends Component {
             fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.props.history.location.state.binder.id}`)
             .then(res => res.json())
             .then(binderObj => {
-                console.log(binderObj)
                 const sortedCards = binderObj.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
                 this.props.setFavoriteCards(sortedCards)
                 this.setState({
