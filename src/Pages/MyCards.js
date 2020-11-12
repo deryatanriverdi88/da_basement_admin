@@ -457,4 +457,21 @@ class MyCards extends Component {
         )
     }
 }
-export default MyCards
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setFavoriteCards: (cardObject) => {
+            dispatch({
+              type: 'SET_FAVORITE_CARDS', payload: cardObject
+            })
+        }
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        favoriteCards: state.favoriteCards,
+        binders: state.addBinders
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyCards)
