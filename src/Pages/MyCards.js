@@ -328,12 +328,14 @@ class MyCards extends Component {
             }
         })
 
-        const searchedCards = newNames.filter(card => {
+        let searchedCards= []
+        newNames.filter(card => {
             if(card.name) {
                 if (card.name.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
-                    return card
+                    searchedCards.push(card)
                 }
             }
+            return searchedCards
         })
 
         return (
