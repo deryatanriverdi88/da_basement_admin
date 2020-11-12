@@ -45,6 +45,11 @@ const mapDispatchToProps = (dispatch) =>{
           type: 'SET_USER', payload: userObject
         })
     },
+    setFavoriteCards: (cardObject) => {
+      dispatch({
+        type: 'SET_FAVORITE_CARDS', payload: cardObject
+      })
+    },
     setBinders: (binderObject) => {
       dispatch({
         type: 'SET_BINDERS', payload: binderObject
