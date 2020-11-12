@@ -61,7 +61,7 @@ class MyBinders extends Component {
         fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${card.id}`, {
                   method: 'DELETE'
             }).then(res => {
-            const newCards = this.props.favoriteCards.filter(myCard =>{
+            const newCards = this.props.binderFavoriteCards.filter(myCard =>{
               return myCard.id !== card.id
            })
            this.props.setFavoriteCards(newCards)
@@ -83,7 +83,7 @@ class MyBinders extends Component {
     handleCount = (v1, v2) => {
         let count = 0
         if(this.state.binderItem.id){
-            this.props.favoriteCards.forEach(card =>{
+            this.props.binderFavoriteCards.forEach(card =>{
                 if(v1 === "amount"){
                     count += card[v1]
                  }else{
@@ -121,31 +121,31 @@ class MyBinders extends Component {
     }
 
     handlePriceClick = (price) => {
-        const [normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price] = this.props.favoriteCards
+        const [normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price] = this.props.binderFavoriteCards
         let newList = []
         if(normal_low_price || normal_mid_price || normal_high_price || normal_market_price){
             if(this.state.reversePriceList === "high-to-low"){
                 this.setState({
                     reversePriceList: "low-to-high"
                 })
-                return newList = [...newList, this.props.favoriteCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+                return newList = [...newList, this.props.binderFavoriteCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             } else if (this.state.reversePriceList === "low-to-high") {
                 this.setState({
                     reversePriceList: "high-to-low"
                 })
-                return newList = [...newList, this.props.favoriteCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+                return newList = [...newList, this.props.binderFavoriteCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             }
         } else if(foil_low_price  || foil_mid_price || foil_high_price || foil_market_price) {
             if(this.state.reversePriceList === "high-to-low"){
                 this.setState({
                     reversePriceList: "low-to-high"
                 })
-                return newList = [...newList, this.props.favoriteCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+                return newList = [...newList, this.props.binderFavoriteCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             } else if (this.state.reversePriceList === "low-to-high") {
                 this.setState({
                     reversePriceList: "high-to-low"
                 })
-               return newList = [...newList, this.props.favoriteCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
+               return newList = [...newList, this.props.binderFavoriteCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
             }
         }
         this.props.setFavoriteCards(newList)
@@ -165,7 +165,7 @@ class MyBinders extends Component {
         })
         .then(res => res.json())
         .then(card => {
-            const newCards = this.props.favoriteCards.map(cardItem => {
+            const newCards = this.props.binderFavoriteCards.map(cardItem => {
                 return cardItem.id === card.id ? card : cardItem
             })
             this.setState({
@@ -212,7 +212,7 @@ class MyBinders extends Component {
     }
 
     render() {
-        const newNames = this.props.favoriteCards.map(card => {
+        const newNames = this.props.binderFavoriteCards.map(card => {
             if(card.name.toLowerCase().startsWith("the ")){
                 card.name = card.name.slice(4, card.name.length).concat(', The')
                 return card
