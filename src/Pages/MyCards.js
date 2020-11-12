@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import MyCardItem from '../Components/MyCardItem'
 const RARITIES = [ "Common", "Land", "Uncommon","Mythic",  "Promo", "Special", "Rare", "Token"]
 
-
 class MyCards extends Component {
     state={
-        myCards: [],
         amount: null,
         foil: null,
         editForm: false,
@@ -15,7 +14,6 @@ class MyCards extends Component {
         setName: "all-sets",
         isFoil: "all-types",
         setNames: [],
-        binderNames: [], 
         binderName: "all-binders",
         cardsWithRarity : [],
         cardsWithSetName: [],
