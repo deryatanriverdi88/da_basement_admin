@@ -49,7 +49,7 @@ export default function MyCardItem(props) {
                             <td>
                                 {
                                     props.editForm && props.editCard.id === props.card.id ?
-                                <select onChange={props.handleChange}>
+                                <select name="foil" onChange={props.handleChange}>
                                     <option hidden>Select</option>
                                     <option value={true}>Yes</option>
                                     <option value={false}>No</option>
