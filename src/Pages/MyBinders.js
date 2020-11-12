@@ -225,12 +225,15 @@ class MyBinders extends Component {
 
         newNames.sort((a,b) => a.name > b.name ? 1 : -1)
 
-        const searchedCards = newNames.filter(card => {
+        let searchedCards = []
+
+        newNames.filter(card => {
             if(card.name) {
                 if (card.name.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.search.length).toLowerCase() === this.state.search.toLowerCase()) {
-                    return card
+                    searchedCards.push(card)
                 }
             }
+            return searchedCards
         })
 
         return (
