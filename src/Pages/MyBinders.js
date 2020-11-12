@@ -366,7 +366,7 @@ const mapDispatchToProps = (dispatch)=>{
         },
         setFavoriteCards: (card) => {
             dispatch({
-                type: 'SET_FAVORITE_CARDS', payload: card
+                type: 'SET_BINDER_FAVORITE_CARDS', payload: card
             })
         }
     }
