@@ -280,13 +280,13 @@ class MyCards extends Component {
         })
         .then(res => res.json())
         .then(card => {
-            const newCards =  this.state.myCards.map(cardItem => {
+            const newCards =  this.props.favoriteCards.map(cardItem => {
               return cardItem.id === card.id ? card : cardItem
           })
           const updatedCards = this.cardsAfterEdition(this.state.attribute, card, {})
+          this.props.setFavoriteCards(newCards)
           this.setState({
             editCard:card,
-            myCards:  newCards,
             editForm: false,
             amount: null,
             foil: null,
