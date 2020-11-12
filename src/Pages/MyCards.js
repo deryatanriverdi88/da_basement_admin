@@ -165,7 +165,7 @@ class MyCards extends Component {
 
     cardsToRender = () => {
         if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.binderName === "all-binders" && this.state.isFoil === "all-types"){
-            return this.state.myCards
+            return this.props.favoriteCards
         }else if(this.state.rarity !== "all-rarities"){
             return this.state.cardsWithRarity
         }else if(this.state.setName !== "all-sets"){
