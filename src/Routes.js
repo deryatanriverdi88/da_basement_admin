@@ -12,15 +12,16 @@ const Routes = () => {
                         <Pages.Login/>
                     }
                 </Route>
-                <Route exact path='/myCards' component={Pages.MyCards}>
-                    {!localStorage.token ?
-                    <Redirect to="/" component={Pages.Login}/> :
-                    <Pages.MyCards/>}
-                </Route>
-                <Route exact path='/addCards' component={Pages.AddCards}></Route>
-                <Route exact path='/addCards/:binder' component={Pages.AddCards}></Route>
-                <Route exact path='/mybinders' component={Pages.MyBinders}></Route>
-                <Route exact path="/mybinders/:binder" component={Pages.MyBinders}></Route>
+                {!localStorage.token ?
+                <Redirect to="/" component={Pages.Login}/> :
+                <>
+                    <Route exact path='/myCards' component={Pages.MyCards}></Route>
+                    <Route exact path='/addCards' component={Pages.AddCards}></Route>
+                    <Route exact path='/addCards/:binder' component={Pages.AddCards}></Route>
+                    <Route exact path='/mybinders' component={Pages.MyBinders}></Route>
+                    <Route exact path="/mybinders/:binder" component={Pages.MyBinders}></Route>
+                </>
+                }
             </Switch>
         </div>
     )
