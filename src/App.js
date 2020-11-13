@@ -25,7 +25,14 @@ function App(props) {
     fetch('https://da-basement-games-api.herokuapp.com/favorite_cards')
     .then(res => res.json())
     .then(cardItems => {
+
       props.setFavoriteCards(cardItems)
+      let groupNames = []
+      cardItems.filter(card => {
+        groupNames.push(card.group_name)
+      })
+      let removedDublicates = [...new Set(groupNames)]
+      props.setGroupNames(removedDublicates.sort((a,b) => a > b ? 1 : -1))
     })
     fetch('https://da-basement-magic-cards-api.herokuapp.com/last_ten')
     .then(res => res.json())
@@ -49,6 +56,11 @@ const mapDispatchToProps = (dispatch) =>{
     setFavoriteCards: (cardObject) => {
       dispatch({
         type: 'SET_FAVORITE_CARDS', payload: cardObject
+      })
+    },
+    setGroupNames: (cardObject) => {
+      dispatch({
+        type: 'SET_GROUP_NAMES', payload: cardObject
       })
     },
     setBinders: (binderObject) => {
