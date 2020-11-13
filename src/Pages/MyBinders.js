@@ -110,6 +110,7 @@ class MyBinders extends Component {
     handleClick = (e, card) => {
         this.setState({
             amount: card.amount,
+            foil: card.foil,
             editForm: !this.state.editForm,
             editCard: card
         })
@@ -161,7 +162,8 @@ class MyBinders extends Component {
             'Accept':'application/json'
           },
             body: JSON.stringify({
-            amount: this.state.amount
+               amount: this.state.amount,
+               foil: this.state.foil
           })
         })
         .then(res => res.json())
@@ -172,7 +174,8 @@ class MyBinders extends Component {
             this.setState({
                 editCard:  null,
                 editForm: false,
-                amount: null
+                amount: null,
+                foil: null
             })
             this.props.setFavoriteCards(newCards)
         })
