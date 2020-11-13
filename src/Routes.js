@@ -8,7 +8,7 @@ const Routes = () => {
             <Switch>
                 <Route exact path='/'>
                     {localStorage.token ?
-                        <Redirect to="/myCards" component={Pages.MyCards}/> :
+                        <Redirect to="/my-cards" component={Pages.MyCards}/> :
                         <Pages.Login/>
                     }
                 </Route>
