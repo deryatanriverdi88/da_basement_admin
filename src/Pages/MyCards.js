@@ -24,19 +24,6 @@ class MyCards extends Component {
         value: ""
     }
 
-    componentDidMount =  () => {
-        this.fetchCards()
-    }
-
-    fetchCards = () => {
-        const setNames = this.props.favoriteCards.filter(card=>{
-            return !this[card.group_name]? this[card.group_name] = true :false
-        })
-          this.setState({
-            setNames: setNames.sort((a,b) => a.group_name > b.group_name ? 1 : -1)
-          })
-    }
-
     handleClick = (e, card) => {
         this.setState({
             amount: card.amount,
