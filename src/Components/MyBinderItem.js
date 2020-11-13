@@ -1,78 +1,98 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ReactHover, {Trigger, Hover} from 'react-hover'
 const optionsCursorTrueWithMargin = {followCursor:true, shiftX: 80, shiftY: -280}
 
-export default class MyBinderItem extends Component{
-    render(){
+export default function MyBinderItem(props){
         return (
             <>
-                <tr className="row" key={this.props.card.id}>
+                <tr className="row" key={props.card.id}>
                     <td>
                         {
-                            this.props.editForm && this.props.editCard.id === this.props.card.id ?
-                                <input className="edit-input" type="number" min="0" value={this.props.amount} name="amount" onChange={this.props.handleChange}/>
+                            props.editForm && props.editCard.id === props.card.id ?
+                                <input className="edit-input" type="number" min="0" value={props.amount} name="amount" onChange={props.handleChange}/>
                                 :
-                                <p> {this.props.card.amount} </p>
+                                <p> {props.card.amount} </p>
                         }
                         {
-                            this.props.editForm && this.props.editCard.id === this.props.card.id ?
+                            props.editForm && props.editCard.id === props.card.id ?
                                 <>
-                                    <input className="submit" type="Submit" onClick={this.props.handleEditSubmit}/>
-                                    <button onClick={(e) => this.props.handleClick(e, this.props.card)}> X </button>
+                                    <input className="submit" type="Submit" onClick={props.handleEditSubmit}/>
+                                    <button onClick={(e) => props.handleClick(e, props.card)}> X </button>
                                 </>
                                     :
                                 <>
-                                    <button className="edit-card" onClick={(e) => this.props.handleClick(e, this.props.card)}> Edit </button>
-                                    <button className="delete-card" onClick={() => this.props.handleCardDelete(this.props.card)}> Delete </button>
+                                    <button className="edit-card" onClick={(e) => props.handleClick(e, props.card)}> Edit </button>
+                                    <button className="delete-card" onClick={() => props.handleCardDelete(props.card)}> Delete </button>
                                 </>
                         }
                     </td>
                     <td>
                         <ReactHover options={optionsCursorTrueWithMargin}>
                             <Trigger type="trigger">
-                                <p className="hover-me">{this.props.card.name}</p>
+                                <p className="hover-me">{props.card.name}</p>
                             </Trigger>
                             <Hover type="hover">
-                                <img src={this.props.card.img_url} alt={this.props.card.name}/>
+                                <img src={props.card.img_url} alt={props.card.name}/>
                             </Hover>
                         </ReactHover>
                     </td>
-                    <td>{this.props.card.rarity} </td>
+                    <td>{props.card.rarity} </td>
                     {
-                        this.props.card.foil ?
-                            <td> Yes </td>
+                        props.card.foil ?
+                            <td>
+                                {
+                                    props.editForm && props.editCard.id === props.card.id ?
+                                <select name="foil" onChange={props.handleChange}>
+                                    <option hidden>Select</option>
+                                    <option value={true}>Yes</option>
+                                    <option value={false}>No</option>
+                                </select>
+                                :
+                                <p> Yes </p>
+                            }
+                            </td>
                             :
-                            <td> No </td>
+                            <td>
+                                 {
+                                    props.editForm && props.editCard.id === props.card.id ?
+                                <select name="foil" onChange={props.handleChange}>
+                                    <option hidden>Select</option>
+                                    <option value={true}>Yes</option>
+                                    <option value={false}>No</option>
+                                </select>
+                                :
+                                <p> No </p>
+                            }
+                            </td>
                     }
-                    <td> {this.props.card.group_name}</td>
+                    <td> {props.card.group_name}</td>
                     {
-                        this.props.card.icon ?
+                        props.card.icon ?
                             <td>
                                 <div className="icon-div">
-                                    <img className="icon" src={this.props.card.icon} alt={`${this.props.card.name} icon`}/>
+                                    <img className="icon" src={props.card.icon} alt={`${props.card.name} icon`}/>
                                 </div>
                             </td>
                             :
                             <td> No Icon </td>
                     }
                     {
-                        this.props.card.foil ?
+                        props.card.foil ?
                             <>
-                                <td> ${this.props.card.foil_low_price} </td>
-                                <td> ${this.props.card.foil_mid_price} </td>
-                                <td> ${this.props.card.foil_high_price} </td>
-                                <td> ${this.props.card.foil_market_price} </td>
+                                <td> ${props.card.foil_low_price} </td>
+                                <td> ${props.card.foil_mid_price} </td>
+                                <td> ${props.card.foil_high_price} </td>
+                                <td> ${props.card.foil_market_price} </td>
                             </>
                             :
                             <>
-                                <td> ${this.props.card.normal_low_price} </td>
-                                <td> ${this.props.card.normal_mid_price} </td>
-                                <td> ${this.props.card.normal_high_price} </td>
-                                <td> ${this.props.card.normal_market_price} </td>
+                                <td> ${props.card.normal_low_price} </td>
+                                <td> ${props.card.normal_mid_price} </td>
+                                <td> ${props.card.normal_high_price} </td>
+                                <td> ${props.card.normal_market_price} </td>
                             </>
                     }
                 </tr>
             </>
         )
-    }
 }
