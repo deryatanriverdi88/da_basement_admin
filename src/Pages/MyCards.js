@@ -13,7 +13,6 @@ class MyCards extends Component {
         rarity: "all-rarities",
         setName: "all-sets",
         isFoil: "all-types",
-        setNames: [],
         binderName: "all-binders",
         cardsWithRarity : [],
         cardsWithSetName: [],
