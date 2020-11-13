@@ -9,6 +9,7 @@ class MyBinders extends Component {
         binderItem: {},
         binderName: "",
         amount: null,
+        foil: null,
         editForm: false,
         editCard: null,
         editBinderForm: false,
