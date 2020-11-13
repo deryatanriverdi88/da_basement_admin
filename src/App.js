@@ -27,6 +27,8 @@ function App(props) {
     .then(cardItems => {
       props.setFavoriteCards(cardItems)
     })
+    fetch('https://da-basement-magic-cards-api.herokuapp.com/last_ten')
+    .then(res => res.json())
   }, [props])
 
   return (
