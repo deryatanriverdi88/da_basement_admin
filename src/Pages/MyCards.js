@@ -381,8 +381,8 @@ class MyCards extends Component {
                                 <select name="setName" value={this.state.setName} onChange={this.handleDropdownChange}>
                                         <option value="all-sets" key="all"> All Sets </option>
                                             {
-                                                this.state.setNames.map(card => {
-                                                    return <option value={card.group_name} key={card.group_name}> {card.group_name} </option>
+                                                this.props.groupNames.map(name => {
+                                                    return <option value={name} key={name}> {name} </option>
                                                 })
                                             }
                                     </select>
