@@ -58,6 +58,11 @@ const mapDispatchToProps = (dispatch) =>{
         type: 'SET_FAVORITE_CARDS', payload: cardObject
       })
     },
+    setGroupNames: (cardObject) => {
+      dispatch({
+        type: 'SET_GROUP_NAMES', payload: cardObject
+      })
+    },
     setBinders: (binderObject) => {
       dispatch({
         type: 'SET_BINDERS', payload: binderObject
