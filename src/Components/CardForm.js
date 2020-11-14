@@ -210,13 +210,15 @@ class CardForm extends Component {
                                     <label htmlFor="amount">
                                         <span className="amount"> Amount </span>
                                     </label>
-                                    <input
-                                        id="amount"
-                                        name="amount"
-                                        type="number"
-                                        onChange={this.handleChange}
-                                        value={this.state.amount}
-                                    />
+                                        <input
+                                            id="amount"
+                                            name="amount"
+                                            type="number"
+                                            min="0"
+                                            ref={this.inputRef}
+                                            onChange={this.handleChange}
+                                            value={this.state.amount}
+                                        />
                                 </div>
                             </div>
                                 <div className="foil-or-not">
