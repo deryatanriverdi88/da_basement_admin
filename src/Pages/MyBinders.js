@@ -31,9 +31,11 @@ class MyBinders extends Component {
 
     setGroupNames = () => {
         let groupNames = []
-        this.props.binderFavoriteCards.map(card => {
-            groupNames.push(card.group_name)
-        })
+        if(this.props.binderFavoriteCards){
+            this.props.binderFavoriteCards.forEach(card => {
+                groupNames.push(card.group_name)
+            })
+        }
         let removedDublicates = [...new Set(groupNames)]
         return removedDublicates.sort((a,b) => a > b ? 1 : -1)
     }
@@ -258,6 +260,10 @@ class MyBinders extends Component {
             const newBinders = this.props.binders.filter(binder =>{
               return binder.id !== this.state.binderItem.id
            })
+           this.setState({
+               binderItem: {}
+           })
+           this.props.history.push({pathname: `/my-binders`})
            this.props.setBinders(newBinders)
            this.props.clearFavoriteCards()
         })
@@ -372,14 +378,18 @@ class MyBinders extends Component {
     }
 
     render() {
-        const newNames = this.cardsToRender().map(card => {
-            if(card.name.toLowerCase().startsWith("the ")){
-                card.name = card.name.slice(4, card.name.length).concat(', The')
-                return card
-            } else{
-                return card
-            }
-        })
+        let newNames = []
+        if(this.cardsToRender()){
+           this.cardsToRender().map(card => {
+                if(card.name.toLowerCase().startsWith("the ")){
+                    card.name = card.name.slice(4, card.name.length).concat(', The')
+                    newNames.push(card)
+                } else{
+                    newNames.push(card)
+                }
+                return newNames
+            })
+        }
 
         let searchedCards = []
 
