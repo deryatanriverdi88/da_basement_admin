@@ -88,6 +88,7 @@ class AddCards extends Component {
     }
 
     componentDidMount(){
+        this.inputRef.current.focus();
         fetch('https://api.scryfall.com/catalog/card-names')
         .then(res => res.json())
         .then(cardNames => {
