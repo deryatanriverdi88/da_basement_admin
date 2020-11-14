@@ -41,6 +41,7 @@ class CardForm extends Component {
                 foil: true
             })
         }
+        this.handleClick()
     }
 
     handleCardClick = (card) => {
