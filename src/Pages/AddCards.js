@@ -48,7 +48,8 @@ class AddCards extends Component {
     handleClose = () => {
         this.props.clearCards()
         this.setState({
-            cardForm: !this.state.cardForm
+            cardForm: !this.state.cardForm,
+            searchValue: ""
         })
 
     }
