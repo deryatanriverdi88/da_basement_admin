@@ -51,14 +51,17 @@ class AddCards extends Component {
             cardForm: !this.state.cardForm,
             searchValue: ""
         })
-
+        this.inputRef.current.focus();
     }
+
     handleEscape = (e)=>{
         if(e.keyCode === 27){
+            this.inputRef.current.focus();
             this.props.clearCards()
             this.setState({
                 cardForm: !this.state.cardForm,
-                card: {}
+                card: {},
+                searchValue: ""
             })
         }
     }
