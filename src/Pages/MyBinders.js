@@ -346,7 +346,7 @@ class MyBinders extends Component {
                 'Accept': "application/json"
             },
             body: JSON.stringify({
-                name: this.state.binderName
+                name: this.state.binderInputName
             })
         })
         .then(res => res.json())
@@ -357,7 +357,7 @@ class MyBinders extends Component {
             this.props.setBinders(newBinders)
             this.setState({
                binderItem: binder,
-               binderName: "",
+               binderInputName: "",
                editBinderForm: !this.state.editBinderForm
            })
         })
