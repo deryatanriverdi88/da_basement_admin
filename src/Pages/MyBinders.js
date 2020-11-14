@@ -440,6 +440,7 @@ class MyBinders extends Component {
                            onChange={this.handleChange}
                     />
                 </form>
+                <button onClick={this.handleFilterClick}>Clear Filter</button>
                 <div className="table">
                         <table>
                             <thead>
