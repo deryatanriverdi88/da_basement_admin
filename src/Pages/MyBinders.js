@@ -217,12 +217,14 @@ class MyBinders extends Component {
         this.handleFilterClick()
         let sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
         this.props.setFavoriteCards(sortedCards)
+        this.setGroupNames()
         this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
     }
 
     handleEditBinderClick = () => {
         this.setState({
-            editBinderForm: !this.state.editBinderForm
+            editBinderForm: !this.state.editBinderForm,
+            binderInputName: this.state.binderItem.name
         })
     }
 
@@ -237,7 +239,15 @@ class MyBinders extends Component {
             const newCards = this.props.binderFavoriteCards.filter(myCard =>{
               return myCard.id !== card.id
            })
+           const updatedCards = this.cardsAfterEdition(this.state.attribute, {},card,)
            this.props.setFavoriteCards(newCards)
+           this.setState({
+            cardDeleted: card,
+            cardsWithBinderName: updatedCards,
+            cardsWithIsfoil: updatedCards ,
+            cardsWithSetName: updatedCards,
+            cardsWithRarity: updatedCards
+          })
         })
     }
 
