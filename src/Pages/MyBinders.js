@@ -31,9 +31,11 @@ class MyBinders extends Component {
 
     setGroupNames = () => {
         let groupNames = []
-        this.props.binderFavoriteCards.map(card => {
-            groupNames.push(card.group_name)
-        })
+        if(this.props.binderFavoriteCards){
+            this.props.binderFavoriteCards.forEach(card => {
+                groupNames.push(card.group_name)
+            })
+        }
         let removedDublicates = [...new Set(groupNames)]
         return removedDublicates.sort((a,b) => a > b ? 1 : -1)
     }
