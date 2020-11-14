@@ -2,19 +2,40 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MyBinderItem from '../Components/MyBinderItem'
 import {withRouter} from 'react-router-dom'
+const RARITIES = [ "Common", "Land", "Uncommon","Mythic",  "Promo", "Special", "Rare", "Token"]
 
 class MyBinders extends Component {
 
     state={
         binderItem: {},
-        binderName: "",
+        binderInputName: "",
         amount: null,
         foil: null,
         editForm: false,
         editCard: null,
         editBinderForm: false,
         search: "",
-        reversePriceList: "high-to-low"
+        rarity: "all-rarities",
+        setName: "all-sets",
+        isFoil: "all-types",
+        cardsWithRarity : [],
+        cardsWithSetName: [],
+        cardsWithIsfoil: [],
+        cardDeleted: {},
+        attribute: "",
+        value: "",
+        groupNames: [],
+        priceOrAmountClicked: false
+
+    }
+
+    setGroupNames = () => {
+        let groupNames = []
+        this.props.binderFavoriteCards.map(card => {
+            groupNames.push(card.group_name)
+        })
+        let removedDublicates = [...new Set(groupNames)]
+        return removedDublicates.sort((a,b) => a > b ? 1 : -1)
     }
 
     componentDidMount = () =>{
@@ -27,6 +48,7 @@ class MyBinders extends Component {
                 this.setState({
                     binderItem: binderObj
                 })
+                this.setGroupNames()
              })
             }
         else {
@@ -36,6 +58,155 @@ class MyBinders extends Component {
         }
     }
 
+    handleDropdownChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value,
+            attribute: e.target.name,
+            value: e.target.value
+        })
+        if(e.target.name === 'rarity'){
+            this.setState({
+                 setName: "all-sets",
+                 isFoil: "all-types"
+            })
+        }else if(e.target.name === 'setName'){
+            this.setState({
+                rarity: "all-rarities",
+                isFoil: "all-types"
+            })
+        }else if(e.target.name === "isFoil"){
+            this.setState({
+                rarity: "all-rarities",
+                setName: "all-sets"
+            })
+        }
+        this.fetchCardsWithAttribute(e.target.name, e.target.value)
+    }
+
+    handleFilterClick = () => {
+        this.setState({
+            rarity: "all-rarities",
+            setName: "all-sets",
+            isFoil: "all-types"
+        })
+        this.cardsToRender()
+    }
+
+    fetchCardsWithAttribute = (att, value) => {
+        this.setState({
+            cardsWithRarity: [],
+            cardsWithSetName: [],
+            cardsWithIsfoil: []
+        })
+        fetch(`https://da-basement-games-api.herokuapp.com/cards_with_binder?${att}=${value}&binder=${this.state.binderItem.id}`)
+        .then(res => res.json())
+        .then(cardObj => {
+            if(att === "rarity"){
+                this.setState({
+                    cardsWithRarity: cardObj
+                })
+            } else if(att === "setName" ){
+                this.setState({
+                    cardsWithSetName: cardObj
+                })
+            } else if(att === "isFoil"){
+                let newCards = []
+                 this.props.binderFavoriteCards.filter(card => {
+                    if(value === "true"){
+                        if(card.foil === true){
+                            newCards.push(card)
+                        }
+                    }else if(value === "false"){
+                        if(card.foil === false){
+                            newCards.push(card)
+                        }
+                    }
+                    return newCards
+                })
+                this.setState({
+                    cardsWithIsfoil: newCards
+                })
+            }
+        })
+    }
+
+    cardsToMap = (att) => {
+        const {cardsWithRarity, cardsWithIsfoil, cardsWithSetName} = this.state
+        let arrayToMap = []
+        if(att === "rarity"){
+           return arrayToMap = cardsWithRarity
+        }else if(att === "isFoil"){
+            return arrayToMap = cardsWithIsfoil
+        }else if(att === "setName"){
+            return arrayToMap = cardsWithSetName
+        }
+        return arrayToMap
+    }
+
+    cardsAfterEdition = (attr, editedCard=`${this.state.editCard}`, deletedCard=`${this.state.cardDeleted}`) =>{
+        let newCards = []
+        if(editedCard.id){
+            newCards = this.cardsToMap(attr).map(cardItem => {
+                    return cardItem.id === editedCard.id ? editedCard : cardItem
+                })
+        }else if (deletedCard.id){
+            newCards = this.cardsToMap(attr).filter(myCard =>{
+                    return myCard.id !== deletedCard.id
+                })
+        }
+        else {
+            newCards = this.cardsToMap(attr)
+        }
+        return newCards
+    }
+
+    cardsToRender = () => {
+        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.isFoil === "all-types"){
+            return this.props.binderFavoriteCards
+        }else if(this.state.rarity !== "all-rarities"){
+            return this.state.cardsWithRarity
+        }else if(this.state.setName !== "all-sets"){
+            return this.state.cardsWithSetName
+        }else if(this.state.isFoil !== "all-types"){
+            return this.state.cardsWithIsfoil
+        }
+    }
+
+    handlePriceAndAmountClick = (value, reversePriceListType) => {
+        console.log(value, reversePriceListType)
+        let newList = []
+        if(value === "amount") {
+            if(reversePriceListType === "high"){
+                newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[value])  <  Number.parseFloat(b[value]) ?  1 : -1 ))
+            } else if (reversePriceListType === "low") {
+                newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[value])  > Number.parseFloat(b[value]) ?  1 : -1 ))
+            }
+        } else if(value === "name"){
+            if(reversePriceListType === "high"){
+                newList = this.cardsToRender().sort((a,b ) => (a[value]  <  b[value] ?  1 : -1 ))
+            } else if (reversePriceListType === "low") {
+                newList = this.cardsToRender().sort((a,b ) => (a[value] > b[value] ?  1 : -1 ))
+            }
+        }else {
+            if(reversePriceListType === "high"){
+                newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${value}`] || a[`foil_${value}`])  <  Number.parseFloat(b[`normal_${value}`] || b[`foil_${value}`]) ?  1 : -1 ))
+            }else if (reversePriceListType === "low") {
+                newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${value}`] || a[`foil_${value}`])  >  Number.parseFloat(b[`normal_${value}`] || b[`foil_${value}`]) ?  1 : -1 ))
+            }
+        }
+        this.props.setFavoriteCards(newList)
+        this.setState({
+            priceOrAmountClicked: !this.state.priceOrAmountClicked
+        })
+    }
+
+    renderPriceLogo = (value) => {
+        return <>
+                <img src="https://img.icons8.com/ultraviolet/15/000000/up-squared.png" alt="up-arrow" onClick={()  => this.handlePriceAndAmountClick(value, "high")}/>
+                <img src="https://img.icons8.com/ultraviolet/15/000000/down-squared.png" alt="down-arrow" onClick={()  => this.handlePriceAndAmountClick(value, "low")}/>
+            </>
+    }
+
     handleBinderClick = (e) => {
         let binderItem= this.props.binders.filter(i => {
             return i.id === parseInt(e.target.value)
@@ -43,14 +214,17 @@ class MyBinders extends Component {
         this.setState({
             binderItem: binderItem
         })
-        const sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
+        this.handleFilterClick()
+        let sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
         this.props.setFavoriteCards(sortedCards)
+        this.setGroupNames()
         this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
     }
 
     handleEditBinderClick = () => {
         this.setState({
-            editBinderForm: !this.state.editBinderForm
+            editBinderForm: !this.state.editBinderForm,
+            binderInputName: this.state.binderItem.name
         })
     }
 
@@ -65,7 +239,15 @@ class MyBinders extends Component {
             const newCards = this.props.binderFavoriteCards.filter(myCard =>{
               return myCard.id !== card.id
            })
+           const updatedCards = this.cardsAfterEdition(this.state.attribute, {},card,)
            this.props.setFavoriteCards(newCards)
+           this.setState({
+            cardDeleted: card,
+            cardsWithBinderName: updatedCards,
+            cardsWithIsfoil: updatedCards ,
+            cardsWithSetName: updatedCards,
+            cardsWithRarity: updatedCards
+          })
         })
     }
 
@@ -122,37 +304,6 @@ class MyBinders extends Component {
         })
     }
 
-    handlePriceClick = (price) => {
-        const [normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price] = this.props.binderFavoriteCards
-        let newList = []
-        if(normal_low_price || normal_mid_price || normal_high_price || normal_market_price){
-            if(this.state.reversePriceList === "high-to-low"){
-                this.setState({
-                    reversePriceList: "low-to-high"
-                })
-                return newList = [...newList, this.props.binderFavoriteCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
-            } else if (this.state.reversePriceList === "low-to-high") {
-                this.setState({
-                    reversePriceList: "high-to-low"
-                })
-                return newList = [...newList, this.props.binderFavoriteCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
-            }
-        } else if(foil_low_price  || foil_mid_price || foil_high_price || foil_market_price) {
-            if(this.state.reversePriceList === "high-to-low"){
-                this.setState({
-                    reversePriceList: "low-to-high"
-                })
-                return newList = [...newList, this.props.binderFavoriteCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  <  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
-            } else if (this.state.reversePriceList === "low-to-high") {
-                this.setState({
-                    reversePriceList: "high-to-low"
-                })
-               return newList = [...newList, this.props.binderFavoriteCards.sort((a,b ) => (Number.parseFloat(a[`normal_${price}`])  >  Number.parseFloat(b[`normal_${price}`]) ?  1 : -1 ))]
-            }
-        }
-        this.props.setFavoriteCards(newList)
-    }
-
     handleEditSubmit = (e) => {
         e.preventDefault()
         fetch(`https://da-basement-games-api.herokuapp.com/favorite_cards/${this.state.editCard.id}`, {
@@ -171,12 +322,17 @@ class MyBinders extends Component {
             const newCards = this.props.binderFavoriteCards.map(cardItem => {
                 return cardItem.id === card.id ? card : cardItem
             })
+            const updatedCards = this.cardsAfterEdition(this.state.attribute, card, {})
             this.setState({
-                editCard:  null,
+                editCard:  card,
                 editForm: false,
                 amount: null,
-                foil: null
-            })
+                foil: null,
+                cardsWithBinderName: updatedCards,
+                cardsWithIsfoil: updatedCards ,
+                cardsWithSetName: updatedCards,
+                cardsWithRarity: updatedCards
+                })
             this.props.setFavoriteCards(newCards)
         })
     }
@@ -190,7 +346,7 @@ class MyBinders extends Component {
                 'Accept': "application/json"
             },
             body: JSON.stringify({
-                name: this.state.binderName
+                name: this.state.binderInputName
             })
         })
         .then(res => res.json())
@@ -201,7 +357,7 @@ class MyBinders extends Component {
             this.props.setBinders(newBinders)
             this.setState({
                binderItem: binder,
-               binderName: "",
+               binderInputName: "",
                editBinderForm: !this.state.editBinderForm
            })
         })
@@ -216,7 +372,7 @@ class MyBinders extends Component {
     }
 
     render() {
-        const newNames = this.props.binderFavoriteCards.map(card => {
+        const newNames = this.cardsToRender().map(card => {
             if(card.name.toLowerCase().startsWith("the ")){
                 card.name = card.name.slice(4, card.name.length).concat(', The')
                 return card
@@ -224,8 +380,6 @@ class MyBinders extends Component {
                 return card
             }
         })
-
-        newNames.sort((a,b) => a.name > b.name ? 1 : -1)
 
         let searchedCards = []
 
@@ -245,7 +399,7 @@ class MyBinders extends Component {
                         <h2> Current Binder : {this.state.binderItem.name} </h2> :
                         null
                 }
-                <select name="binderName" id="binder-name" onChange={this.handleBinderClick}>
+                <select name="binderInputName" id="binder-name" onChange={this.handleBinderClick}>
                     <option hidden> Select a binder </option>
                     {
                         this.props.binders.length > 0 ?
@@ -269,8 +423,8 @@ class MyBinders extends Component {
                     this.state.editBinderForm ?
                     <>
                         <br></br>
-                        <label htmlFor="binderName"> Edit Binder Name : </label>
-                        <input type="text" name="binderName" value={this.state.binderName} onChange={this.handleChange}/>
+                        <label htmlFor="binderInputName"> Edit Binder Name : </label>
+                        <input type="text" name="binderInputName" value={this.state.binderInputName} onChange={this.handleChange}/>
                         <input type="Submit" onClick={this.handleEditBinderSubmit}/>
                     </>
                     :
@@ -286,31 +440,62 @@ class MyBinders extends Component {
                            onChange={this.handleChange}
                     />
                 </form>
+                <button onClick={this.handleFilterClick}>Clear Filter</button>
                 <div className="table">
                         <table>
                             <thead>
                                 <tr className="row">
-                                <th className="amount"> Amount </th>
-                                <th className="name"> Card Name </th>
-                                <th className="rarity"> Rarity </th>
-                                <th className="foiled"> Foiled </th>
-                                <th className="set-name"> Set Name </th>
+                                <th className="amount">
+                                    Amount
+                                    {this.renderPriceLogo("amount")}
+                                </th>
+                                <th className="name">
+                                    Card Name
+                                    {this.renderPriceLogo("name")}
+                                </th>
+                                <th className="rarity">
+                                    <select name="rarity" value={this.state.rarity}onChange={this.handleDropdownChange}>
+                                        <option value="all-rarities" key="all"> All Rarities </option>
+                                            {
+                                                RARITIES.map(rarity => {
+                                                   return <option value={rarity} key={rarity}> {rarity} </option>
+                                                })
+                                            }
+                                    </select>
+                                </th>
+                                <th className="foiled">
+                                    <select name="isFoil" value={this.state.isFoil} onChange={this.handleDropdownChange}>
+                                            <option value="all-types" key="all"> All Types</option>
+                                            <option value={true}> Foil </option>
+                                            <option value={false}> Non Foil</option>
+                                    </select>
+                                </th>
+                                <th className="set-name">
+                                <select name="setName" value={this.state.setName} onChange={this.handleDropdownChange}>
+                                        <option value="all-sets" key="all"> All Sets </option>
+                                            {
+                                                this.setGroupNames().map(name => {
+                                                    return <option value={name} key={name}> {name} </option>
+                                                })
+                                            }
+                                    </select>
+                                </th>
                                 <th className="set-icon"> Set Icon </th>
-                                <th className="low-price price" onClick={() => this.handlePriceClick("low_price")}>
+                                <th className="low-price price">
                                     Low Price
-                                    {this.handlePriceLogo()}
+                                    {this.renderPriceLogo("low_price")}
                                 </th>
-                                <th className="mid-price price" onClick={() => this.handlePriceClick("mid_price")}>
+                                <th className="mid-price price">
                                     Mid Price
-                                    {this.handlePriceLogo()}
+                                    {this.renderPriceLogo("mid_price")}
                                 </th>
-                                <th className="high-price price" onClick={() => this.handlePriceClick("high_price")}>
+                                <th className="high-price price">
                                     High Price
-                                    {this.handlePriceLogo()}
+                                    {this.renderPriceLogo("high_price")}
                                 </th>
-                                <th className="market-price price" onClick={() => this.handlePriceClick("market_price")}>
+                                <th className="market-price price">
                                     Market Price
-                                    {this.handlePriceLogo()}
+                                    {this.renderPriceLogo("market_price")}
                                 </th>
                             </tr>
                         </thead>
