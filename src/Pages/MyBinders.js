@@ -322,12 +322,17 @@ class MyBinders extends Component {
             const newCards = this.props.binderFavoriteCards.map(cardItem => {
                 return cardItem.id === card.id ? card : cardItem
             })
+            const updatedCards = this.cardsAfterEdition(this.state.attribute, card, {})
             this.setState({
-                editCard:  null,
+                editCard:  card,
                 editForm: false,
                 amount: null,
-                foil: null
-            })
+                foil: null,
+                cardsWithBinderName: updatedCards,
+                cardsWithIsfoil: updatedCards ,
+                cardsWithSetName: updatedCards,
+                cardsWithRarity: updatedCards
+                })
             this.props.setFavoriteCards(newCards)
         })
     }
