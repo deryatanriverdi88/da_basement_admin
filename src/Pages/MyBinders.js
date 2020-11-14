@@ -2,19 +2,31 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MyBinderItem from '../Components/MyBinderItem'
 import {withRouter} from 'react-router-dom'
+const RARITIES = [ "Common", "Land", "Uncommon","Mythic",  "Promo", "Special", "Rare", "Token"]
 
 class MyBinders extends Component {
 
     state={
         binderItem: {},
-        binderName: "",
+        binderInputName: "",
         amount: null,
         foil: null,
         editForm: false,
         editCard: null,
         editBinderForm: false,
         search: "",
-        reversePriceList: "high-to-low"
+        rarity: "all-rarities",
+        setName: "all-sets",
+        isFoil: "all-types",
+        cardsWithRarity : [],
+        cardsWithSetName: [],
+        cardsWithIsfoil: [],
+        cardDeleted: {},
+        attribute: "",
+        value: "",
+        groupNames: [],
+        priceOrAmountClicked: false
+
     }
 
     componentDidMount = () =>{
