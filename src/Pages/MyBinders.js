@@ -48,6 +48,7 @@ class MyBinders extends Component {
                 this.setState({
                     binderItem: binderObj
                 })
+                this.setGroupNames()
              })
             }
         else {
