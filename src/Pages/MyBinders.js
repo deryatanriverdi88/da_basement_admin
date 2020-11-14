@@ -260,6 +260,10 @@ class MyBinders extends Component {
             const newBinders = this.props.binders.filter(binder =>{
               return binder.id !== this.state.binderItem.id
            })
+           this.setState({
+               binderItem: {}
+           })
+           this.props.history.push({pathname: `/my-binders`})
            this.props.setBinders(newBinders)
            this.props.clearFavoriteCards()
         })
