@@ -239,8 +239,9 @@ class MyCards extends Component {
                 newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${value}`] || a[`foil_${value}`])  >  Number.parseFloat(b[`normal_${value}`] || b[`foil_${value}`]) ?  1 : -1 ))
             }
         }
+        this.props.setFavoriteCards(newList)
         this.setState({
-            myCards: newList
+            priceOrAmountClicked: !this.state.priceOrAmountClicked
         })
     }
 
