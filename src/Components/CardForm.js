@@ -27,6 +27,10 @@ class CardForm extends Component {
         })
     }
 
+    handleClick = () => {
+        this.inputRef.current.focus();
+    }
+
     handleDropdown  = (card)=>{
         const { normal_low_price, normal_mid_price, normal_high_price, normal_market_price } = card.value
         this.setState({
