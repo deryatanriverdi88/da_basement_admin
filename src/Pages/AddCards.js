@@ -12,6 +12,8 @@ class AddCards extends Component {
         binder: {}
     }
 
+    inputRef = createRef();
+
     handleChange = (event) => {
         this.setState({
             searchValue: event.target.value
