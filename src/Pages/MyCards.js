@@ -20,7 +20,8 @@ class MyCards extends Component {
         cardsWithIsfoil: [],
         cardDeleted: {},
         attribute: "",
-        value: ""
+        value: "",
+        priceOrAmountClicked: false
     }
 
     handleClick = (e, card) => {
