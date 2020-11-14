@@ -58,6 +58,155 @@ class MyBinders extends Component {
         }
     }
 
+    handleDropdownChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value,
+            attribute: e.target.name,
+            value: e.target.value
+        })
+        if(e.target.name === 'rarity'){
+            this.setState({
+                 setName: "all-sets",
+                 isFoil: "all-types"
+            })
+        }else if(e.target.name === 'setName'){
+            this.setState({
+                rarity: "all-rarities",
+                isFoil: "all-types"
+            })
+        }else if(e.target.name === "isFoil"){
+            this.setState({
+                rarity: "all-rarities",
+                setName: "all-sets"
+            })
+        }
+        this.fetchCardsWithAttribute(e.target.name, e.target.value)
+    }
+
+    handleFilterClick = () => {
+        this.setState({
+            rarity: "all-rarities",
+            setName: "all-sets",
+            isFoil: "all-types"
+        })
+        this.cardsToRender()
+    }
+
+    fetchCardsWithAttribute = (att, value) => {
+        this.setState({
+            cardsWithRarity: [],
+            cardsWithSetName: [],
+            cardsWithIsfoil: []
+        })
+        fetch(`https://da-basement-games-api.herokuapp.com/cards_with_binder?${att}=${value}&binder=${this.state.binderItem.id}`)
+        .then(res => res.json())
+        .then(cardObj => {
+            if(att === "rarity"){
+                this.setState({
+                    cardsWithRarity: cardObj
+                })
+            } else if(att === "setName" ){
+                this.setState({
+                    cardsWithSetName: cardObj
+                })
+            } else if(att === "isFoil"){
+                let newCards = []
+                 this.props.binderFavoriteCards.filter(card => {
+                    if(value === "true"){
+                        if(card.foil === true){
+                            newCards.push(card)
+                        }
+                    }else if(value === "false"){
+                        if(card.foil === false){
+                            newCards.push(card)
+                        }
+                    }
+                    return newCards
+                })
+                this.setState({
+                    cardsWithIsfoil: newCards
+                })
+            }
+        })
+    }
+
+    cardsToMap = (att) => {
+        const {cardsWithRarity, cardsWithIsfoil, cardsWithSetName} = this.state
+        let arrayToMap = []
+        if(att === "rarity"){
+           return arrayToMap = cardsWithRarity
+        }else if(att === "isFoil"){
+            return arrayToMap = cardsWithIsfoil
+        }else if(att === "setName"){
+            return arrayToMap = cardsWithSetName
+        }
+        return arrayToMap
+    }
+
+    cardsAfterEdition = (attr, editedCard=`${this.state.editCard}`, deletedCard=`${this.state.cardDeleted}`) =>{
+        let newCards = []
+        if(editedCard.id){
+            newCards = this.cardsToMap(attr).map(cardItem => {
+                    return cardItem.id === editedCard.id ? editedCard : cardItem
+                })
+        }else if (deletedCard.id){
+            newCards = this.cardsToMap(attr).filter(myCard =>{
+                    return myCard.id !== deletedCard.id
+                })
+        }
+        else {
+            newCards = this.cardsToMap(attr)
+        }
+        return newCards
+    }
+
+    cardsToRender = () => {
+        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.isFoil === "all-types"){
+            return this.props.binderFavoriteCards
+        }else if(this.state.rarity !== "all-rarities"){
+            return this.state.cardsWithRarity
+        }else if(this.state.setName !== "all-sets"){
+            return this.state.cardsWithSetName
+        }else if(this.state.isFoil !== "all-types"){
+            return this.state.cardsWithIsfoil
+        }
+    }
+
+    handlePriceAndAmountClick = (value, reversePriceListType) => {
+        console.log(value, reversePriceListType)
+        let newList = []
+        if(value === "amount") {
+            if(reversePriceListType === "high"){
+                newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[value])  <  Number.parseFloat(b[value]) ?  1 : -1 ))
+            } else if (reversePriceListType === "low") {
+                newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[value])  > Number.parseFloat(b[value]) ?  1 : -1 ))
+            }
+        } else if(value === "name"){
+            if(reversePriceListType === "high"){
+                newList = this.cardsToRender().sort((a,b ) => (a[value]  <  b[value] ?  1 : -1 ))
+            } else if (reversePriceListType === "low") {
+                newList = this.cardsToRender().sort((a,b ) => (a[value] > b[value] ?  1 : -1 ))
+            }
+        }else {
+            if(reversePriceListType === "high"){
+                newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${value}`] || a[`foil_${value}`])  <  Number.parseFloat(b[`normal_${value}`] || b[`foil_${value}`]) ?  1 : -1 ))
+            }else if (reversePriceListType === "low") {
+                newList = this.cardsToRender().sort((a,b ) => (Number.parseFloat(a[`normal_${value}`] || a[`foil_${value}`])  >  Number.parseFloat(b[`normal_${value}`] || b[`foil_${value}`]) ?  1 : -1 ))
+            }
+        }
+        this.props.setFavoriteCards(newList)
+        this.setState({
+            priceOrAmountClicked: !this.state.priceOrAmountClicked
+        })
+    }
+
+    renderPriceLogo = (value) => {
+        return <>
+                <img src="https://img.icons8.com/ultraviolet/15/000000/up-squared.png" alt="up-arrow" onClick={()  => this.handlePriceAndAmountClick(value, "high")}/>
+                <img src="https://img.icons8.com/ultraviolet/15/000000/down-squared.png" alt="down-arrow" onClick={()  => this.handlePriceAndAmountClick(value, "low")}/>
+            </>
+    }
+
     handleBinderClick = (e) => {
         let binderItem= this.props.binders.filter(i => {
             return i.id === parseInt(e.target.value)
