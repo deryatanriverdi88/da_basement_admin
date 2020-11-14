@@ -171,6 +171,10 @@
   text-align: center;
 }
 
+.search-card .search:focus {
+  background: rgba(67, 69, 107, 0.5);
+}
+
 .table {
   margin: 20px auto;
   height: 50vh;

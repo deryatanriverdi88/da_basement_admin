@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { connect } from 'react-redux'
 import CardItem from "./CardItem"
 import { withRouter } from 'react-router-dom'
@@ -16,13 +16,19 @@ class CardForm extends Component {
         errors: {},
         cardAdded: false,
         dropDown: false,
-        popUp: false
+        popUp: false,
     }
+
+    inputRef = createRef();
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
+    }
+
+    handleClick = () => {
+        this.inputRef.current.focus();
     }
 
     handleDropdown  = (card)=>{
@@ -35,6 +41,7 @@ class CardForm extends Component {
                 foil: true
             })
         }
+        this.handleClick()
     }
 
     handleCardClick = (card) => {
@@ -203,13 +210,15 @@ class CardForm extends Component {
                                     <label htmlFor="amount">
                                         <span className="amount"> Amount </span>
                                     </label>
-                                    <input
-                                        id="amount"
-                                        name="amount"
-                                        type="number"
-                                        onChange={this.handleChange}
-                                        value={this.state.amount}
-                                    />
+                                        <input
+                                            id="amount"
+                                            name="amount"
+                                            type="number"
+                                            min="0"
+                                            ref={this.inputRef}
+                                            onChange={this.handleChange}
+                                            value={this.state.amount}
+                                        />
                                 </div>
                             </div>
                                 <div className="foil-or-not">

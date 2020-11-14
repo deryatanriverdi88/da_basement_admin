@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { connect } from 'react-redux'
 import CardForm from '../Components/CardForm'
 
@@ -11,6 +11,8 @@ class AddCards extends Component {
         cardNames: [],
         binder: {}
     }
+
+    inputRef = createRef();
 
     handleChange = (event) => {
         this.setState({
@@ -46,16 +48,20 @@ class AddCards extends Component {
     handleClose = () => {
         this.props.clearCards()
         this.setState({
-            cardForm: !this.state.cardForm
+            cardForm: !this.state.cardForm,
+            searchValue: ""
         })
-
+        this.inputRef.current.focus();
     }
+
     handleEscape = (e)=>{
         if(e.keyCode === 27){
+            this.inputRef.current.focus();
             this.props.clearCards()
             this.setState({
                 cardForm: !this.state.cardForm,
-                card: {}
+                card: {},
+                searchValue: ""
             })
         }
     }
@@ -82,6 +88,7 @@ class AddCards extends Component {
     }
 
     componentDidMount(){
+        this.inputRef.current.focus();
         fetch('https://api.scryfall.com/catalog/card-names')
         .then(res => res.json())
         .then(cardNames => {
@@ -128,8 +135,11 @@ class AddCards extends Component {
                     <input className="search"
                            type="text"
                            name="search"
+                        //    value={this.state.searchValue}
                            autoComplete="off"
                            autoCorrect="off"
+                           autoFocus
+                           ref={this.inputRef}
                            onFocus={this.handleChange}
                            onChange={this.handleChange}
                     />
