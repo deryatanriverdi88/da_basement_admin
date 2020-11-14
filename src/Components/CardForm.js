@@ -20,6 +20,7 @@ class CardForm extends Component {
     }
 
     inputRef = createRef();
+    secondInputRef = createRef();
 
     handleChange = (e) => {
         this.setState({
@@ -124,6 +125,7 @@ class CardForm extends Component {
             }
             this.props.updateBinder(card)
         })
+        this.secondInputRef.current.focus();
     }
 
     componentDidUpdate = () => {
@@ -202,6 +204,7 @@ class CardForm extends Component {
                         value={this.state.card.value}
                         onChange={this.handleDropdown}
                         options={cards}
+                        ref={this.secondInputRef}
                     />
                     <form onSubmit={this.handleSubmit} className="add-card-form">
                         <div className="form-fields">
