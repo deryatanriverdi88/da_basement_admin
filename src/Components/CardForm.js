@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { connect } from 'react-redux'
 import CardItem from "./CardItem"
 import { withRouter } from 'react-router-dom'
