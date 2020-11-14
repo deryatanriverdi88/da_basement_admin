@@ -372,7 +372,7 @@ class MyBinders extends Component {
     }
 
     render() {
-        const newNames = this.props.binderFavoriteCards.map(card => {
+        const newNames = this.cardsToRender().map(card => {
             if(card.name.toLowerCase().startsWith("the ")){
                 card.name = card.name.slice(4, card.name.length).concat(', The')
                 return card
