@@ -16,8 +16,10 @@ class CardForm extends Component {
         errors: {},
         cardAdded: false,
         dropDown: false,
-        popUp: false
+        popUp: false,
     }
+
+    inputRef = createRef();
 
     handleChange = (e) => {
         this.setState({
