@@ -29,6 +29,15 @@ class MyBinders extends Component {
 
     }
 
+    setGroupNames = () => {
+        let groupNames = []
+        this.props.binderFavoriteCards.map(card => {
+            groupNames.push(card.group_name)
+        })
+        let removedDublicates = [...new Set(groupNames)]
+        return removedDublicates.sort((a,b) => a > b ? 1 : -1)
+    }
+
     componentDidMount = () =>{
         if(this.props.history.location.state && this.props.history.location.state.binder.id){
             fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.props.history.location.state.binder.id}`)
