@@ -214,7 +214,8 @@ class MyBinders extends Component {
         this.setState({
             binderItem: binderItem
         })
-        const sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
+        this.handleFilterClick()
+        let sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
         this.props.setFavoriteCards(sortedCards)
         this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
     }
