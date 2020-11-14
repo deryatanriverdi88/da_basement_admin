@@ -445,11 +445,41 @@ class MyBinders extends Component {
                         <table>
                             <thead>
                                 <tr className="row">
-                                <th className="amount"> Amount </th>
-                                <th className="name"> Card Name </th>
-                                <th className="rarity"> Rarity </th>
-                                <th className="foiled"> Foiled </th>
-                                <th className="set-name"> Set Name </th>
+                                <th className="amount">
+                                    Amount
+                                    {this.renderPriceLogo("amount")}
+                                </th>
+                                <th className="name">
+                                    Card Name
+                                    {this.renderPriceLogo("name")}
+                                </th>
+                                <th className="rarity">
+                                    <select name="rarity" value={this.state.rarity}onChange={this.handleDropdownChange}>
+                                        <option value="all-rarities" key="all"> All Rarities </option>
+                                            {
+                                                RARITIES.map(rarity => {
+                                                   return <option value={rarity} key={rarity}> {rarity} </option>
+                                                })
+                                            }
+                                    </select>
+                                </th>
+                                <th className="foiled">
+                                    <select name="isFoil" value={this.state.isFoil} onChange={this.handleDropdownChange}>
+                                            <option value="all-types" key="all"> All Types</option>
+                                            <option value={true}> Foil </option>
+                                            <option value={false}> Non Foil</option>
+                                    </select>
+                                </th>
+                                <th className="set-name">
+                                <select name="setName" value={this.state.setName} onChange={this.handleDropdownChange}>
+                                        <option value="all-sets" key="all"> All Sets </option>
+                                            {
+                                                this.setGroupNames().map(name => {
+                                                    return <option value={name} key={name}> {name} </option>
+                                                })
+                                            }
+                                    </select>
+                                </th>
                                 <th className="set-icon"> Set Icon </th>
                                 <th className="low-price price" onClick={() => this.handlePriceClick("low_price")}>
                                     Low Price
