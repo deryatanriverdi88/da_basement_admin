@@ -11,5 +11,8 @@
         margin: 10px auto;
         outline: 0;
         text-align: center;
+        &:focus{
+            background: rgba(67, 69, 107, 0.5);
+        }
     }
 }
