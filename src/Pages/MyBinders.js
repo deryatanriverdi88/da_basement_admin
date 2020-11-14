@@ -381,8 +381,6 @@ class MyBinders extends Component {
             }
         })
 
-        newNames.sort((a,b) => a.name > b.name ? 1 : -1)
-
         let searchedCards = []
 
         newNames.filter(card => {
@@ -401,7 +399,7 @@ class MyBinders extends Component {
                         <h2> Current Binder : {this.state.binderItem.name} </h2> :
                         null
                 }
-                <select name="binderName" id="binder-name" onChange={this.handleBinderClick}>
+                <select name="binderInputName" id="binder-name" onChange={this.handleBinderClick}>
                     <option hidden> Select a binder </option>
                     {
                         this.props.binders.length > 0 ?
@@ -425,8 +423,8 @@ class MyBinders extends Component {
                     this.state.editBinderForm ?
                     <>
                         <br></br>
-                        <label htmlFor="binderName"> Edit Binder Name : </label>
-                        <input type="text" name="binderName" value={this.state.binderName} onChange={this.handleChange}/>
+                        <label htmlFor="binderInputName"> Edit Binder Name : </label>
+                        <input type="text" name="binderInputName" value={this.state.binderInputName} onChange={this.handleChange}/>
                         <input type="Submit" onClick={this.handleEditBinderSubmit}/>
                     </>
                     :
