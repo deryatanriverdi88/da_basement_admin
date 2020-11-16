@@ -135,7 +135,7 @@ class AddCards extends Component {
                     <input className="search"
                            type="text"
                            name="search"
-                        //    value={this.state.searchValue}
+                           value={this.state.searchValue}
                            autoComplete="off"
                            autoCorrect="off"
                            autoFocus
