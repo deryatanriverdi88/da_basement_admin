@@ -145,7 +145,7 @@ class AddCards extends Component {
                     />
                 </form>
                     <select ref={ref => {this.secondInputRef = ref }} name="cardName" style={{width: "30%"}} onChange={this.handleClick} placeholder="Select a card" defaultValue={this.state.nameClicked }>
-                        <option >There are {searchedCardNames.length} names...</option>
+                        <option hidden>There are {searchedCardNames.length} names...</option>
                         {
                             searchedCardNames.map((name, i) =>{
                                 return <option value={name} key={i+1} >{name}</option>
