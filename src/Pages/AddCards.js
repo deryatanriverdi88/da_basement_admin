@@ -115,9 +115,9 @@ class AddCards extends Component {
         let searchedCardNames =[]
         {
             if(this.state.searchValue.length > 0 ){
-                searchedCardNames = this.state.cardNames.filter(card => {
-                    if (card.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
-                        return card
+                searchedCardNames = this.state.cardNames.filter(name => {
+                    if (name.replace(/^[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{2,20}$/).substr(0, this.state.searchValue.length).toLowerCase() === this.state.searchValue.toLowerCase()) {
+                        return name
                     }
                 })
             }
@@ -135,7 +135,7 @@ class AddCards extends Component {
                     <input className="search"
                            type="text"
                            name="search"
-                        //    value={this.state.searchValue}
+                           value={this.state.searchValue}
                            autoComplete="off"
                            autoCorrect="off"
                            autoFocus
@@ -144,14 +144,14 @@ class AddCards extends Component {
                            onChange={this.handleChange}
                     />
                 </form>
-                <select name="cardName" style={{width: "30%"}} onChange={this.handleClick} placeholder="Select a card">
-                     <option hidden>There are {searchedCardNames.length} names...</option>
-                     {
-                        searchedCardNames.map((name, i) =>{
-                            return <option value={name} key={i} >{name}</option>
-                        })
-                    }
-                </select>
+                    <select ref={ref => {this.secondInputRef = ref }} name="cardName" style={{width: "30%"}} onChange={this.handleClick} placeholder="Select a card" defaultValue={this.state.nameClicked }>
+                        <option >There are {searchedCardNames.length} names...</option>
+                        {
+                            searchedCardNames.map((name, i) =>{
+                                return <option value={name} key={i+1} >{name}</option>
+                            })
+                        }
+                    </select>
                 {
                     this.state.cardForm ?
                         <>
