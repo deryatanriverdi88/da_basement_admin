@@ -210,18 +210,34 @@ class MyBinders extends Component {
             </>
     }
 
-    handleBinderClick = (e) => {
-        let binderItem= this.props.binders.filter(i => {
-            return i.id === parseInt(e.target.value)
-        })[0]
-        this.setState({
-            binderItem: binderItem
-        })
+    handleBinderClick = async (e) => {
+        let binderItem = []
+        let sortedCards = []
+        if(e.target.value === 'no-binder') {
+            await fetch(`https://da-basement-games-api.herokuapp.com/cards?binder=no-binder`)
+            .then(res => res.json())
+            .then(cardObj => {
+                this.setState({
+                    noBinder: true
+                })
+                sortedCards = cardObj
+            })
+            this.props.history.push({pathname: `/my-binders/no-binder`})
+        } else {
+            binderItem = this.props.binders.filter(i => {
+                return i.id === parseInt(e.target.value)
+            })[0]
+            this.setState({
+                binderItem: binderItem,
+                noBinder: false
+            })
+            sortedCards = binderItem.favorite_cards
+            this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
+        }
         this.handleFilterClick()
-        let sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
+        sortedCards = sortedCards.sort((a,b) => a.name > b.name ? 1 : -1)
         this.props.setFavoriteCards(sortedCards)
         this.setGroupNames()
-        this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
     }
 
     handleEditBinderClick = () => {
@@ -272,7 +288,7 @@ class MyBinders extends Component {
 
     handleCount = (v1, v2) => {
         let count = 0
-        if(this.state.binderItem.id){
+        if(this.state.binderItem.id || this.state.noBinder){
             this.props.binderFavoriteCards.forEach(card =>{
                 if(v1 === "amount"){
                     count += card[v1]
@@ -378,6 +394,15 @@ class MyBinders extends Component {
         }
     }
 
+    totalAmountOfCards = () => {
+        let count = 0
+        if(this.props.favoriteCards.length > 0){
+            this.props.favoriteCards.forEach(card => {
+                count += card.amount
+            })
+        }
+        return count
+    }
     render() {
         let newNames = []
         if(this.cardsToRender()){
@@ -406,7 +431,7 @@ class MyBinders extends Component {
         return (
             <>
                 {
-                    this.state.binderItem.id ?
+                    this.state.binderItem ?
                         <h2> Current Binder : {this.state.binderItem.name} </h2> :
                         null
                 }
