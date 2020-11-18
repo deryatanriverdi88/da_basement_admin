@@ -539,7 +539,7 @@ class MyBinders extends Component {
                         </thead>
                         <tbody>
                             {
-                              this.state.binderItem.id ?
+                              this.state.binderItem.id || this.state.noBinder ?
                               searchedCards.map((card)=>{
                                    return <MyBinderItem card={card}
                                                         key={card.id}
