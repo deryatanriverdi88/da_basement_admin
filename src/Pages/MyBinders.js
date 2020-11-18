@@ -602,7 +602,8 @@ const mapDispatchToProps = (dispatch)=>{
 const mapStateToProps = (state) => {
     return {
         binders: state.addBinders,
-        binderFavoriteCards: state.favoriteCards.binderFavoriteCards
+        binderFavoriteCards: state.favoriteCards.binderFavoriteCards,
+        favoriteCards: state.favoriteCards.favoriteCards
     }
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyBinders))
