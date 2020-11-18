@@ -478,6 +478,7 @@ class MyBinders extends Component {
                     />
                 </form>
                 <button onClick={this.handleFilterClick}>Clear Filter</button>
+                <h4>Total amount of cards in database : {this.totalAmountOfCards()} </h4>
                 <div className="table">
                         <table>
                             <thead>
