@@ -25,7 +25,8 @@ class MyBinders extends Component {
         attribute: "",
         value: "",
         groupNames: [],
-        priceOrAmountClicked: false
+        priceOrAmountClicked: false,
+        noBinder: false
 
     }
 
