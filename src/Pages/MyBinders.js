@@ -436,7 +436,8 @@ class MyBinders extends Component {
                         null
                 }
                 <select name="binderInputName" id="binder-name" onChange={this.handleBinderClick}>
-                    <option hidden> Select a binder </option>
+                    <option hidden>Select a binder</option>
+                    <option value="no-binder"> No Binder </option>
                     {
                         this.props.binders.length > 0 ?
                             this.props.binders.map(binder => {
