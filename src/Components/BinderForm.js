@@ -35,15 +35,17 @@ function BinderForm({current_user, history, setBinderForm}) {
                     <div className="x-div">
                         <button className="x" onClick={() => setBinderForm(false)}> X </button>
                     </div>
-                    <form onSubmit={handleOnSubmit}>
-                        <label htmlFor="binderName"> Name : </label>
-                        <input
-                            name="binderName"
-                            value={binderName}
-                            onChange={handleOnChange}
-                        />
-                        <input type="submit"/>
-                    </form>
+                    <div className="form-div">
+                        <form onSubmit={handleOnSubmit}>
+                            <label htmlFor="binderName"> Name </label>
+                            <input
+                                name="binderName"
+                                value={binderName}
+                                onChange={handleOnChange}
+                            />
+                            <input type="submit"/>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
