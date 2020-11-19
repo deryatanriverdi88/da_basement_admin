@@ -271,7 +271,7 @@ class MyBinders extends Component {
 
     handleCount = (v1, v2) => {
         let count = 0
-        if(this.state.binderItem.id || this.state.noBinder){
+        if(this.state.binderItem.id){
             this.props.binderFavoriteCards.forEach(card =>{
                 if(v1 === "amount"){
                     count += card[v1]
