@@ -25,8 +25,7 @@ class MyBinders extends Component {
         attribute: "",
         value: "",
         groupNames: [],
-        priceOrAmountClicked: false,
-        noBinder: false
+        priceOrAmountClicked: false
 
     }
 
@@ -210,34 +209,18 @@ class MyBinders extends Component {
             </>
     }
 
-    handleBinderClick = async (e) => {
-        let binderItem = []
-        let sortedCards = []
-        if(e.target.value === 'no-binder') {
-            await fetch(`https://da-basement-games-api.herokuapp.com/cards?binder=no-binder`)
-            .then(res => res.json())
-            .then(cardObj => {
-                this.setState({
-                    noBinder: true
-                })
-                sortedCards = cardObj
-            })
-            this.props.history.push({pathname: `/my-binders/no-binder`})
-        } else {
-            binderItem = this.props.binders.filter(i => {
-                return i.id === parseInt(e.target.value)
-            })[0]
-            this.setState({
-                binderItem: binderItem,
-                noBinder: false
-            })
-            sortedCards = binderItem.favorite_cards
-            this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
-        }
+    handleBinderClick = (e) => {
+        let binderItem= this.props.binders.filter(i => {
+            return i.id === parseInt(e.target.value)
+        })[0]
+        this.setState({
+            binderItem: binderItem
+        })
         this.handleFilterClick()
-        sortedCards = sortedCards.sort((a,b) => a.name > b.name ? 1 : -1)
+        let sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
         this.props.setFavoriteCards(sortedCards)
         this.setGroupNames()
+        this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
     }
 
     handleEditBinderClick = () => {
@@ -288,7 +271,7 @@ class MyBinders extends Component {
 
     handleCount = (v1, v2) => {
         let count = 0
-        if(this.state.binderItem.id || this.state.noBinder){
+        if(this.state.binderItem.id){
             this.props.binderFavoriteCards.forEach(card =>{
                 if(v1 === "amount"){
                     count += card[v1]
@@ -394,15 +377,6 @@ class MyBinders extends Component {
         }
     }
 
-    totalAmountOfCards = () => {
-        let count = 0
-        if(this.props.favoriteCards.length > 0){
-            this.props.favoriteCards.forEach(card => {
-                count += card.amount
-            })
-        }
-        return count
-    }
     render() {
         let newNames = []
         if(this.cardsToRender()){
@@ -431,13 +405,12 @@ class MyBinders extends Component {
         return (
             <>
                 {
-                    this.state.binderItem ?
+                    this.state.binderItem.id ?
                         <h2> Current Binder : {this.state.binderItem.name} </h2> :
                         null
                 }
                 <select name="binderInputName" id="binder-name" onChange={this.handleBinderClick}>
-                    <option hidden>Select a binder</option>
-                    <option value="no-binder"> No Binder </option>
+                    <option hidden> {this.state.binderItem.id ? this.state.binderItem.name: 'Select a binder'}  </option>
                     {
                         this.props.binders.length > 0 ?
                             this.props.binders.map(binder => {
@@ -478,7 +451,6 @@ class MyBinders extends Component {
                     />
                 </form>
                 <button onClick={this.handleFilterClick}>Clear Filter</button>
-                <h4>Total amount of cards in database : {this.totalAmountOfCards()} </h4>
                 <div className="table">
                         <table>
                             <thead>
@@ -539,7 +511,7 @@ class MyBinders extends Component {
                         </thead>
                         <tbody>
                             {
-                              this.state.binderItem.id || this.state.noBinder ?
+                              this.state.binderItem.id ?
                               searchedCards.map((card)=>{
                                    return <MyBinderItem card={card}
                                                         key={card.id}
@@ -602,8 +574,7 @@ const mapDispatchToProps = (dispatch)=>{
 const mapStateToProps = (state) => {
     return {
         binders: state.addBinders,
-        binderFavoriteCards: state.favoriteCards.binderFavoriteCards,
-        favoriteCards: state.favoriteCards.favoriteCards
+        binderFavoriteCards: state.favoriteCards.binderFavoriteCards
     }
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyBinders))

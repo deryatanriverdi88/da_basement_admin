@@ -522,21 +522,33 @@
   margin-right: 10px;
 }
 
-.background-for-z-index .binder-div form, .background-for-pop-up-index .binder-div form {
-  margin: auto;
-  width: 40%;
-  height: 90%;
+.background-for-z-index .binder-div, .background-for-pop-up-index .binder-div {
+  height: 50%;
+}
+
+.background-for-z-index .binder-div .form-div, .background-for-pop-up-index .binder-div .form-div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 90%;
 }
 
-.background-for-z-index .binder-div form label, .background-for-pop-up-index .binder-div form label {
+.background-for-z-index .binder-div .form-div form, .background-for-pop-up-index .binder-div .form-div form {
+  margin: auto;
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.background-for-z-index .binder-div .form-div form label, .background-for-pop-up-index .binder-div .form-div form label {
   color: white;
 }
 
-.background-for-z-index .binder-div form label, .background-for-z-index .binder-div form input, .background-for-pop-up-index .binder-div form label, .background-for-pop-up-index .binder-div form input {
-  margin: auto;
+.background-for-z-index .binder-div .form-div form label, .background-for-z-index .binder-div .form-div form input, .background-for-pop-up-index .binder-div .form-div form label, .background-for-pop-up-index .binder-div .form-div form input {
+  margin: 5px auto;
 }
 
 @media only screen and (max-width: 600px) {
