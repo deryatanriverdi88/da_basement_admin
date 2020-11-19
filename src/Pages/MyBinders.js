@@ -377,15 +377,6 @@ class MyBinders extends Component {
         }
     }
 
-    totalAmountOfCards = () => {
-        let count = 0
-        if(this.props.favoriteCards.length > 0){
-            this.props.favoriteCards.forEach(card => {
-                count += card.amount
-            })
-        }
-        return count
-    }
     render() {
         let newNames = []
         if(this.cardsToRender()){
