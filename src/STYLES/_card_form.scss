@@ -158,16 +158,21 @@
         }
     }
     .binder-div{
-        form{
-            margin: auto;
-            width: 40%;
-            height: 90%;
+        height: 50%;
+        .form-div{
             display: flex;
-            label{
-                color: white;
-            }
-            label, input{
+            height: 90%;
+            form{
                 margin: auto;
+                width: 40%;
+                display: flex;
+                flex-wrap: wrap;
+                label{
+                    color: white;
+                }
+                label, input{
+                    margin: 5px auto;
+                }
             }
         }
     }
