@@ -209,34 +209,18 @@ class MyBinders extends Component {
             </>
     }
 
-    handleBinderClick = async (e) => {
-        let binderItem = []
-        let sortedCards = []
-        if(e.target.value === 'no-binder') {
-            await fetch(`https://da-basement-games-api.herokuapp.com/cards?binder=no-binder`)
-            .then(res => res.json())
-            .then(cardObj => {
-                this.setState({
-                    noBinder: true
-                })
-                sortedCards = cardObj
-            })
-            this.props.history.push({pathname: `/my-binders/no-binder`})
-        } else {
-            binderItem = this.props.binders.filter(i => {
-                return i.id === parseInt(e.target.value)
-            })[0]
-            this.setState({
-                binderItem: binderItem,
-                noBinder: false
-            })
-            sortedCards = binderItem.favorite_cards
-            this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
-        }
+    handleBinderClick = (e) => {
+        let binderItem= this.props.binders.filter(i => {
+            return i.id === parseInt(e.target.value)
+        })[0]
+        this.setState({
+            binderItem: binderItem
+        })
         this.handleFilterClick()
-        sortedCards = sortedCards.sort((a,b) => a.name > b.name ? 1 : -1)
+        let sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
         this.props.setFavoriteCards(sortedCards)
         this.setGroupNames()
+        this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
     }
 
     handleEditBinderClick = () => {
