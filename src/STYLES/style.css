@@ -551,9 +551,9 @@
   margin: 5px auto;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .background-for-z-index .card-form, .background-for-z-index .binder-div, .background-for-pop-up-index .card-form, .background-for-pop-up-index .binder-div {
-    width: 100%;
+    width: 80%;
     height: 100vh;
   }
   .background-for-z-index .card-item, .background-for-pop-up-index .card-item {
