@@ -125,12 +125,12 @@ class CardForm extends Component {
             }
             this.props.updateBinder(card)
         })
-        this.secondInputRef.current.focus();
     }
 
     componentDidUpdate = () => {
         if(this.state.popUp){
             setTimeout(() => this.setState({popUp: false, amount: 1}), 500)
+            this.secondInputRef.current.focus();
         }
     }
 
