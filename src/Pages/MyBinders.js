@@ -405,13 +405,12 @@ class MyBinders extends Component {
         return (
             <>
                 {
-                    this.state.binderItem ?
+                    this.state.binderItem.id ?
                         <h2> Current Binder : {this.state.binderItem.name} </h2> :
                         null
                 }
                 <select name="binderInputName" id="binder-name" onChange={this.handleBinderClick}>
-                    <option hidden>Select a binder</option>
-                    <option value="no-binder"> No Binder </option>
+                    <option hidden> {this.state.binderItem.id ? this.state.binderItem.name: 'Select a binder'}  </option>
                     {
                         this.props.binders.length > 0 ?
                             this.props.binders.map(binder => {
@@ -452,7 +451,6 @@ class MyBinders extends Component {
                     />
                 </form>
                 <button onClick={this.handleFilterClick}>Clear Filter</button>
-                <h4>Total amount of cards in database : {this.totalAmountOfCards()} </h4>
                 <div className="table">
                         <table>
                             <thead>
@@ -513,7 +511,7 @@ class MyBinders extends Component {
                         </thead>
                         <tbody>
                             {
-                              this.state.binderItem.id || this.state.noBinder ?
+                              this.state.binderItem.id ?
                               searchedCards.map((card)=>{
                                    return <MyBinderItem card={card}
                                                         key={card.id}
