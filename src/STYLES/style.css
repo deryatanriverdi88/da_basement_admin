@@ -145,8 +145,8 @@
   color: #43456b;
   text-shadow: 2px 2px 4px #9396d6;
   letter-spacing: 10px;
-  font-size: 50px;
-  padding: 15px;
+  font-size: 45px;
+  padding: 5px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -599,8 +599,13 @@
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: 40%;
+  width: 30%;
   margin: auto;
+}
+
+.binder-buttons-selection button {
+  display: inline-block;
+  padding: 15px;
 }
 
 @media only screen and (max-width: 700px) {
