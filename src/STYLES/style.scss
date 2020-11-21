@@ -5,6 +5,8 @@
 @import './table';
 @import './card_list';
 @import './card_form';
+@import './binder_buttons_selection';
+
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
 *{
     padding: 0;
@@ -29,7 +31,7 @@ a{
     color: black;
 }
 
-.search-card-form, .add-card-form{
+.search-card, .add-card-form{
     label{
         display: flex;
         flex-direction: column;
@@ -40,4 +42,10 @@ a{
 
 .css-1uccc91-singleValue{
     width: 100%;
+}
+
+@media only screen and (max-width: 700px){
+    .binder-name{
+        font-size: 15px;
+    }
 }

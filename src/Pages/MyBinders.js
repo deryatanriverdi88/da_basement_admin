@@ -457,9 +457,10 @@ class MyBinders extends Component {
             <>
                 {
                     this.state.binderItem.id ?
-                        <h2> Current Binder : {this.state.binderItem.name} </h2> :
+                        <h2 className="binder-name"> Current Binder : {this.state.binderItem.name} </h2> :
                         null
                 }
+                 <div className="binder-buttons-selection">
                 <select name="binderInputName" id="binder-name" onChange={this.handleBinderClick}>
                     <option hidden> {this.state.binderItem.id ? this.state.binderItem.name: 'Select a binder'}  </option>
                     {
@@ -479,7 +480,7 @@ class MyBinders extends Component {
                     </> :
                     null
                 }
-
+                </div>
                 {
                     this.state.editBinderForm ?
                     <>
