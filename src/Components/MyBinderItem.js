@@ -85,7 +85,7 @@ export default function MyBinderItem(props){
                                     <option hidden>Select color</option>
                                     {
                                         COLORS.map(color =>{
-                                            return <option value={color}>{color}</option>
+                                            return <option value={color} key={color}>{color}</option>
                                         })
                                     }
                                 </select>
@@ -101,7 +101,7 @@ export default function MyBinderItem(props){
                                         <option hidden>Select color</option>
                                         {
                                             COLORS.map(color =>{
-                                                return <option value={color}>{color}</option>
+                                                return <option value={color} key={color}>{color}</option>
                                             })
                                         }
                                     </select>
