@@ -78,9 +78,37 @@ export default function MyBinderItem(props){
                             <td> No Icon </td>
                     }
                     {props.card.color ?
-                         <td className={props.card.color}>{props.card.color}</td>
+                         <td className={props.card.color}>
+                             {
+                                props.editForm && props.editCard.id === props.card.id ?
+                                <select name="color" onChange={props.handleChange}>
+                                    <option hidden>Select color</option>
+                                    {
+                                        COLORS.map(color =>{
+                                            return <option value={color}>{color}</option>
+                                        })
+                                    }
+                                </select>
+                                 :
+                                props.card.color
+                             }
+                             </td>
                          :
-                         <td>No info</td>
+                         <td>
+                             {
+                                props.editForm && props.editCard.id === props.card.id ?
+                                    <select name="color" onChange={props.handleChange}>
+                                        <option hidden>Select color</option>
+                                        {
+                                            COLORS.map(color =>{
+                                                return <option value={color}>{color}</option>
+                                            })
+                                        }
+                                    </select>
+                                    :
+                                    <p> No info </p>
+                                }
+                         </td>
                     }
                     {
                         props.card.foil ?
