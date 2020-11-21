@@ -46,7 +46,7 @@ export default function MyCardItem(props) {
                     <td> {props.card.rarity} </td>
                     {
                         props.card.foil ?
-                            <td>
+                            <td className="foil">
                                 {
                                     props.editForm && props.editCard.id === props.card.id ?
                                         <select name="foil" onChange={props.handleChange}>
