@@ -255,19 +255,30 @@ class MyBinders extends Component {
     }
 
     handleBinderDelete = () => {
-        fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.state.binderItem.id}`, {
-                  method: 'DELETE'
-             }).then(res => {
+        window.alert('You are deleting this binder permanently, are you sure?')
+        window.addEventListener(this.setState({alert: true}) ,console.log('hey'))
+        setTimeout(() => {
+            this.deleteBinder()
+        }, 50)
+    }
+
+    deleteBinder = () => {
+        if(this.state.alert){
+            fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.state.binderItem.id}`, {
+                method: 'DELETE'
+            }).then(res => {
             const newBinders = this.props.binders.filter(binder =>{
-              return binder.id !== this.state.binderItem.id
-           })
-           this.setState({
-               binderItem: {}
-           })
-           this.props.history.push({pathname: `/my-binders`})
-           this.props.setBinders(newBinders)
-           this.props.clearFavoriteCards()
-        })
+                return binder.id !== this.state.binderItem.id
+            })
+            this.setState({
+                binderItem: {},
+                alert: false
+            })
+            this.props.history.push({pathname: `/my-binders`})
+            this.props.setBinders(newBinders)
+            this.props.clearFavoriteCards()
+            })
+        }
     }
 
     handleCount = (v1, v2) => {
