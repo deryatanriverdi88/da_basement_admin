@@ -285,7 +285,8 @@ class MyBinders extends Component {
             cardsWithBinderName: updatedCards,
             cardsWithIsfoil: updatedCards ,
             cardsWithSetName: updatedCards,
-            cardsWithRarity: updatedCards
+            cardsWithRarity: updatedCards,
+            cardsWithColors: updatedCards
           })
         })
     }
@@ -387,7 +388,8 @@ class MyBinders extends Component {
                 cardsWithBinderName: updatedCards,
                 cardsWithIsfoil: updatedCards ,
                 cardsWithSetName: updatedCards,
-                cardsWithRarity: updatedCards
+                cardsWithRarity: updatedCards,
+                cardsWithColors: updatedCards
                 })
             this.props.setFavoriteCards(newCards)
         })
