@@ -148,7 +148,7 @@ class AddCards extends Component {
                         <option hidden>There are {searchedCardNames.length} names...</option>
                         {
                             searchedCardNames.map((name, i) =>{
-                                return <option value={name} key={i+1} >{name}</option>
+                                return <option value={name.replace("â", "a")} key={i+1} >{name}</option>
                             })
                         }
                     </select>
