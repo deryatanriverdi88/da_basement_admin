@@ -165,7 +165,7 @@ class MyBinders extends Component {
     }
 
     cardsToMap = (att) => {
-        const {cardsWithRarity, cardsWithIsfoil, cardsWithSetName} = this.state
+        const {cardsWithRarity, cardsWithIsfoil, cardsWithSetName, cardsWithColors} = this.state
         let arrayToMap = []
         if(att === "rarity"){
            return arrayToMap = cardsWithRarity
@@ -173,6 +173,8 @@ class MyBinders extends Component {
             return arrayToMap = cardsWithIsfoil
         }else if(att === "setName"){
             return arrayToMap = cardsWithSetName
+        }else if(att === "colorName"){
+            return arrayToMap = cardsWithColors
         }
         return arrayToMap
     }
