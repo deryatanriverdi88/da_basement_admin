@@ -292,7 +292,7 @@ class MyBinders extends Component {
 
     handleBinderDelete = () => {
         window.alert('You are deleting this binder permanently, are you sure?')
-        window.addEventListener(this.setState({alert: true}))
+        window.addEventListener("click", this.setState({alert: true}))
         setTimeout(() => {
             this.deleteBinder()
         }, 50)
@@ -460,12 +460,12 @@ class MyBinders extends Component {
                         <h2 className="binder-name"> Current Binder : {this.state.binderItem.name} </h2> :
                         null
                 }
-                 <div className="binder-buttons-selection">
+                <div className="binder-buttons-selection">
                 <select name="binderInputName" id="binder-name" onChange={this.handleBinderClick}>
                     <option hidden> {this.state.binderItem.id ? this.state.binderItem.name: 'Select a binder'}  </option>
                     {
                         this.props.binders.length > 0 ?
-                            this.props.binders.map(binder => {
+                        this.props.binders.sort((a,b) => a.name > b.name ? 1 : -1).map(binder => {
                                 return <option value={binder.id} key={binder.id}> {binder.name} </option>
                             }) :
                             null
