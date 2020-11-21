@@ -381,6 +381,7 @@ class MyCards extends Component {
                                     </select>
                                 </th>
                                 <th className="set-icon"> Set Icon </th>
+                                <th className="color"> Color</th>
                                 <th className="set-name">
                                 <select name="setName" value={this.state.setName} onChange={this.handleDropdownChange}>
                                         <option value="all-sets" key="all"> All Sets </option>
