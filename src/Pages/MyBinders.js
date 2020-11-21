@@ -66,6 +66,7 @@ class MyBinders extends Component {
                     binderItem: binderObj
                 })
                 this.setGroupNames()
+                this.setColors()
              })
             }
         else {
@@ -235,6 +236,7 @@ class MyBinders extends Component {
         let sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
         this.props.setFavoriteCards(sortedCards)
         this.setGroupNames()
+        this.setColors()
         this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
     }
 
