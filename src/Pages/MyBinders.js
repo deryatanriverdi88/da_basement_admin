@@ -124,7 +124,8 @@ class MyBinders extends Component {
         this.setState({
             cardsWithRarity: [],
             cardsWithSetName: [],
-            cardsWithIsfoil: []
+            cardsWithIsfoil: [],
+            cardsWithColors: []
         })
         fetch(`https://da-basement-games-api.herokuapp.com/cards_with_binder?${att}=${value}&binder=${this.state.binderItem.id}`)
         .then(res => res.json())
@@ -137,7 +138,12 @@ class MyBinders extends Component {
                 this.setState({
                     cardsWithSetName: cardObj
                 })
-            } else if(att === "isFoil"){
+            }else if(att === "colorName"){
+                console.log(cardObj)
+                this.setState({
+                    cardsWithColors: cardObj
+                })
+            }else if(att === "isFoil"){
                 let newCards = []
                  this.props.binderFavoriteCards.filter(card => {
                     if(value === "true"){
