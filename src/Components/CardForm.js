@@ -37,11 +37,11 @@ class CardForm extends Component {
         this.setState({
             card: card.value
         })
-        if(!normal_low_price && !normal_mid_price && !normal_high_price && !normal_market_price){
-            this.setState({
-                foil: true
-            })
-        }
+        // if(!normal_low_price && !normal_mid_price && !normal_high_price && !normal_market_price){
+        //     this.setState({
+        //         foil: true
+        //     })
+        // }
         this.handleClick()
     }
 
