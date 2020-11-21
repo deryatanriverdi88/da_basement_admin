@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactHover, {Trigger, Hover} from 'react-hover'
 const optionsCursorTrueWithMargin = {followCursor:true, shiftX: 80, shiftY: -280}
+const COLORS = ['Red', "Green", "Blue", "Black", "White", "Multicolor", "Colorless"]
 
 export default function MyCardItem(props) {
     return (
