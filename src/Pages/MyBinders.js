@@ -333,7 +333,8 @@ class MyBinders extends Component {
           },
             body: JSON.stringify({
                amount: this.state.amount,
-               foil: this.state.foil
+               foil: this.state.foil,
+               color: this.state.color
           })
         })
         .then(res => res.json())
@@ -347,6 +348,7 @@ class MyBinders extends Component {
                 editForm: false,
                 amount: null,
                 foil: null,
+                color: null,
                 cardsWithBinderName: updatedCards,
                 cardsWithIsfoil: updatedCards ,
                 cardsWithSetName: updatedCards,
