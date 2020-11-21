@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactHover, {Trigger, Hover} from 'react-hover'
 const optionsCursorTrueWithMargin = {followCursor:true, shiftX: 80, shiftY: -280}
+const COLORS = ['Red', "Green", "Blue", "Black", "White", "Multicolor", "Colorless"]
 
 export default function MyCardItem(props) {
     return (
@@ -89,9 +90,37 @@ export default function MyCardItem(props) {
                         <td> No Icon </td>
                     }
                     {props.card.color ?
-                         <td className={props.card.color}>{props.card.color}</td>
+                         <td className={props.card.color}>
+                             {
+                                props.editForm && props.editCard.id === props.card.id ?
+                                <select name="color" onChange={props.handleChange}>
+                                    <option hidden>Select color</option>
+                                    {
+                                        COLORS.map(color =>{
+                                            return <option value={color}>{color}</option>
+                                        })
+                                    }
+                                </select>
+                                 :
+                                props.card.color
+                             }
+                             </td>
                          :
-                         <td>No info</td>
+                         <td>
+                             {
+                                props.editForm && props.editCard.id === props.card.id ?
+                                    <select name="color" onChange={props.handleChange}>
+                                        <option hidden>Select color</option>
+                                        {
+                                            COLORS.map(color =>{
+                                                return <option value={color}>{color}</option>
+                                            })
+                                        }
+                                    </select>
+                                    :
+                                    <p> No info </p>
+                                }
+                         </td>
                     }
                     <td> {props.card.group_name} </td>
                     {
