@@ -39,7 +39,7 @@ export default function MyBinderItem(props){
                     <td>{props.card.rarity} </td>
                     {
                         props.card.foil ?
-                            <td>
+                            <td className="foil">
                                 {
                                     props.editForm && props.editCard.id === props.card.id ?
                                 <select name="foil" onChange={props.handleChange}>
@@ -75,6 +75,11 @@ export default function MyBinderItem(props){
                             </td>
                             :
                             <td> No Icon </td>
+                    }
+                    {props.card.color ?
+                         <td className={props.card.color}>{props.card.color}</td>
+                         :
+                         <td>No info</td>
                     }
                     {
                         props.card.foil ?

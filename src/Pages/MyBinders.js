@@ -25,7 +25,8 @@ class MyBinders extends Component {
         attribute: "",
         value: "",
         groupNames: [],
-        priceOrAmountClicked: false
+        priceOrAmountClicked: false,
+        alert: false
 
     }
 
@@ -254,19 +255,30 @@ class MyBinders extends Component {
     }
 
     handleBinderDelete = () => {
-        fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.state.binderItem.id}`, {
-                  method: 'DELETE'
-             }).then(res => {
+        window.alert('You are deleting this binder permanently, are you sure?')
+        window.addEventListener(this.setState({alert: true}) ,console.log('hey'))
+        setTimeout(() => {
+            this.deleteBinder()
+        }, 50)
+    }
+
+    deleteBinder = () => {
+        if(this.state.alert){
+            fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.state.binderItem.id}`, {
+                method: 'DELETE'
+            }).then(res => {
             const newBinders = this.props.binders.filter(binder =>{
-              return binder.id !== this.state.binderItem.id
-           })
-           this.setState({
-               binderItem: {}
-           })
-           this.props.history.push({pathname: `/my-binders`})
-           this.props.setBinders(newBinders)
-           this.props.clearFavoriteCards()
-        })
+                return binder.id !== this.state.binderItem.id
+            })
+            this.setState({
+                binderItem: {},
+                alert: false
+            })
+            this.props.history.push({pathname: `/my-binders`})
+            this.props.setBinders(newBinders)
+            this.props.clearFavoriteCards()
+            })
+        }
     }
 
     handleCount = (v1, v2) => {
@@ -491,6 +503,7 @@ class MyBinders extends Component {
                                     </select>
                                 </th>
                                 <th className="set-icon"> Set Icon </th>
+                                <th className="color"> Color</th>
                                 <th className="low-price price">
                                     Low Price
                                     {this.renderPriceLogo("low_price")}
@@ -532,7 +545,7 @@ class MyBinders extends Component {
                             <tr>
                                 <td> Total Cards </td>
                                 <td> {this.handleCount('amount')} </td>
-                                <td  colSpan="4"> Value </td>
+                                <td  colSpan="5"> Value </td>
                                 <td> ${this.handleCount("normal_low_price", "foil_low_price").toFixed(2)} </td>
                                 <td> ${this.handleCount("normal_mid_price", "foil_mid_price").toFixed(2)} </td>
                                 <td> ${this.handleCount("normal_high_price", "foil_high_price").toFixed(2)} </td>

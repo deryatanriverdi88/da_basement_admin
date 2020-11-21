@@ -99,6 +99,7 @@ class CardForm extends Component {
                 group_id: this.state.card.group_id,
                 rarity: this.state.card.rarity,
                 sub_type: this.state.card.sub_type,
+                color: this.state.card.color,
                 text: this.state.card.text,
                 group_name: this.state.card.group_name,
                 normal_low_price: this.state.card.normal_low_price,

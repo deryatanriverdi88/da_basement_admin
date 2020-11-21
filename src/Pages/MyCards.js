@@ -194,7 +194,7 @@ class MyCards extends Component {
 
     handleCount = (v1, v2) => {
         let count = 0
-        if(this.props.favoriteCards.length > 0){
+        if(this.props.favoriteCards){
             this.cardsToRender().forEach(card =>{
                 if(v1 === "amount"){
                    count += card[v1]
@@ -305,14 +305,17 @@ class MyCards extends Component {
     }
 
     render() {
-        const newNames = this.cardsToRender().map(card => {
-            if(card.name.toLowerCase().startsWith("the ")){
-                card.name = card.name.slice(4, card.name.length).concat(', The')
-                return card
-            } else{
-                return card
-            }
-        })
+        let newNames = []
+        if(this.cardsToRender()){
+            this.cardsToRender().map(card => {
+                if(card.name.toLowerCase().startsWith("the ")){
+                    card.name = card.name.slice(4, card.name.length).concat(', The')
+                    newNames.push(card)
+                } else{
+                    newNames.push(card)
+                }
+            })
+        }
 
         let searchedCards= []
         newNames.filter(card => {
@@ -378,13 +381,17 @@ class MyCards extends Component {
                                     </select>
                                 </th>
                                 <th className="set-icon"> Set Icon </th>
+                                <th className="color"> Color</th>
                                 <th className="set-name">
                                 <select name="setName" value={this.state.setName} onChange={this.handleDropdownChange}>
                                         <option value="all-sets" key="all"> All Sets </option>
                                             {
-                                                this.props.groupNames.map(name => {
-                                                    return <option value={name} key={name}> {name} </option>
-                                                })
+                                                this.props.groupNames ?
+                                                    this.props.groupNames.map(name => {
+                                                        return <option value={name} key={name}> {name} </option>
+                                                    })
+                                                    :
+                                                    null
                                             }
                                     </select>
                                 </th>
@@ -408,7 +415,7 @@ class MyCards extends Component {
                         </thead>
                         <tbody>
                             {
-                              this.props.favoriteCards.length > 0 ?
+                              this.props.favoriteCards ?
                                 searchedCards.map((card)=>{
                                    return <MyCardItem card={card}
                                                       key={card.id}
@@ -430,7 +437,7 @@ class MyCards extends Component {
                             <tr>
                                 <td>Total Cards</td>
                                 <td>{this.handleCount('amount')}</td>
-                                <td colSpan="5">Value</td>
+                                <td colSpan="6">Value</td>
                                 <td>${this.handleCount("normal_low_price", "foil_low_price").toFixed(2)}</td>
                                 <td>${this.handleCount("normal_mid_price", "foil_mid_price").toFixed(2)}</td>
                                 <td>${this.handleCount("normal_high_price", "foil_high_price").toFixed(2)}</td>
