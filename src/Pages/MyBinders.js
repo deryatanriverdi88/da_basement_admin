@@ -503,6 +503,7 @@ class MyBinders extends Component {
                                     </select>
                                 </th>
                                 <th className="set-icon"> Set Icon </th>
+                                <th className="color"> Color</th>
                                 <th className="low-price price">
                                     Low Price
                                     {this.renderPriceLogo("low_price")}
