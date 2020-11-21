@@ -292,7 +292,7 @@ class MyBinders extends Component {
 
     handleBinderDelete = () => {
         window.alert('You are deleting this binder permanently, are you sure?')
-        window.addEventListener(this.setState({alert: true}))
+        window.addEventListener("click", this.setState({alert: true}))
         setTimeout(() => {
             this.deleteBinder()
         }, 50)
