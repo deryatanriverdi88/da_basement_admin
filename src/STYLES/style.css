@@ -213,6 +213,35 @@
   border: 3px solid #f3f1fd;
 }
 
+.table table .foil {
+  background: #22c1c3;
+  background: linear-gradient(74deg, #22c1c3 0%, #7eb5b5 5%, #f7dfa4 97%, #edd297 100%);
+}
+
+.table table .Red {
+  background: #d61133 !important;
+  color: white;
+}
+
+.table table .White {
+  background: #fdf8f7;
+}
+
+.table table .Blue {
+  background: #0297db;
+  color: white;
+}
+
+.table table .Green {
+  background: #479265;
+  color: white;
+}
+
+.table table .Black {
+  background: #221b1b;
+  color: white;
+}
+
 .table .edit-input {
   width: 3em;
 }
@@ -553,7 +582,7 @@
 
 @media only screen and (max-width: 700px) {
   .background-for-z-index .card-form, .background-for-z-index .binder-div, .background-for-pop-up-index .card-form, .background-for-pop-up-index .binder-div {
-    width: 80%;
+    width: 100%;
     height: 100vh;
   }
   .background-for-z-index .card-item, .background-for-pop-up-index .card-item {
