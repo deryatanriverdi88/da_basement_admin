@@ -26,7 +26,30 @@ $base-color: #43456b;
             bottom: -5px;
         }
         td{
-            border: 3px solid #f3f1fd;;
+            border: 3px solid #f3f1fd;
+        }
+        .foil{
+            background: rgb(34,193,195);
+            background: linear-gradient(74deg, rgba(34,193,195,1) 0%, rgba(126,181,181,1) 5%, rgba(247,223,164,1) 97%, rgba(237,210,151,1) 100%);
+        }
+        .Red{
+            background: #d61133 !important;
+            color: white;
+        }
+        .White{
+            background: #fdf8f7;
+        }
+        .Blue{
+            background: #0297db;
+            color: white;
+        }
+        .Green{
+            background: #479265;
+            color: white;
+        }
+        .Black{
+            background: #221b1b;
+            color: white;
         }
     }
     .edit-input{
