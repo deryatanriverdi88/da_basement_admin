@@ -593,6 +593,25 @@
   }
 }
 
+.binder-buttons-selection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 40%;
+  margin: auto;
+}
+
+@media only screen and (max-width: 700px) {
+  .binder-buttons-selection {
+    width: 100%;
+  }
+  .binder-buttons-selection select, .binder-buttons-selection button {
+    margin-right: 5px;
+  }
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -617,7 +636,7 @@ a {
   color: black;
 }
 
-.search-card-form label, .add-card-form label {
+.search-card label, .add-card-form label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -631,5 +650,11 @@ a {
 
 .css-1uccc91-singleValue {
   width: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+  .binder-name {
+    font-size: 15px;
+  }
 }
 /*# sourceMappingURL=style.css.map */
