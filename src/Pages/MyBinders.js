@@ -44,6 +44,17 @@ class MyBinders extends Component {
         return removedDublicates.sort((a,b) => a > b ? 1 : -1)
     }
 
+    setColors = () => {
+        let colors = []
+        if(this.props.binderFavoriteCards){
+            this.props.binderFavoriteCards.forEach(card => {
+                colors.push(card.color)
+            })
+        }
+        let removedDublicates = [...new Set(colors)]
+        return removedDublicates.sort((a,b) => a > b ? 1 : -1)
+    }
+
     componentDidMount = () =>{
         if(this.props.history.location.state && this.props.history.location.state.binder.id){
             fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.props.history.location.state.binder.id}`)
