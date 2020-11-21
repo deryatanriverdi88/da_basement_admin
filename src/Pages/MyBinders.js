@@ -139,7 +139,6 @@ class MyBinders extends Component {
                     cardsWithSetName: cardObj
                 })
             }else if(att === "colorName"){
-                console.log(cardObj)
                 this.setState({
                     cardsWithColors: cardObj
                 })
@@ -293,7 +292,7 @@ class MyBinders extends Component {
 
     handleBinderDelete = () => {
         window.alert('You are deleting this binder permanently, are you sure?')
-        window.addEventListener(this.setState({alert: true}) ,console.log('hey'))
+        window.addEventListener(this.setState({alert: true}))
         setTimeout(() => {
             this.deleteBinder()
         }, 50)
