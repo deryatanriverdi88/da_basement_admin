@@ -194,7 +194,7 @@ class MyCards extends Component {
 
     handleCount = (v1, v2) => {
         let count = 0
-        if(this.props.favoriteCards.length > 0){
+        if(this.props.favoriteCards){
             this.cardsToRender().forEach(card =>{
                 if(v1 === "amount"){
                    count += card[v1]
