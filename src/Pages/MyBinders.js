@@ -114,7 +114,8 @@ class MyBinders extends Component {
         this.setState({
             rarity: "all-rarities",
             setName: "all-sets",
-            isFoil: "all-types"
+            isFoil: "all-types",
+            colorName: "not-selected"
         })
         this.cardsToRender()
     }
