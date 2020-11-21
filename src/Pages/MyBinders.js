@@ -19,9 +19,11 @@ class MyBinders extends Component {
         rarity: "all-rarities",
         setName: "all-sets",
         isFoil: "all-types",
+        colorName: "not-selected",
         cardsWithRarity : [],
         cardsWithSetName: [],
         cardsWithIsfoil: [],
+        cardsWithColors: [],
         cardDeleted: {},
         attribute: "",
         value: "",
@@ -42,6 +44,17 @@ class MyBinders extends Component {
         return removedDublicates.sort((a,b) => a > b ? 1 : -1)
     }
 
+    setColors = () => {
+        let colors = []
+        if(this.props.binderFavoriteCards){
+            this.props.binderFavoriteCards.forEach(card => {
+                colors.push(card.color)
+            })
+        }
+        let removedDublicates = [...new Set(colors)]
+        return removedDublicates.sort((a,b) => a > b ? 1 : -1)
+    }
+
     componentDidMount = () =>{
         if(this.props.history.location.state && this.props.history.location.state.binder.id){
             fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.props.history.location.state.binder.id}`)
@@ -53,6 +66,7 @@ class MyBinders extends Component {
                     binderItem: binderObj
                 })
                 this.setGroupNames()
+                this.setColors()
              })
             }
         else {
@@ -71,17 +85,26 @@ class MyBinders extends Component {
         if(e.target.name === 'rarity'){
             this.setState({
                  setName: "all-sets",
-                 isFoil: "all-types"
+                 isFoil: "all-types",
+                 colorName: "not-selected"
             })
         }else if(e.target.name === 'setName'){
             this.setState({
                 rarity: "all-rarities",
-                isFoil: "all-types"
+                isFoil: "all-types",
+                colorName: "not-selected"
             })
         }else if(e.target.name === "isFoil"){
             this.setState({
                 rarity: "all-rarities",
-                setName: "all-sets"
+                setName: "all-sets",
+                colorName: "not-selected"
+            })
+        }else if(e.target.name === "colorName"){
+            this.setState({
+                rarity: "all-rarities",
+                setName: "all-sets",
+                isFoil: "all-types"
             })
         }
         this.fetchCardsWithAttribute(e.target.name, e.target.value)
@@ -91,7 +114,8 @@ class MyBinders extends Component {
         this.setState({
             rarity: "all-rarities",
             setName: "all-sets",
-            isFoil: "all-types"
+            isFoil: "all-types",
+            colorName: "not-selected"
         })
         this.cardsToRender()
     }
@@ -100,7 +124,8 @@ class MyBinders extends Component {
         this.setState({
             cardsWithRarity: [],
             cardsWithSetName: [],
-            cardsWithIsfoil: []
+            cardsWithIsfoil: [],
+            cardsWithColors: []
         })
         fetch(`https://da-basement-games-api.herokuapp.com/cards_with_binder?${att}=${value}&binder=${this.state.binderItem.id}`)
         .then(res => res.json())
@@ -113,7 +138,12 @@ class MyBinders extends Component {
                 this.setState({
                     cardsWithSetName: cardObj
                 })
-            } else if(att === "isFoil"){
+            }else if(att === "colorName"){
+                console.log(cardObj)
+                this.setState({
+                    cardsWithColors: cardObj
+                })
+            }else if(att === "isFoil"){
                 let newCards = []
                  this.props.binderFavoriteCards.filter(card => {
                     if(value === "true"){
@@ -135,7 +165,7 @@ class MyBinders extends Component {
     }
 
     cardsToMap = (att) => {
-        const {cardsWithRarity, cardsWithIsfoil, cardsWithSetName} = this.state
+        const {cardsWithRarity, cardsWithIsfoil, cardsWithSetName, cardsWithColors} = this.state
         let arrayToMap = []
         if(att === "rarity"){
            return arrayToMap = cardsWithRarity
@@ -143,6 +173,8 @@ class MyBinders extends Component {
             return arrayToMap = cardsWithIsfoil
         }else if(att === "setName"){
             return arrayToMap = cardsWithSetName
+        }else if(att === "colorName"){
+            return arrayToMap = cardsWithColors
         }
         return arrayToMap
     }
@@ -165,7 +197,7 @@ class MyBinders extends Component {
     }
 
     cardsToRender = () => {
-        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.isFoil === "all-types"){
+        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.isFoil === "all-types" && this.state.colorName === "not-selected"){
             return this.props.binderFavoriteCards
         }else if(this.state.rarity !== "all-rarities"){
             return this.state.cardsWithRarity
@@ -173,6 +205,8 @@ class MyBinders extends Component {
             return this.state.cardsWithSetName
         }else if(this.state.isFoil !== "all-types"){
             return this.state.cardsWithIsfoil
+        }else if(this.state.colorName !== "not-selected"){
+            return this.state.cardsWithColors
         }
     }
 
@@ -222,6 +256,7 @@ class MyBinders extends Component {
         let sortedCards = binderItem.favorite_cards.sort((a,b) => a.name > b.name ? 1 : -1)
         this.props.setFavoriteCards(sortedCards)
         this.setGroupNames()
+        this.setColors()
         this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
     }
 
@@ -250,7 +285,8 @@ class MyBinders extends Component {
             cardsWithBinderName: updatedCards,
             cardsWithIsfoil: updatedCards ,
             cardsWithSetName: updatedCards,
-            cardsWithRarity: updatedCards
+            cardsWithRarity: updatedCards,
+            cardsWithColors: updatedCards
           })
         })
     }
@@ -352,7 +388,8 @@ class MyBinders extends Component {
                 cardsWithBinderName: updatedCards,
                 cardsWithIsfoil: updatedCards ,
                 cardsWithSetName: updatedCards,
-                cardsWithRarity: updatedCards
+                cardsWithRarity: updatedCards,
+                cardsWithColors: updatedCards
                 })
             this.props.setFavoriteCards(newCards)
         })
@@ -506,7 +543,16 @@ class MyBinders extends Component {
                                     </select>
                                 </th>
                                 <th className="set-icon"> Set Icon </th>
-                                <th className="color"> Color</th>
+                                <th className="color">
+                                    <select name="colorName" value={this.state.colorName} onChange={this.handleDropdownChange}>
+                                            <option value="not-selected" key="all"> Pick a color </option>
+                                                {
+                                                    this.setColors().map(color => {
+                                                    return <option value={color} key={color}> {color} </option>
+                                                    })
+                                                }
+                                    </select>
+                                </th>
                                 <th className="low-price price">
                                     Low Price
                                     {this.renderPriceLogo("low_price")}
