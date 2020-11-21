@@ -197,7 +197,7 @@ class MyBinders extends Component {
     }
 
     cardsToRender = () => {
-        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.isFoil === "all-types"){
+        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.isFoil === "all-types" && this.state.colorName === "not-selected"){
             return this.props.binderFavoriteCards
         }else if(this.state.rarity !== "all-rarities"){
             return this.state.cardsWithRarity
@@ -205,6 +205,8 @@ class MyBinders extends Component {
             return this.state.cardsWithSetName
         }else if(this.state.isFoil !== "all-types"){
             return this.state.cardsWithIsfoil
+        }else if(this.state.colorName !== "not-selected"){
+            return this.state.cardsWithColors
         }
     }
 
