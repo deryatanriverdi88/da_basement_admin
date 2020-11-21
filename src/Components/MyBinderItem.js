@@ -76,6 +76,11 @@ export default function MyBinderItem(props){
                             :
                             <td> No Icon </td>
                     }
+                    {props.card.color ?
+                         <td className={props.card.color}>{props.card.color}</td>
+                         :
+                         <td>No info</td>
+                    }
                     {
                         props.card.foil ?
                             <>

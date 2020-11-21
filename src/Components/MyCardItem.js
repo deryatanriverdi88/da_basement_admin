@@ -88,6 +88,11 @@ export default function MyCardItem(props) {
                         :
                         <td> No Icon </td>
                     }
+                    {props.card.color ?
+                         <td className={props.card.color}>{props.card.color}</td>
+                         :
+                         <td>No info</td>
+                    }
                     <td> {props.card.group_name} </td>
                     {
                         props.card.foil ?
