@@ -7,6 +7,7 @@ class MyCards extends Component {
     state={
         amount: null,
         foil: null,
+        color: null,
         editForm: false,
         editCard: {},
         searchValue: "",

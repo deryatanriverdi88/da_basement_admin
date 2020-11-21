@@ -11,6 +11,7 @@ class MyBinders extends Component {
         binderInputName: "",
         amount: null,
         foil: null,
+        color: null,
         editForm: false,
         editCard: null,
         editBinderForm: false,
