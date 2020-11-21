@@ -85,17 +85,26 @@ class MyBinders extends Component {
         if(e.target.name === 'rarity'){
             this.setState({
                  setName: "all-sets",
-                 isFoil: "all-types"
+                 isFoil: "all-types",
+                 colorName: "not-selected"
             })
         }else if(e.target.name === 'setName'){
             this.setState({
                 rarity: "all-rarities",
-                isFoil: "all-types"
+                isFoil: "all-types",
+                colorName: "not-selected"
             })
         }else if(e.target.name === "isFoil"){
             this.setState({
                 rarity: "all-rarities",
-                setName: "all-sets"
+                setName: "all-sets",
+                colorName: "not-selected"
+            })
+        }else if(e.target.name === "colorName"){
+            this.setState({
+                rarity: "all-rarities",
+                setName: "all-sets",
+                isFoil: "all-types"
             })
         }
         this.fetchCardsWithAttribute(e.target.name, e.target.value)
