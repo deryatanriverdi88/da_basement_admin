@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MyBinderItem from '../Components/MyBinderItem'
 import {withRouter} from 'react-router-dom'
-const RARITIES = [ "Common", "Land", "Uncommon","Mythic",  "Promo", "Special", "Rare", "Token"]
 
 class MyBinders extends Component {
 
@@ -55,6 +54,17 @@ class MyBinders extends Component {
         return removedDublicates.sort((a,b) => a > b ? 1 : -1)
     }
 
+    setRarities = () => {
+        let rarities = []
+        if(this.props.binderFavoriteCards){
+            this.props.binderFavoriteCards.forEach(card => {
+                rarities.push(card.rarity)
+            })
+        }
+        let removedDublicates = [...new Set(rarities)]
+        return removedDublicates.sort((a,b) => a > b ? 1 : -1)
+    }
+
     componentDidMount = () =>{
         if(this.props.history.location.state && this.props.history.location.state.binder.id){
             fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.props.history.location.state.binder.id}`)
@@ -67,6 +77,7 @@ class MyBinders extends Component {
                 })
                 this.setGroupNames()
                 this.setColors()
+                this.setRarities()
              })
             }
         else {
@@ -256,6 +267,7 @@ class MyBinders extends Component {
         this.props.setFavoriteCards(sortedCards)
         this.setGroupNames()
         this.setColors()
+        this.setRarities()
         this.props.history.push({pathname: `/my-binders/${binderItem.name}`, state: {binder: binderItem}})
     }
 
@@ -519,7 +531,7 @@ class MyBinders extends Component {
                                     <select name="rarity" value={this.state.rarity}onChange={this.handleDropdownChange}>
                                         <option value="all-rarities" key="all"> All Rarities </option>
                                             {
-                                                RARITIES.map(rarity => {
+                                                this.setRarities().map(rarity => {
                                                    return <option value={rarity} key={rarity}> {rarity} </option>
                                                 })
                                             }
