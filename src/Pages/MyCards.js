@@ -25,6 +25,17 @@ class MyCards extends Component {
         priceOrAmountClicked: false
     }
 
+    setRarities = () => {
+        let rarities = []
+        if(this.props.favoriteCards){
+            this.props.favoriteCards.forEach(card => {
+                rarities.push(card.rarity)
+            })
+        }
+        let removedDublicates = [...new Set(rarities)]
+        return removedDublicates.sort((a,b) => a > b ? 1 : -1)
+    }
+
     handleClick = (e, card) => {
         this.setState({
             amount: card.amount,
@@ -359,7 +370,7 @@ class MyCards extends Component {
                                     <select name="rarity" value={this.state.rarity}onChange={this.handleDropdownChange}>
                                         <option value="all-rarities" key="all"> All Rarities </option>
                                             {
-                                                RARITIES.map(rarity => {
+                                                this.setRarities().map(rarity => {
                                                    return <option value={rarity} key={rarity}> {rarity} </option>
                                                 })
                                             }
