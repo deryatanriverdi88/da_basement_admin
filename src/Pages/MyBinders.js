@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MyBinderItem from '../Components/MyBinderItem'
 import {withRouter} from 'react-router-dom'
-const RARITIES = [ "Common", "Land", "Uncommon","Mythic",  "Promo", "Special", "Rare", "Token"]
 
 class MyBinders extends Component {
 
@@ -519,7 +518,7 @@ class MyBinders extends Component {
                                     <select name="rarity" value={this.state.rarity}onChange={this.handleDropdownChange}>
                                         <option value="all-rarities" key="all"> All Rarities </option>
                                             {
-                                                RARITIES.map(rarity => {
+                                                this.setRarities().map(rarity => {
                                                    return <option value={rarity} key={rarity}> {rarity} </option>
                                                 })
                                             }
