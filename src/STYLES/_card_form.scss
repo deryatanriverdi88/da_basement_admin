@@ -17,7 +17,7 @@
             }
         }
     }
-    .card-form, .binder-div{
+    .card-form, .binder-div, .alert-div{
         background: #43456b;
         width: 50%;
         height: 90%;
@@ -107,6 +107,24 @@
                         }
                     }
                 }
+            }
+        }
+    }
+    .alert-div{
+        width: 30%;
+        height: 30%;
+        display: flex;
+        flex-wrap: wrap;
+        p{
+            margin: auto;
+            color: white;
+            width: 80%;
+        }
+        .alert-buttons{
+            width: 100%;
+            button{
+                padding: 10px;
+                margin: 0 5px;
             }
         }
     }
