@@ -611,6 +611,13 @@ class MyBinders extends Component {
                         </tfoot>
                     </table>
                 </div>
+                {this.state.alert ?
+                  <Alert deleteBinder={this.deleteBinder}
+                         handleBinderDelete={this.handleBinderDelete}
+                  />
+                  :
+                  null
+                }
             </>
         )
     }
