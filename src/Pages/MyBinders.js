@@ -30,7 +30,6 @@ class MyBinders extends Component {
         groupNames: [],
         priceOrAmountClicked: false,
         alert: false
-
     }
 
     setGroupNames = () => {
@@ -304,15 +303,12 @@ class MyBinders extends Component {
     }
 
     handleBinderDelete = () => {
-        window.alert('You are deleting this binder permanently, are you sure?')
-        window.addEventListener("click", this.setState({alert: true}))
-        setTimeout(() => {
-            this.deleteBinder()
-        }, 50)
+        this.setState({
+            alert: !this.state.alert
+        })
     }
 
     deleteBinder = () => {
-        if(this.state.alert){
             fetch(`https://da-basement-games-api.herokuapp.com/binders/${this.state.binderItem.id}`, {
                 method: 'DELETE'
             }).then(res => {
