@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MyBinderItem from '../Components/MyBinderItem'
+import Alert from '../Components/Alert'
 import {withRouter} from 'react-router-dom'
 
 class MyBinders extends Component {
