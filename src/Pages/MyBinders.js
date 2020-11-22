@@ -323,7 +323,6 @@ class MyBinders extends Component {
             this.props.setBinders(newBinders)
             this.props.clearFavoriteCards()
             })
-        }
     }
 
     handleCount = (v1, v2) => {
