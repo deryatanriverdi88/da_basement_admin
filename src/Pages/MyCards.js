@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MyCardItem from '../Components/MyCardItem'
-const RARITIES = [ "Common", "Land", "Uncommon","Mythic",  "Promo", "Special", "Rare", "Token"]
 
 class MyCards extends Component {
     state={
@@ -15,10 +14,12 @@ class MyCards extends Component {
         setName: "all-sets",
         isFoil: "all-types",
         binderName: "all-binders",
+        colorName: "not-selected",
         cardsWithRarity : [],
         cardsWithSetName: [],
         cardsWithBinderName: [],
         cardsWithIsfoil: [],
+        cardsWithColors: [],
         cardDeleted: {},
         attribute: "",
         value: "",
@@ -33,6 +34,17 @@ class MyCards extends Component {
             })
         }
         let removedDublicates = [...new Set(rarities)]
+        return removedDublicates.sort((a,b) => a > b ? 1 : -1)
+    }
+
+    setColors = () => {
+        let colors = []
+        if(this.props.favoriteCards){
+            this.props.favoriteCards.forEach(card => {
+                colors.push(card.color)
+            })
+        }
+        let removedDublicates = [...new Set(colors)]
         return removedDublicates.sort((a,b) => a > b ? 1 : -1)
     }
 
@@ -61,25 +73,36 @@ class MyCards extends Component {
             this.setState({
                  setName: "all-sets",
                  binderName: "all-binders",
-                 isFoil: "all-types"
+                 isFoil: "all-types",
+                 colorName: "not-selected"
             })
         }else if(e.target.name === 'setName'){
             this.setState({
                 rarity: "all-rarities",
                 binderName: "all-binders",
-                isFoil: "all-types"
+                isFoil: "all-types",
+                colorName: "not-selected"
             })
         }else if(e.target.name === 'binderName'){
             this.setState({
                 rarity: "all-rarities",
                 setName: "all-sets",
-                isFoil: "all-types"
+                isFoil: "all-types",
+                colorName: "not-selected"
             })
         }else if(e.target.name === "isFoil"){
             this.setState({
                 rarity: "all-rarities",
                 setName: "all-sets",
                 binderName: "all-binders",
+                colorName: "not-selected"
+            })
+        }else if(e.target.name === "colorName"){
+            this.setState({
+                rarity: "all-rarities",
+                setName: "all-sets",
+                binderName: "all-binders",
+                isFoil: "all-types"
             })
         }
         this.fetchCardsWithAttribute(e.target.name, e.target.value)
@@ -90,7 +113,8 @@ class MyCards extends Component {
             rarity: "all-rarities",
             setName: "all-sets",
             isFoil: "all-types",
-            binderName: "all-binders"
+            binderName: "all-binders",
+            colorName: "not-selected"
         })
         this.cardsToRender()
     }
@@ -109,7 +133,11 @@ class MyCards extends Component {
                 })
             } else if(att === "binderName"){
                 this.filterByBinder()
-            } else if(att === "isFoil"){
+            }else if(att === "colorName"){
+                this.setState({
+                    cardsWithColors: cardObj
+                })
+            }else if(att === "isFoil"){
                 let newCards = []
                  this.props.favoriteCards.filter(card => {
                     if(value === "true"){
@@ -131,7 +159,7 @@ class MyCards extends Component {
     }
 
     cardsToMap = (att) => {
-        const {cardsWithRarity, cardsWithBinderName , cardsWithIsfoil, cardsWithSetName} = this.state
+        const {cardsWithRarity, cardsWithBinderName , cardsWithIsfoil, cardsWithSetName, cardsWithColors} = this.state
         let arrayToMap = []
         if(att === "rarity"){
            return arrayToMap = cardsWithRarity
@@ -141,6 +169,8 @@ class MyCards extends Component {
             return arrayToMap = cardsWithIsfoil
         }else if(att === "setName"){
             return arrayToMap = cardsWithSetName
+        }else if(att === "colorName"){
+            return arrayToMap = cardsWithColors
         }
         return arrayToMap
     }
@@ -163,7 +193,7 @@ class MyCards extends Component {
     }
 
     cardsToRender = () => {
-        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.binderName === "all-binders" && this.state.isFoil === "all-types"){
+        if(this.state.setName === "all-sets" && this.state.rarity === "all-rarities" && this.state.binderName === "all-binders" && this.state.isFoil === "all-types" && this.state.colorName === "not-selected"){
             return this.props.favoriteCards
         }else if(this.state.rarity !== "all-rarities"){
             return this.state.cardsWithRarity
@@ -173,6 +203,8 @@ class MyCards extends Component {
             return this.state.cardsWithBinderName
         }else if(this.state.isFoil !== "all-types"){
             return this.state.cardsWithIsfoil
+        }else if(this.state.colorName !== "not-selected"){
+            return this.state.cardsWithColors
         }
     }
 
@@ -294,7 +326,8 @@ class MyCards extends Component {
             cardsWithBinderName: updatedCards,
             cardsWithIsfoil: updatedCards ,
             cardsWithSetName: updatedCards,
-            cardsWithRarity: updatedCards
+            cardsWithRarity: updatedCards,
+            cardsWithColors: updatedCards
           })
         })
     }
@@ -313,7 +346,8 @@ class MyCards extends Component {
             cardsWithBinderName: updatedCards,
             cardsWithIsfoil: updatedCards ,
             cardsWithSetName: updatedCards,
-            cardsWithRarity: updatedCards
+            cardsWithRarity: updatedCards,
+            cardsWithColors: updatedCards
           })
         })
     }
@@ -395,7 +429,16 @@ class MyCards extends Component {
                                     </select>
                                 </th>
                                 <th className="set-icon"> Set Icon </th>
-                                <th className="color"> Color</th>
+                                <th className="color">
+                                    <select name="colorName" value={this.state.colorName} onChange={this.handleDropdownChange}>
+                                            <option value="not-selected" key="all"> Pick a color </option>
+                                                {
+                                                    this.setColors().map(color => {
+                                                    return <option value={color} key={color}> {color} </option>
+                                                    })
+                                                }
+                                    </select>
+                                </th>
                                 <th className="set-name">
                                 <select name="setName" value={this.state.setName} onChange={this.handleDropdownChange}>
                                         <option value="all-sets" key="all"> All Sets </option>
