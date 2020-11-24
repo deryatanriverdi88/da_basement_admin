@@ -133,7 +133,11 @@ class MyCards extends Component {
                 })
             } else if(att === "binderName"){
                 this.filterByBinder()
-            } else if(att === "isFoil"){
+            }else if(att === "colorName"){
+                this.setState({
+                    cardsWithColors: cardObj
+                })
+            }else if(att === "isFoil"){
                 let newCards = []
                  this.props.favoriteCards.filter(card => {
                     if(value === "true"){
