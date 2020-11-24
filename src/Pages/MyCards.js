@@ -429,7 +429,16 @@ class MyCards extends Component {
                                     </select>
                                 </th>
                                 <th className="set-icon"> Set Icon </th>
-                                <th className="color"> Color</th>
+                                <th className="color">
+                                    <select name="colorName" value={this.state.colorName} onChange={this.handleDropdownChange}>
+                                            <option value="not-selected" key="all"> Pick a color </option>
+                                                {
+                                                    this.setColors().map(color => {
+                                                    return <option value={color} key={color}> {color} </option>
+                                                    })
+                                                }
+                                    </select>
+                                </th>
                                 <th className="set-name">
                                 <select name="setName" value={this.state.setName} onChange={this.handleDropdownChange}>
                                         <option value="all-sets" key="all"> All Sets </option>
