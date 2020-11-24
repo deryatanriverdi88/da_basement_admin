@@ -242,6 +242,11 @@
   color: white;
 }
 
+.table table .Multicolor {
+  background: #d61133;
+  background: linear-gradient(55deg, #d61133 17%, #fdf8f7 34%, #0297db 51%, #479265 68%, #221b1b 85%);
+}
+
 .table .edit-input {
   width: 3em;
 }
