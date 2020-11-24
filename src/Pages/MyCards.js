@@ -326,7 +326,8 @@ class MyCards extends Component {
             cardsWithBinderName: updatedCards,
             cardsWithIsfoil: updatedCards ,
             cardsWithSetName: updatedCards,
-            cardsWithRarity: updatedCards
+            cardsWithRarity: updatedCards,
+            cardsWithColors: updatedCards
           })
         })
     }
