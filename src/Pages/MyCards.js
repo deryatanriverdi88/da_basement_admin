@@ -159,7 +159,7 @@ class MyCards extends Component {
     }
 
     cardsToMap = (att) => {
-        const {cardsWithRarity, cardsWithBinderName , cardsWithIsfoil, cardsWithSetName} = this.state
+        const {cardsWithRarity, cardsWithBinderName , cardsWithIsfoil, cardsWithSetName, cardsWithColors} = this.state
         let arrayToMap = []
         if(att === "rarity"){
            return arrayToMap = cardsWithRarity
@@ -169,6 +169,8 @@ class MyCards extends Component {
             return arrayToMap = cardsWithIsfoil
         }else if(att === "setName"){
             return arrayToMap = cardsWithSetName
+        }else if(att === "colorName"){
+            return arrayToMap = cardsWithColors
         }
         return arrayToMap
     }
