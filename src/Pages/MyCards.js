@@ -37,6 +37,17 @@ class MyCards extends Component {
         return removedDublicates.sort((a,b) => a > b ? 1 : -1)
     }
 
+    setColors = () => {
+        let colors = []
+        if(this.props.favoriteCards){
+            this.props.favoriteCards.forEach(card => {
+                colors.push(card.color)
+            })
+        }
+        let removedDublicates = [...new Set(colors)]
+        return removedDublicates.sort((a,b) => a > b ? 1 : -1)
+    }
+
     handleClick = (e, card) => {
         this.setState({
             amount: card.amount,
