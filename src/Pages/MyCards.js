@@ -113,7 +113,8 @@ class MyCards extends Component {
             rarity: "all-rarities",
             setName: "all-sets",
             isFoil: "all-types",
-            binderName: "all-binders"
+            binderName: "all-binders",
+            colorName: "not-selected"
         })
         this.cardsToRender()
     }
