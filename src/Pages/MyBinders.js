@@ -221,7 +221,6 @@ class MyBinders extends Component {
     }
 
     handlePriceAndAmountClick = (value, reversePriceListType) => {
-        console.log(value, reversePriceListType)
         let newList = []
         if(value === "amount") {
             if(reversePriceListType === "high"){
