@@ -47,11 +47,11 @@ class AddCards extends Component {
 
     handleClose = () => {
         this.props.clearCards()
+        this.inputRef.current.focus();
         this.setState({
             cardForm: !this.state.cardForm,
             searchValue: ""
         })
-        this.inputRef.current.focus();
     }
 
     handleEscape = (e)=>{
