@@ -20,6 +20,13 @@ class AddCards extends Component {
         })
     }
 
+    handlePreventDefault = (e)=>{
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            return false;
+        }
+    }
+
     updateBinder = (card) => {
         let clonedBinder = JSON.parse(JSON.stringify(this.state.binder))
         if(clonedBinder.favorite_cards){
@@ -142,6 +149,7 @@ class AddCards extends Component {
                            ref={this.inputRef}
                            onFocus={this.handleChange}
                            onChange={this.handleChange}
+                           onKeyDown={this.handlePreventDefault}
                     />
                 </form>
                     <select ref={ref => {this.secondInputRef = ref }} name="cardName" style={{width: "30%"}} onChange={this.handleClick} placeholder="Select a card">
