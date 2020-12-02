@@ -439,13 +439,16 @@ class MyBinders extends Component {
         let newNames = []
         if(this.cardsToRender()){
            this.cardsToRender().map(card => {
-                if(card.name.toLowerCase().startsWith("the ")){
-                    card.name = card.name.slice(4, card.name.length).concat(', The')
-                    newNames.push(card)
-                } else{
-                    newNames.push(card)
-                }
-                return newNames
+               console.log(card)
+               if(card.name){
+                   if(card.name.toLowerCase().startsWith("the ")){
+                       card.name = card.name.slice(4, card.name.length).concat(', The')
+                       newNames.push(card)
+                   } else{
+                       newNames.push(card)
+                   }
+                   return newNames
+               }
             })
         }
 
