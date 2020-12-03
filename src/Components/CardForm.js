@@ -17,6 +17,7 @@ class CardForm extends Component {
         cardAdded: false,
         dropDown: false,
         popUp: false,
+        prevAmount: 0
     }
 
     inputRef = createRef();
