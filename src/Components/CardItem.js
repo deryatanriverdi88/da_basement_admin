@@ -97,6 +97,11 @@ export default function CardItem( props ) {
                 }
           </div>
       </div>
+      <p>Amount of card(s) just added :{props.amount}</p>
+      {cardItem.length > 0  && cardItem[0].id?
+        <p>Amount of {cardItem[0].name} in {cardItem[0].binder.name} : {cardItem[0].amount}</p> :
+        <p>It doesn't exist in the binder</p>
+      }
     </>
   )
 }
