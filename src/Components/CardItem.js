@@ -1,7 +1,25 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
 export default function CardItem( props ) {
-  const { name, img_url, normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price, group_name, rarity } = props.card
+  const { name, img_url, normal_low_price, normal_mid_price, normal_high_price, normal_market_price, foil_low_price, foil_mid_price, foil_high_price, foil_market_price, group_name, rarity, amount, product_id, binder} = props.card
+
+  const [cardItem, setCardItem] = useState("")
+  useEffect(() => {
+    if(binder){
+      fetch(`https://da-basement-games-api.herokuapp.com/find_by_product_id?productId=${product_id}&binderId=${binder.id}`)
+      .then(res => res.json())
+      .then(card => {
+        setCardItem(card)
+      })
+    }else {
+      fetch(`https://da-basement-games-api.herokuapp.com/find_by_product_id?productId=${product_id}`)
+      .then(res => res.json())
+      .then(card => {
+        setCardItem(card)
+      })
+    }
+  }, [props.card])
+
   return (
     <>
       <div className="card-item">
@@ -78,6 +96,15 @@ export default function CardItem( props ) {
                 </>
                 }
           </div>
+      </div>
+      <div className="amount">
+       <p>Amount of card(s) just added :{props.amount}</p>
+        {
+          cardItem.length > 0  && cardItem[0].id ?
+            <p> Amount of {cardItem[0].name} in {cardItem[0].binder.name} : {cardItem[0].amount}</p>
+            :
+            <p>It doesn't exist in the binder</p>
+        }
       </div>
     </>
   )

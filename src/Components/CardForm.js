@@ -17,6 +17,7 @@ class CardForm extends Component {
         cardAdded: false,
         dropDown: false,
         popUp: false,
+        prevAmount: 0
     }
 
     inputRef = createRef();
@@ -119,10 +120,11 @@ class CardForm extends Component {
                     errors: card.errors
                 })
             } else {
-                this.setState({
+                this.setState(prevState => ({
                     card: card,
-                    popUp: true
-                })
+                    popUp: true,
+                    prevAmount: prevState.amount
+                }))
             }
             this.props.updateBinder(card)
         })
@@ -257,13 +259,14 @@ class CardForm extends Component {
                                 :
                                 <p>Select a card from above</p>
                             }
-                                   {
-                                    this.renderPopUp()
-                                   }
+                            {
+                            this.renderPopUp()
+                            }
                     </form>
                         <CardItem
                             card={this.state.card}
                             foil={this.state.foil}
+                            amount={this.state.prevAmount}
                         />
                  </div>
             </div>

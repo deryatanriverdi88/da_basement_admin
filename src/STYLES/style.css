@@ -610,6 +610,10 @@
   margin: 5px auto;
 }
 
+.amount {
+  color: white;
+}
+
 @media only screen and (max-width: 700px) {
   .background-for-z-index .card-form, .background-for-z-index .binder-div, .background-for-pop-up-index .card-form, .background-for-pop-up-index .binder-div {
     width: 100%;
