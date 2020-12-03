@@ -26,7 +26,7 @@ function NavBar(props) {
     return (
        
         <>
-        {!current_user.id ?
+        {!localStorage.token ?
              <div id="header">
                 <h1 className="header-name"> Admin Page</h1>
              </div> : 
