@@ -259,13 +259,14 @@ class CardForm extends Component {
                                 :
                                 <p>Select a card from above</p>
                             }
-                                   {
-                                    this.renderPopUp()
-                                   }
+                            {
+                            this.renderPopUp()
+                            }
                     </form>
                         <CardItem
                             card={this.state.card}
                             foil={this.state.foil}
+                            amount={this.state.prevAmount}
                         />
                  </div>
             </div>
