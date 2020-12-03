@@ -120,10 +120,11 @@ class CardForm extends Component {
                     errors: card.errors
                 })
             } else {
-                this.setState({
+                this.setState(prevState => ({
                     card: card,
-                    popUp: true
-                })
+                    popUp: true,
+                    prevAmount: prevState.amount
+                }))
             }
             this.props.updateBinder(card)
         })
