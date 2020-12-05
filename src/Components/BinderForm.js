@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom'
 
 function BinderForm({current_user, history, setBinderForm}) {
     const [binderName, setBinderName ] = useState("")
+    const [errors, setErrors] = useState("")
     const handleOnChange =(e) => {
         setBinderName(e.target.value)
     }
@@ -22,10 +23,14 @@ function BinderForm({current_user, history, setBinderForm}) {
         })
         .then(res => res.json())
         .then(binderObj => {
-            history.push({pathname: `/add-cards/${binderObj.name}`,
-            state: {binder: binderObj},
-            })
-            setBinderForm(false)
+            if(binderObj.errors ){
+                setErrors(binderObj.errors[0])
+            } else {
+                history.push({pathname: `/add-cards/${binderObj.name}`,
+                state: {binder: binderObj},
+                })
+                setBinderForm(false)
+            }
         })
     }
     return (
@@ -37,6 +42,9 @@ function BinderForm({current_user, history, setBinderForm}) {
                     </div>
                     <div className="form-div">
                         <form onSubmit={handleOnSubmit}>
+                        {
+                            errors.length > 0 ? <p>{errors}</p> : null
+                        }
                             <label htmlFor="binderName"> Name </label>
                             <input
                                 name="binderName"
