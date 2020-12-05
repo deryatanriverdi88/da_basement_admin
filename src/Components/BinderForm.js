@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom'
 
 function BinderForm({current_user, history, setBinderForm}) {
     const [binderName, setBinderName ] = useState("")
+    const [errors, setErrors] = useState("")
     const handleOnChange =(e) => {
         setBinderName(e.target.value)
     }
