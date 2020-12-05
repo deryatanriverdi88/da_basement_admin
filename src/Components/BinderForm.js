@@ -42,6 +42,9 @@ function BinderForm({current_user, history, setBinderForm}) {
                     </div>
                     <div className="form-div">
                         <form onSubmit={handleOnSubmit}>
+                        {
+                            errors.length > 0 ? <p>{errors}</p> : null
+                        }
                             <label htmlFor="binderName"> Name </label>
                             <input
                                 name="binderName"
